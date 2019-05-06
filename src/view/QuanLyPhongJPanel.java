@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.QuanLyPhongController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -44,18 +45,18 @@ import service.PhongService;
  */
 public class QuanLyPhongJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form QuanLyPhong
-     */
-    public QuanLyPhongJPanel() {
-        initComponents();
-        getDuLieuVaoList(); //lấy dữ liệu từ hệ quản trị lên nhưng chưa hiển thị
-        //jRadioButton1.setSelected(true);
-    }
-
+  
     ArrayList<JPanelPhong> arrListJpanelPhong;
     PhongService phongSV;
     ArrayList<Phong> listPhong;
+    
+    public QuanLyPhongJPanel() {
+        initComponents();
+         //lấy dữ liệu từ hệ quản trị lên nhưng chưa hiển thị
+        QuanLyPhongController phongController=new  QuanLyPhongController(buttonGroup1, jRadioButton1, jRadioButton2, jRadioButton3, jbtDanhSachDatPhong, jtfTimKiem, arrListJpanelPhong, phongSV, listPhong, jpnListCacPhong);
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

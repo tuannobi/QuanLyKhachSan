@@ -38,6 +38,7 @@ import model.Phong;
 import service.KhachHangService;
 import service.PhongService;
 import view.QuanLyPhongJPanel;
+import view.QuanLyPhongJPanel.JPanelPhong;
 
 /**
  *
@@ -67,21 +68,22 @@ public class QuanLyPhongController {
         this.arrListJpanelPhong=arrListJpanelPhong;
         this.phongSV=phongSV;
         this.listPhong=listPhong;
-        
+        getDuLieuVaoList();
         addEvents();
     }
     
-    private void getDuLieuVaoList(){
-               arrListJpanelPhong=new ArrayList<>();
+    public void getDuLieuVaoList(){
+               arrListJpanelPhong=new ArrayList<QuanLyPhongJPanel.JPanelPhong>();
         phongSV=new PhongService();
         listPhong=phongSV.getDuLieuPhong(); 
         //lay so phong
-        QuanLyPhongJPanel.JPanelPhong jpnPhong;
+      //  QuanLyPhongJPanel.JPanelPhong jpnPhong;
+        QuanLyPhongJPanel temp =new QuanLyPhongJPanel();
         int soPhong=listPhong.size();
         for (int i=0;i<soPhong;i++)
         {
             String phong="Phong "+listPhong.get(i).getMaPhong();
-            jpnPhong=new QuanLyPhongJPanel.JPanelPhong();
+         QuanLyPhongJPanel.JPanelPhong  jpnPhong= temp.new JPanelPhong();
             //Cai dat border
             Border borderPhong= BorderFactory.createLineBorder( Color.RED);
             jpnPhong.setBorder(borderPhong);
