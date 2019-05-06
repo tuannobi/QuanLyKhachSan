@@ -27,10 +27,11 @@ public class MainJFrameController {
          this.jpnInHoaDon=jpnInHoaDon;
          this.jpnQuanLyNhanVien1=jpnQuanLyNhanVien1;
          this.jpnThongKeDoanhSo=jpnThongKeDoanhSo;
-         addEvents(jpnView);
+         this.jpnView=jpnView;
+         addEvents();
      }
 
-    public void addEvents(JPanel jpnView){
+    public void addEvents(){
         this.jpnQuanLyKhachHang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {

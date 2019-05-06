@@ -50,7 +50,6 @@ public class QuanLyPhongJPanel extends javax.swing.JPanel {
     public QuanLyPhongJPanel() {
         initComponents();
         getDuLieuVaoList(); //lấy dữ liệu từ hệ quản trị lên nhưng chưa hiển thị
-        addEvents();
         //jRadioButton1.setSelected(true);
     }
 
@@ -206,16 +205,22 @@ public class QuanLyPhongJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    //Lop de luu tru Jpanel cua phong va ma phong
-    private class JPanelPhong extends JPanel{
-        String maPhong;
-        String maLoaiPhong;
-        String trangThai;
-        String getMaPhong(){
+    //Lop de luu tru Jpanel cua phong va ma phong--
+    //Đây là các JPanel hiển thị trên jpnMain
+     public class JPanelPhong extends JPanel{
+        private String maPhong;
+        private String maLoaiPhong;
+        private String trangThai;
+        
+        public JPanelPhong(){
+            super();
+        }
+        
+        public String getMaPhong(){
             return maPhong;
         }
         
-        void setMaPhong(String maPhong){
+       public  void setMaPhong(String maPhong){
             this.maPhong=maPhong;
         }
 
@@ -237,241 +242,7 @@ public class QuanLyPhongJPanel extends javax.swing.JPanel {
          
     }
     
-    private void getDuLieuVaoList(){
-               arrListJpanelPhong=new ArrayList<>();
-        phongSV=new PhongService();
-        listPhong=phongSV.getDuLieuPhong(); 
-        //lay so phong
-        JPanelPhong jpnPhong;
-        int soPhong=listPhong.size();
-        for (int i=0;i<soPhong;i++)
-        {
-            String phong="Phong "+listPhong.get(i).getMaPhong();
-            jpnPhong=new JPanelPhong();
-            //Cai dat border
-            Border borderPhong= BorderFactory.createLineBorder( Color.RED);
-            jpnPhong.setBorder(borderPhong);
-            jpnPhong.setPreferredSize(new Dimension(100,100));
-            if (listPhong.get(i).getTrangThai().equalsIgnoreCase("K"))
-            {
-                jpnPhong.setBackground(Color.white);
-            }
-            else if(listPhong.get(i).getTrangThai().equalsIgnoreCase("C"))
-            {
-                jpnPhong.setBackground(Color.blue);
-            }
-            else if (listPhong.get(i).getTrangThai().equalsIgnoreCase("D"))
-            {
-                jpnPhong.setBackground(Color.yellow);
-            }
-           // jpnPhong.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
-            JLabel lbPhong=new JLabel(phong);
-            jpnPhong.add(lbPhong);
-           // jpnListCacPhong.add(jpnPhong);
-            jpnPhong.setMaPhong(listPhong.get(i).getMaPhong());
-            jpnPhong.setMaLoaiPhong(listPhong.get(i).getMaLoaiPhong());
-            jpnPhong.setTrangThai(listPhong.get(i).getTrangThai());
-            arrListJpanelPhong.add(jpnPhong); //thêm 1 jpanel vào list  
-    }
-    }
-    
-    private void hienThiTatCaPhong(){
-        
-        jpnListCacPhong.removeAll();
-        
-        jpnListCacPhong.setLayout(new FlowLayout(FlowLayout.LEFT));
-        getDuLieuVaoList(); //Phòng trường hợp lúc thêm phòng mới vào thì kích vào tất cả phòng nó không cập nhật
-           for (JPanelPhong jpnPhong:arrListJpanelPhong){
-               jpnListCacPhong.add(jpnPhong);
-           }
-          
-        jpnListCacPhong.revalidate(); //important
-        jpnListCacPhong.repaint(); //important 
-        addEventEveryRoom();
-    }
-    
-    private void hienThiPhongTrong(){
-        jpnListCacPhong.removeAll();
-        getDuLieuVaoList();
-        jpnListCacPhong.setLayout(new FlowLayout(FlowLayout.LEFT));
-        for (JPanelPhong jpnPhong:arrListJpanelPhong){
-            if (jpnPhong.getTrangThai().equalsIgnoreCase("K"))
-                jpnListCacPhong.add(jpnPhong);
-        }
-        jpnListCacPhong.revalidate(); //important
-        jpnListCacPhong.repaint(); //important
-        addEventEveryRoom();
-    }
-    
-    private void hienThiPhongDaThue(){
-        jpnListCacPhong.removeAll();
-        getDuLieuVaoList();
-        jpnListCacPhong.setLayout(new FlowLayout(FlowLayout.LEFT));
-        for (JPanelPhong jpnPhong:arrListJpanelPhong){
-            if (jpnPhong.getTrangThai().equalsIgnoreCase("C"))
-                jpnListCacPhong.add(jpnPhong,new FlowLayout(FlowLayout.LEFT));
-        }
-        
-                jpnListCacPhong.revalidate(); //important
-                jpnListCacPhong.repaint(); //important
-                addEventEveryRoom();
-    }
-    
-    private void addEventEveryRoom(){
-                Component[] coms = jpnListCacPhong.getComponents();
-        for (Component com:coms){ //duyệt tất cả jpanel
-            if (com instanceof JPanelPhong){ //chỉ lấy ra các loại JpanelPhong
-               JPanelPhong 
-                sePhong=(JPanelPhong) com; //giả sự người dùng click vào 1 ô
-                sePhong.addMouseListener(new MouseListener() { //tạo sự kiện cho ô này
-                   @Override
-                   public String toString() {
-                       return super.toString(); //To change body of generated methods, choose Tools | Templates.
-                   }
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        if(sePhong.trangThai.equalsIgnoreCase("K"))
-                        {
-                            HienThiBangDatHoacThuePhongJDialog dialog =new HienThiBangDatHoacThuePhongJDialog();
-                            
-                          dialog.setJlbMaSoPhong(sePhong.maPhong);
-                          dialog.setJlbChenMaPhong(sePhong.maPhong);
-                          dialog.setJlbChenMaLoaiPhong(sePhong.maLoaiPhong);
-                          //khi người dùng click chuột vào button Đặt phòng thì 
-                          dialog.getJbtDatPhong().addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    NhapThongTinKhachHang thongTinKHdialog = new NhapThongTinKhachHang();                          
-                                    
-                                    thongTinKHdialog.getJbtHuy().addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            thongTinKHdialog.dispose();
-                                           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                        }
-                                    });
-                                    
-                                    thongTinKHdialog.getJbtLuu().addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            //Lấy thông tin các trường người dùng nhập vào và lưu vào biến kh
-                                            KhachHangService khSV=new KhachHangService(); 
-                                            
-                                   KhachHang kh=new KhachHang();
-                                   kh.setMaKH(thongTinKHdialog.getJtfMaKhachHang());
-                                   kh.setHoTen(thongTinKHdialog.getJtfHoTen());
-                                   kh.setCMND(thongTinKHdialog.getJtfCMND());
-                                   kh.setGioiTinh(thongTinKHdialog.getJcbbGioiTinh()); 
-                                            try {
-                                                kh.setNgaySinh(new SimpleDateFormat("dd/MM/yyyy").parse(thongTinKHdialog.getJtfNgaySinh()));
-                                            } catch (ParseException ex) {
-                                                Logger.getLogger(QuanLyPhongJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
-                                            
-                                            //
-                                            PhieuDatPhong pdp=new PhieuDatPhong();
-                                            pdp.setMaKhachHang(thongTinKHdialog.getJtfMaKhachHang());
-                                          //  pdp
-                                            //
-                                   //Kiểm tra có tồn tại khách hàng chưa
-                                   boolean check=khSV.isTonTaiKH(kh.getCMND());
-                                   if (check==true){
-                                       JOptionPane.showConfirmDialog(null, "Khách hàng này đã tồn tại trong hệ thống. Bạn có muốn tiếp tục đặt phòng với thông tin cũ không?", "Warning", JOptionPane.YES_NO_OPTION);
-                                   }
-                                   else
-                                   {
-                                       int flag=khSV.themMoiMotKhachHang(kh);
-                                       if (flag!=-1){
-                                           JOptionPane.showMessageDialog(null, "Bạn đã đặt phòng thành công! ");
-                                       }
-                                       else
-                                           JOptionPane.showMessageDialog(null, "Đặt phòng không thành công!");
-                                   }
-                                          
-                                            
-                                            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                        }
-                                    });
-                                   // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
-                          });
-                        }
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                        else if (sePhong.trangThai.equalsIgnoreCase("C")){
-                            HienThiBangTraPhong bangTraPhong =new HienThiBangTraPhong();
-                        }
-                        else if (sePhong.trangThai.equalsIgnoreCase("D")){
-                            HienThiBangHuyDatPhong bangHuyDatPhong=new HienThiBangHuyDatPhong();
-                        }
-                    }
 
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-                });
-            }
-        }
-    }
-    
-    private void addEvents(){
-        /*****************/
-
-        
-        
-                jRadioButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               
-                hienThiTatCaPhong();
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-                
-        jRadioButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                hienThiPhongTrong();
-             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        
-        jRadioButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hienThiPhongDaThue();
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        
-        jbtDanhSachDatPhong.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    DanhSachDatPhong dsdp=new DanhSachDatPhong();
-                    
-                   // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            });
-    }
-      /*********************/
-  
-    
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
