@@ -68,7 +68,7 @@ public class QuanLyPhongController {
         this.arrListJpanelPhong=arrListJpanelPhong;
         this.phongSV=phongSV;
         this.listPhong=listPhong;
-        getDuLieuVaoList();
+      //  getDuLieuVaoList();
         addEvents();
     }
     
