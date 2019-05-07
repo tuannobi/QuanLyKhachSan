@@ -30,6 +30,7 @@ public class KhachHangService extends OracleConnection {
                 kh.setGioiTinh(resultSet.getString(5));
                 ds.add(kh);
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

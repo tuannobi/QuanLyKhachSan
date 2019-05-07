@@ -5,7 +5,6 @@
  */
 package view;
 
-import controller.QuanLyKhachHangController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -14,10 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import miniPopup.SuaKhachHangJDialog;
 import model.KhachHang;
@@ -32,19 +29,10 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     /**
      * Creates new form QuanLyKhachHangJPanel
      */
-    SuaKhachHangJDialog suaKhachHangJDialog;
-    KhachHangService khService;
-    DefaultTableModel dtmKhachHang;
-    ArrayList<KhachHang> listKH;
-    KhachHang khachhang;
-
     public QuanLyKhachHangJPanel() {
         initComponents();
-        QuanLyKhachHangController controller =new QuanLyKhachHangController(suaKhachHangJDialog, khService, dtmKhachHang, listKH, khachhang, jbtCapNhat, jbtXoa, jbtCapNhat, jtfTimKiem, tbKhachHang);
     }
-   
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,27 +42,108 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpnTable = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbKhachHang = new javax.swing.JTable();
+        jpnMain = new javax.swing.JPanel();
         jpnThanhTren = new javax.swing.JPanel();
         jpnTitle = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpnTimKiem = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jtfTimKiem = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jpnButton = new javax.swing.JPanel();
         jbtCapNhat = new javax.swing.JButton();
         jbtXoa = new javax.swing.JButton();
+        jpnTable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbKhachHang = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 204, 255));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+
+        jpnThanhTren.setForeground(new java.awt.Color(204, 204, 255));
+        jpnThanhTren.setLayout(new java.awt.GridLayout(1, 0));
+
+        jpnTitle.setBackground(new java.awt.Color(153, 153, 255));
+        jpnTitle.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Danh sách khách hàng");
+        jpnTitle.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        jpnThanhTren.add(jpnTitle);
+
+        jpnTimKiem.setBackground(new java.awt.Color(153, 153, 255));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Tìm kiếm");
+
+        javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
+        jpnTimKiem.setLayout(jpnTimKiemLayout);
+        jpnTimKiemLayout.setHorizontalGroup(
+            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnTimKiemLayout.createSequentialGroup()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+        jpnTimKiemLayout.setVerticalGroup(
+            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnTimKiemLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jpnThanhTren.add(jpnTimKiem);
+
+        jpnButton.setBackground(new java.awt.Color(153, 153, 255));
+
+        jbtCapNhat.setText("Cập nhật");
+
+        jbtXoa.setText("Xóa");
+        jbtXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtXoaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpnButtonLayout = new javax.swing.GroupLayout(jpnButton);
+        jpnButton.setLayout(jpnButtonLayout);
+        jpnButtonLayout.setHorizontalGroup(
+            jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnButtonLayout.createSequentialGroup()
+                .addContainerGap(152, Short.MAX_VALUE)
+                .addComponent(jbtCapNhat)
+                .addGap(46, 46, 46)
+                .addComponent(jbtXoa)
+                .addGap(40, 40, 40))
+        );
+        jpnButtonLayout.setVerticalGroup(
+            jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnButtonLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtCapNhat)
+                    .addComponent(jbtXoa))
+                .addContainerGap())
+        );
+
+        jpnThanhTren.add(jpnButton);
 
         tbKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã khách hàng", "Học và tên", "Ngày sinh", "CMND", "Giới tính"
+                "Mã khách hàng", "Học và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoạil", "Trạng thái"
             }
         ));
         jScrollPane1.setViewportView(tbKhachHang);
@@ -87,104 +156,53 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         );
         jpnTableLayout.setVerticalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
         );
 
-        jpnThanhTren.setForeground(new java.awt.Color(204, 204, 255));
-        jpnThanhTren.setLayout(new java.awt.GridLayout(1, 0));
-
-        jpnTitle.setBackground(new java.awt.Color(153, 153, 255));
-        jpnTitle.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Danh sách khách hàng");
-        jpnTitle.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        jpnThanhTren.add(jpnTitle);
-
-        jpnTimKiem.setBackground(new java.awt.Color(153, 153, 255));
-        jpnTimKiem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Tìm kiếm");
-
-        javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
-        jpnTimKiem.setLayout(jpnTimKiemLayout);
-        jpnTimKiemLayout.setHorizontalGroup(
-            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTimKiemLayout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
-        );
-        jpnTimKiemLayout.setVerticalGroup(
-            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTimKiemLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-
-        jpnThanhTren.add(jpnTimKiem);
-
-        jpnButton.setBackground(new java.awt.Color(153, 153, 255));
-
-        jbtCapNhat.setText("Cập nhật");
-        jbtCapNhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCapNhatActionPerformed(evt);
-            }
-        });
-        jpnButton.add(jbtCapNhat);
-
-        jbtXoa.setText("Xóa");
-        jpnButton.add(jbtXoa);
-
-        jpnThanhTren.add(jpnButton);
-        jpnButton.getAccessibleContext().setAccessibleParent(jpnButton);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jpnMainLayout = new javax.swing.GroupLayout(jpnMain);
+        jpnMain.setLayout(jpnMainLayout);
+        jpnMainLayout.setHorizontalGroup(
+            jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpnMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
-                    .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+        jpnMainLayout.setVerticalGroup(
+            jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnMainLayout.createSequentialGroup()
                 .addComponent(jpnThanhTren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
+
+        add(jpnMain);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCapNhatActionPerformed
+    private void jbtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtXoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtCapNhatActionPerformed
+    }//GEN-LAST:event_jbtXoaActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtXoa;
     private javax.swing.JPanel jpnButton;
+    private javax.swing.JPanel jpnMain;
     private javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnThanhTren;
     private javax.swing.JPanel jpnTimKiem;
     private javax.swing.JPanel jpnTitle;
-    private javax.swing.JTextField jtfTimKiem;
     private javax.swing.JTable tbKhachHang;
     // End of variables declaration//GEN-END:variables
 }
