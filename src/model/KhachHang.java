@@ -9,20 +9,27 @@ import java.util.Date;
  * @author Tuan
  */
 public class KhachHang {
-    String maKH;
+    int maKH;
     String hoTen;
     Date ngaySinh;
     int CMND;
     String gioiTinh;
+    String diaChi;
+    String email;
+    String SDT;
+    String trangThai;
+    
 
-    public KhachHang(){
-        
-    }
-    public String getMaKH() {
+    
+   // public String toString(){
+     //   return this.hoTen;
+  //  }
+
+    public int getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 
@@ -57,9 +64,37 @@ public class KhachHang {
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
-    
-    public String toString(){
-        return this.hoTen;
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
+    }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
     
 }

@@ -129,7 +129,7 @@ public class DichVuController {
    
    private void refreshData(){
        dtmDichVu.setRowCount(0);
-      // hienThiDuLieuDichVu();
+       hienThiDuLieuDichVu();
        
    }
     

@@ -124,7 +124,7 @@ public class QuanLyPhongController {
           
         jpnListCacPhong.revalidate(); //important
         jpnListCacPhong.repaint(); //important 
-        addEventEveryRoom();
+      //  addEventEveryRoom();
     }
     
     private void hienThiPhongTrong(){
@@ -137,7 +137,7 @@ public class QuanLyPhongController {
         }
         jpnListCacPhong.revalidate(); //important
         jpnListCacPhong.repaint(); //important
-        addEventEveryRoom();
+      //  addEventEveryRoom();
     }
     
     private void hienThiPhongDaThue(){
@@ -151,7 +151,7 @@ public class QuanLyPhongController {
         
                 jpnListCacPhong.revalidate(); //important
                 jpnListCacPhong.repaint(); //important
-                addEventEveryRoom();
+              //  addEventEveryRoom();
     }
     
     
@@ -193,117 +193,117 @@ public class QuanLyPhongController {
             });
     }
     
-    private void addEventEveryRoom(){
-                Component[] coms = jpnListCacPhong.getComponents();
-        for (Component com:coms){ //duyệt tất cả jpanel
-            if (com instanceof JPanelPhong){ //chỉ lấy ra các loại JpanelPhong
-               JPanelPhong 
-                sePhong=(JPanelPhong) com; //giả sự người dùng click vào 1 ô
-                sePhong.addMouseListener(new MouseListener() { //tạo sự kiện cho ô này
-                   @Override
-                   public String toString() {
-                       return super.toString(); //To change body of generated methods, choose Tools | Templates.
-                   }
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        if(sePhong.getTrangThai().equalsIgnoreCase("K"))
-                        {
-                            HienThiBangDatHoacThuePhongJDialog dialog =new HienThiBangDatHoacThuePhongJDialog();
-                            
-                          dialog.setJlbMaSoPhong(sePhong.getMaPhong());
-                          dialog.setJlbChenMaPhong(sePhong.getMaPhong());
-                          dialog.setJlbChenMaLoaiPhong(sePhong.getMaLoaiPhong());
-                          //khi người dùng click chuột vào button Đặt phòng thì 
-                          dialog.getJbtDatPhong().addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    NhapThongTinKhachHang thongTinKHdialog = new NhapThongTinKhachHang();                          
-                                    
-                                    thongTinKHdialog.getJbtHuy().addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            thongTinKHdialog.dispose();
-                                           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                        }
-                                    });
-                                    
-                                    thongTinKHdialog.getJbtLuu().addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            //Lấy thông tin các trường người dùng nhập vào và lưu vào biến kh
-                                            KhachHangService khSV=new KhachHangService(); 
-                                            
-                                   KhachHang kh=new KhachHang();
-                                   kh.setMaKH(thongTinKHdialog.getJtfMaKhachHang());
-                                   kh.setHoTen(thongTinKHdialog.getJtfHoTen());
-                                   kh.setCMND(thongTinKHdialog.getJtfCMND());
-                                   kh.setGioiTinh(thongTinKHdialog.getJcbbGioiTinh()); 
-                                            try {
-                                                kh.setNgaySinh(new SimpleDateFormat("dd/MM/yyyy").parse(thongTinKHdialog.getJtfNgaySinh()));
-                                            } catch (ParseException ex) {
-                                                Logger.getLogger(QuanLyPhongJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
-                                            
-                                            //
-                                            PhieuDatPhong pdp=new PhieuDatPhong();
-                                            pdp.setMaKhachHang(thongTinKHdialog.getJtfMaKhachHang());
-                                          //  pdp
-                                            //
-                                   //Kiểm tra có tồn tại khách hàng chưa
-                                   boolean check=khSV.isTonTaiKH(kh.getCMND());
-                                   if (check==true){
-                                       JOptionPane.showConfirmDialog(null, "Khách hàng này đã tồn tại trong hệ thống. Bạn có muốn tiếp tục đặt phòng với thông tin cũ không?", "Warning", JOptionPane.YES_NO_OPTION);
-                                   }
-                                   else
-                                   {
-                                       int flag=khSV.themMoiMotKhachHang(kh);
-                                       if (flag!=-1){
-                                           JOptionPane.showMessageDialog(null, "Bạn đã đặt phòng thành công! ");
-                                       }
-                                       else
-                                           JOptionPane.showMessageDialog(null, "Đặt phòng không thành công!");
-                                   }
-                                          
-                                            
-                                            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                        }
-                                    });
-                                   // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                }
-                          });
-                        }
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                        else if (sePhong.getTrangThai().equalsIgnoreCase("C")){
-                            HienThiBangTraPhong bangTraPhong =new HienThiBangTraPhong();
-                        }
-                        else if (sePhong.getTrangThai().equalsIgnoreCase("D")){
-                            HienThiBangHuyDatPhong bangHuyDatPhong=new HienThiBangHuyDatPhong();
-                        }
-                    }
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-                });
-            }
-        }
-    }
+//    private void addEventEveryRoom(){
+//                Component[] coms = jpnListCacPhong.getComponents();
+//        for (Component com:coms){ //duyệt tất cả jpanel
+//            if (com instanceof JPanelPhong){ //chỉ lấy ra các loại JpanelPhong
+//               JPanelPhong 
+//                sePhong=(JPanelPhong) com; //giả sự người dùng click vào 1 ô
+//                sePhong.addMouseListener(new MouseListener() { //tạo sự kiện cho ô này
+//                   @Override
+//                   public String toString() {
+//                       return super.toString(); //To change body of generated methods, choose Tools | Templates.
+//                   }
+//                    @Override
+//                    public void mouseClicked(MouseEvent e) {
+//                        if(sePhong.getTrangThai().equalsIgnoreCase("K"))
+//                        {
+//                            HienThiBangDatHoacThuePhongJDialog dialog =new HienThiBangDatHoacThuePhongJDialog();
+//                            
+//                          dialog.setJlbMaSoPhong(sePhong.getMaPhong());
+//                          dialog.setJlbChenMaPhong(sePhong.getMaPhong());
+//                          dialog.setJlbChenMaLoaiPhong(sePhong.getMaLoaiPhong());
+//                          //khi người dùng click chuột vào button Đặt phòng thì 
+//                          dialog.getJbtDatPhong().addActionListener(new ActionListener() {
+//                                @Override
+//                                public void actionPerformed(ActionEvent e) {
+//                                    NhapThongTinKhachHang thongTinKHdialog = new NhapThongTinKhachHang();                          
+//                                    
+//                                    thongTinKHdialog.getJbtHuy().addActionListener(new ActionListener() {
+//                                        @Override
+//                                        public void actionPerformed(ActionEvent e) {
+//                                            thongTinKHdialog.dispose();
+//                                           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                                        }
+//                                    });
+//                                    
+//                                    thongTinKHdialog.getJbtLuu().addActionListener(new ActionListener() {
+//                                        @Override
+//                                        public void actionPerformed(ActionEvent e) {
+//                                            //Lấy thông tin các trường người dùng nhập vào và lưu vào biến kh
+//                                            KhachHangService khSV=new KhachHangService(); 
+//                                            
+//                                   KhachHang kh=new KhachHang();
+//                                   kh.setMaKH(thongTinKHdialog.getJtfMaKhachHang());
+//                                   kh.setHoTen(thongTinKHdialog.getJtfHoTen());
+//                                   kh.setCMND(thongTinKHdialog.getJtfCMND());
+//                                   kh.setGioiTinh(thongTinKHdialog.getJcbbGioiTinh()); 
+//                                            try {
+//                                                kh.setNgaySinh(new SimpleDateFormat("dd/MM/yyyy").parse(thongTinKHdialog.getJtfNgaySinh()));
+//                                            } catch (ParseException ex) {
+//                                                Logger.getLogger(QuanLyPhongJPanel.class.getName()).log(Level.SEVERE, null, ex);
+//                                            }
+//                                            
+//                                            //
+//                                            PhieuDatPhong pdp=new PhieuDatPhong();
+//                                            pdp.setMaKhachHang(thongTinKHdialog.getJtfMaKhachHang());
+//                                          //  pdp
+//                                            //
+//                                   //Kiểm tra có tồn tại khách hàng chưa
+//                                   boolean check=khSV.isTonTaiKH(kh.getCMND());
+//                                   if (check==true){
+//                                       JOptionPane.showConfirmDialog(null, "Khách hàng này đã tồn tại trong hệ thống. Bạn có muốn tiếp tục đặt phòng với thông tin cũ không?", "Warning", JOptionPane.YES_NO_OPTION);
+//                                   }
+//                                   else
+//                                   {
+//                                       int flag=khSV.themMoiMotKhachHang(kh);
+//                                       if (flag!=-1){
+//                                           JOptionPane.showMessageDialog(null, "Bạn đã đặt phòng thành công! ");
+//                                       }
+//                                       else
+//                                           JOptionPane.showMessageDialog(null, "Đặt phòng không thành công!");
+//                                   }
+//                                          
+//                                            
+//                                            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                                        }
+//                                    });
+//                                   // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                                }
+//                          });
+//                        }
+//                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                        else if (sePhong.getTrangThai().equalsIgnoreCase("C")){
+//                            HienThiBangTraPhong bangTraPhong =new HienThiBangTraPhong();
+//                        }
+//                        else if (sePhong.getTrangThai().equalsIgnoreCase("D")){
+//                            HienThiBangHuyDatPhong bangHuyDatPhong=new HienThiBangHuyDatPhong();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void mousePressed(MouseEvent e) {
+//                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//
+//                    @Override
+//                    public void mouseReleased(MouseEvent e) {
+//                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//
+//                    @Override
+//                    public void mouseEntered(MouseEvent e) {
+//                       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//
+//                    @Override
+//                    public void mouseExited(MouseEvent e) {
+//                       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//                });
+//            }
+//        }
+//    }
     
 }
 

@@ -65,28 +65,23 @@ public class QuanLyKhachHangController {
                     return;
                 khachhang=listKH.get(row); //lấy giá trị kh khi click chuột vào
                 
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+                      }
 
             @Override
             public void mousePressed(MouseEvent e) {
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+                }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+                 }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+                }
 
             @Override
             public void mouseExited(MouseEvent e) {
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+               }
         });
         
         jbtCapNhat.addActionListener(new ActionListener() {
@@ -97,16 +92,7 @@ public class QuanLyKhachHangController {
                 else
                 {
                     suaKhachHangJDialog=new SuaKhachHangJDialog();
-                    suaKhachHangJDialog.showWindows();
-                    suaKhachHangJDialog.setTextHoTen(khachhang.getHoTen());
-                    suaKhachHangJDialog.setTextMaKH(khachhang.getMaKH());
-                    /*
-                    chuyển Date sang string
-                    */
-                    SimpleDateFormat formater=new SimpleDateFormat("dd/MM/yyyy");                 
-                    suaKhachHangJDialog.setTextNgaySinh(formater.format(khachhang.getNgaySinh()));
-                    suaKhachHangJDialog.setTextCMND( String.valueOf(khachhang.getCMND()));
-                    suaKhachHangJDialog.setTextGioiTinh(khachhang.getGioiTinh());
+                    suaKhachHangJDialog.showWindow();
                     
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
@@ -124,7 +110,7 @@ public class QuanLyKhachHangController {
                 {
                     int result=JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa khách hàng này không?","Warning", JOptionPane.YES_NO_OPTION);
                     if (result==JOptionPane.YES_OPTION){
-                        int count=khService.xoaDuLieu(khachhang.getMaKH());
+                        int count=khService.xoaKhachHang(khachhang.getMaKH());
                         if (count!=-1){
                         JOptionPane.showMessageDialog(null, "Đã xóa thành công "+count+" khách hàng");
                         refreshData();
