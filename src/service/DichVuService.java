@@ -23,7 +23,7 @@ public class DichVuService extends OracleConnection{
             PreparedStatement preStatement=conn.prepareStatement(sql);
             ResultSet resultSet=preStatement.executeQuery();           
             while(resultSet.next()){
-                DichVu dv=new DichVu();
+                DichVu dv=new DichVu(0,"",0);
                 dv.setMaDichVu(resultSet.getInt(1));
                 dv.setTenDichVu(resultSet.getString(2));
                 dv.setGiaTien(resultSet.getFloat(3));

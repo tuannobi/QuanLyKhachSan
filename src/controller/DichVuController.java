@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import miniPopup.SuaDichVuJDialog;
+import miniPopup.ThemDichVuJDialog;
 import model.DichVu;
 import service.DichVuService;
 
@@ -35,13 +36,15 @@ public class DichVuController {
     DichVuService dvService;
     DefaultTableModel dtmDichVu;
     ArrayList<DichVu> listDV;
-    DichVu dichvu;
+    DichVu dichvu=new DichVu(0,"",0);
     JTable tbDichVu;
     SuaDichVuJDialog suaDichVuJDialog;
+    ThemDichVuJDialog themDichVuJDialog;
 
     public DichVuController(JTextField jftTimKiem, JButton jbtCapNhat, JButton jbtXoa, 
             JButton jbtThem, DichVuService dvService, DefaultTableModel dtmDichVu, 
-            ArrayList<DichVu> listDV, DichVu dichvu, JTable tbDichVu,SuaDichVuJDialog suaDichVuJDialog) {
+            ArrayList<DichVu> listDV, DichVu dichvu, JTable tbDichVu,SuaDichVuJDialog suaDichVuJDialog,
+            ThemDichVuJDialog themDichVuJDialog ) {
         this.jftTimKiem = jftTimKiem;
         this.jbtCapNhat = jbtCapNhat;
         this.jbtXoa = jbtXoa;
@@ -52,6 +55,7 @@ public class DichVuController {
         this.dichvu = dichvu;
         this.tbDichVu = tbDichVu;
         this.suaDichVuJDialog=suaDichVuJDialog;
+        this.themDichVuJDialog=themDichVuJDialog;
         
         addEvents();
         hienThiDuLieuDichVu();
@@ -89,19 +93,19 @@ public class DichVuController {
             public void actionPerformed(ActionEvent e) {
                 if (dichvu==null)
                 {
-                    JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng muốn xóa!");
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn dịch vụ muốn xóa!");
                 }
                 else
                 {
-                    int result=JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa khách hàng này không?","Warning", JOptionPane.YES_NO_OPTION);
+                    int result=JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dịch vụ này không?","Warning", JOptionPane.YES_NO_OPTION);
                     if (result==JOptionPane.YES_OPTION){
                         int count=dvService.xoaDuLieu(dichvu.getMaDichVu());
                         if (count!=-1){
-                        JOptionPane.showMessageDialog(null, "Đã xóa thành công "+count+" khách hàng");
+                        JOptionPane.showMessageDialog(null, "Đã xóa thành công "+count+" dịch vụ");
                         refreshData();
                         }
                         else
-                            JOptionPane.showMessageDialog(null, "Không tìm thấy khách hàng cần xóa");
+                            JOptionPane.showMessageDialog(null, "Không tìm thấy dịch vụ cần xóa");
                     }
                 }
                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -112,9 +116,10 @@ public class DichVuController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                
-                
+                    themDichVuJDialog=new ThemDichVuJDialog();
+                    themDichVuJDialog.showWindows();
+//                    themDichVuJDialog.setTextTenDichVu(dichvu.getTenDichVu());
+//                    themDichVuJDialog.setTextGiaTien(dichvu.getGiaTien());
             }
         });
         

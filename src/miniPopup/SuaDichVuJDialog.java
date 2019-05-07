@@ -24,7 +24,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
     public SuaDichVuJDialog() {
         initComponents();
         SuaDichVuController controller =new SuaDichVuController(jtfMaDichVu, jtfTenDichVu, jtfGiaTien, jbtLuu);
-        
+        jtfMaDichVu.disable();
     }
 
     public void setTextTenDichVu(String tendv){

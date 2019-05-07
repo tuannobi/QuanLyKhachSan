@@ -37,4 +37,12 @@ public class DichVu {
     public void setGiaTien(float giaTien) {
         this.giaTien = giaTien;
     }  
+
+    public DichVu(int maDichVu, String tenDichVu, float giaTien) {
+        this.maDichVu = maDichVu;
+        this.tenDichVu = tenDichVu;
+        this.giaTien = giaTien;
+    }
+    
+    
 }

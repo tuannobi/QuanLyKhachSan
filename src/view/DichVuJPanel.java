@@ -6,9 +6,11 @@
 package view;
 
 import controller.DichVuController;
+import controller.minipopupController.ThemDichVuController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import miniPopup.SuaDichVuJDialog;
+import miniPopup.ThemDichVuJDialog;
 import model.DichVu;
 import service.DichVuService;
 
@@ -21,6 +23,7 @@ public class DichVuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DichVuJPanel
      */
+    ThemDichVuJDialog  themDichVuDialog;
      SuaDichVuJDialog suaDichVuJDialog;
     DichVuService dvService;
     DefaultTableModel dtmDichVu;
@@ -28,7 +31,7 @@ public class DichVuJPanel extends javax.swing.JPanel {
     DichVu dichvu;
     public DichVuJPanel() {
         initComponents();
-        DichVuController controller=new DichVuController(jtfTimKiem, jbtCapNhat, jbtXoa, jbtThem, dvService, dtmDichVu, listDV, dichvu, tbDichVu, suaDichVuJDialog);
+        DichVuController controller=new DichVuController(jtfTimKiem, jbtCapNhat, jbtXoa, jbtThem, dvService, dtmDichVu, listDV, dichvu, tbDichVu, suaDichVuJDialog,themDichVuDialog);
     }
 
     /**
