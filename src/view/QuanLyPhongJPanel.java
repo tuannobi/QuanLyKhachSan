@@ -6,6 +6,7 @@
 package view;
 
 import controller.QuanLyPhongController;
+import newClass.JPanelPhong;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -208,43 +209,6 @@ public class QuanLyPhongJPanel extends javax.swing.JPanel {
 
     //Lop de luu tru Jpanel cua phong va ma phong--
     //Đây là các JPanel hiển thị trên jpnMain
-     public class JPanelPhong extends JPanel{
-        private String maPhong;
-        private String maLoaiPhong;
-        private String trangThai;
-        
-        public JPanelPhong(){
-            super();
-        }
-        
-        public String getMaPhong(){
-            return maPhong;
-        }
-        
-       public  void setMaPhong(String maPhong){
-            this.maPhong=maPhong;
-        }
-
-        public String getMaLoaiPhong() {
-            return maLoaiPhong;
-        }
-
-        public void setMaLoaiPhong(String maLoaiPhong) {
-            this.maLoaiPhong = maLoaiPhong;
-        }
-
-        public String getTrangThai() {
-            return trangThai;
-        }
-
-        public void setTrangThai(String trangThai) {
-            this.trangThai = trangThai;
-        }
-         
-    }
-    
-
-
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

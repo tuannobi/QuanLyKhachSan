@@ -5,6 +5,7 @@
  */
 package controller;
 
+import newClass.JPanelPhong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -38,7 +39,6 @@ import model.Phong;
 import service.KhachHangService;
 import service.PhongService;
 import view.QuanLyPhongJPanel;
-import view.QuanLyPhongJPanel.JPanelPhong;
 
 /**
  *
@@ -50,14 +50,14 @@ public class QuanLyPhongController {
     JButton jbtDanhSachDatPhong;
     JTextField jtfTimKiem;
     
-    ArrayList<QuanLyPhongJPanel.JPanelPhong> arrListJpanelPhong;
+    ArrayList<JPanelPhong> arrListJpanelPhong;
     PhongService phongSV;
     ArrayList<Phong> listPhong;
     JPanel jpnListCacPhong;
     
     public QuanLyPhongController(ButtonGroup buttonGroup1,JRadioButton jRadioButton1,
             JRadioButton jRadioButton2, JRadioButton jRadioButton3,JButton jbtDanhSachDatPhong,JTextField jtfTimKiem
-    ,ArrayList<QuanLyPhongJPanel.JPanelPhong> arrListJpanelPhong,PhongService phongSV,ArrayList<Phong> listPhong
+    ,ArrayList<JPanelPhong> arrListJpanelPhong,PhongService phongSV,ArrayList<Phong> listPhong
     , JPanel jpnListCacPhong){
         this.buttonGroup1=buttonGroup1;
         this.jRadioButton1=jRadioButton1;
@@ -68,22 +68,22 @@ public class QuanLyPhongController {
         this.arrListJpanelPhong=arrListJpanelPhong;
         this.phongSV=phongSV;
         this.listPhong=listPhong;
-      //  getDuLieuVaoList();
+        this.jpnListCacPhong=jpnListCacPhong;
+        getDuLieuVaoList();
         addEvents();
     }
     
     public void getDuLieuVaoList(){
-               arrListJpanelPhong=new ArrayList<QuanLyPhongJPanel.JPanelPhong>();
+               arrListJpanelPhong=new ArrayList<>();
         phongSV=new PhongService();
         listPhong=phongSV.getDuLieuPhong(); 
         //lay so phong
-      //  QuanLyPhongJPanel.JPanelPhong jpnPhong;
-        QuanLyPhongJPanel temp =new QuanLyPhongJPanel();
+      JPanelPhong jpnPhong;
         int soPhong=listPhong.size();
         for (int i=0;i<soPhong;i++)
         {
             String phong="Phong "+listPhong.get(i).getMaPhong();
-         QuanLyPhongJPanel.JPanelPhong  jpnPhong= temp.new JPanelPhong();
+         jpnPhong= new JPanelPhong();
             //Cai dat border
             Border borderPhong= BorderFactory.createLineBorder( Color.RED);
             jpnPhong.setBorder(borderPhong);
@@ -118,7 +118,7 @@ public class QuanLyPhongController {
         
         jpnListCacPhong.setLayout(new FlowLayout(FlowLayout.LEFT));
         getDuLieuVaoList(); //Phòng trường hợp lúc thêm phòng mới vào thì kích vào tất cả phòng nó không cập nhật
-           for (QuanLyPhongJPanel.JPanelPhong jpnPhong:arrListJpanelPhong){
+           for (JPanelPhong jpnPhong:arrListJpanelPhong){
                jpnListCacPhong.add(jpnPhong);
            }
           
@@ -131,7 +131,7 @@ public class QuanLyPhongController {
         jpnListCacPhong.removeAll();
         getDuLieuVaoList();
         jpnListCacPhong.setLayout(new FlowLayout(FlowLayout.LEFT));
-        for (QuanLyPhongJPanel.JPanelPhong jpnPhong:arrListJpanelPhong){
+        for (JPanelPhong jpnPhong:arrListJpanelPhong){
             if (jpnPhong.getTrangThai().equalsIgnoreCase("K"))
                 jpnListCacPhong.add(jpnPhong);
         }
@@ -144,7 +144,7 @@ public class QuanLyPhongController {
         jpnListCacPhong.removeAll();
         getDuLieuVaoList();
         jpnListCacPhong.setLayout(new FlowLayout(FlowLayout.LEFT));
-        for (QuanLyPhongJPanel.JPanelPhong jpnPhong:arrListJpanelPhong){
+        for (JPanelPhong jpnPhong:arrListJpanelPhong){
             if (jpnPhong.getTrangThai().equalsIgnoreCase("C"))
                 jpnListCacPhong.add(jpnPhong,new FlowLayout(FlowLayout.LEFT));
         }
@@ -196,9 +196,9 @@ public class QuanLyPhongController {
     private void addEventEveryRoom(){
                 Component[] coms = jpnListCacPhong.getComponents();
         for (Component com:coms){ //duyệt tất cả jpanel
-            if (com instanceof QuanLyPhongJPanel.JPanelPhong){ //chỉ lấy ra các loại JpanelPhong
-               QuanLyPhongJPanel.JPanelPhong 
-                sePhong=(QuanLyPhongJPanel.JPanelPhong) com; //giả sự người dùng click vào 1 ô
+            if (com instanceof JPanelPhong){ //chỉ lấy ra các loại JpanelPhong
+               JPanelPhong 
+                sePhong=(JPanelPhong) com; //giả sự người dùng click vào 1 ô
                 sePhong.addMouseListener(new MouseListener() { //tạo sự kiện cho ô này
                    @Override
                    public String toString() {

@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/lap%20trinh%20java/do%20an/QuanLyKhachSan/src/main/tesMain.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/view/QuanLyPhongJPanel.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/controller/MainJFrameController.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/controller/QuanLyPhongController.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/service/PhongService.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/main/tesMain.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/service/OracleConnection.java</file>
         </group>
     </open-files>
 </project-private>
