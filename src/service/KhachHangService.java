@@ -43,7 +43,7 @@ public class KhachHangService extends OracleConnection {
         PreparedStatement preStatement =conn.prepareStatement(sql);
         preStatement.setString(1, kh.getHoTen());
         java.util.Date tempdate=new java.util.Date(); //khai báo new
-      tempdate=kh.getNgaySinh(); //gán ngày sinh cho biến tạm
+        tempdate=kh.getNgaySinh(); //gán ngày sinh cho biến tạm
         java.sql.Date tempsql= new java.sql.Date(tempdate.getTime());// chuyển đổi java.date sang java.sql
         preStatement.setDate(2, tempsql);
         preStatement.setInt(3, kh.getCMND());

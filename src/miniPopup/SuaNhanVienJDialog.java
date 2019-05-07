@@ -47,7 +47,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         jtfCMND = new javax.swing.JTextField();
         jpnGioiTinh = new javax.swing.JPanel();
         lbGioiTinh = new javax.swing.JLabel();
-        jtfGioiTinh = new javax.swing.JTextField();
+        jcbbGioiTinh = new javax.swing.JComboBox<>();
         jpnDiaChi = new javax.swing.JPanel();
         jlbDiaChi = new javax.swing.JLabel();
         jtfDiaChi = new javax.swing.JTextField();
@@ -218,11 +218,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
 
         lbGioiTinh.setText("Giới tính");
 
-        jtfGioiTinh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfGioiTinhActionPerformed(evt);
-            }
-        });
+        jcbbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
         javax.swing.GroupLayout jpnGioiTinhLayout = new javax.swing.GroupLayout(jpnGioiTinh);
         jpnGioiTinh.setLayout(jpnGioiTinhLayout);
@@ -232,17 +228,17 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addComponent(lbGioiTinh)
                 .addGap(71, 71, 71)
-                .addComponent(jtfGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addComponent(jcbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         jpnGioiTinhLayout.setVerticalGroup(
             jpnGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnGioiTinhLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jpnGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbGioiTinh))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(lbGioiTinh)
+                    .addComponent(jcbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jpnMain.add(jpnGioiTinh);
@@ -400,10 +396,6 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfCMNDActionPerformed
 
-    private void jtfGioiTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfGioiTinhActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfGioiTinhActionPerformed
-
     private void jtfDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDiaChiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfDiaChiActionPerformed
@@ -429,6 +421,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtHuy;
     private javax.swing.JButton jbtLuu;
+    private javax.swing.JComboBox<String> jcbbGioiTinh;
     private javax.swing.JLabel jlbDiaChi;
     private javax.swing.JLabel jlbEmail;
     private javax.swing.JLabel jlbNgayVaoLam;
@@ -447,7 +440,6 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jtfCMND;
     private javax.swing.JTextField jtfDiaChi;
     private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfGioiTinh;
     private javax.swing.JTextField jtfHoVaTen;
     private javax.swing.JTextField jtfMaKhachHang;
     private javax.swing.JTextField jtfNgaySinh;

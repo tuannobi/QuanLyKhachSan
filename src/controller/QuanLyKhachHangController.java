@@ -5,7 +5,6 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +23,7 @@ import model.KhachHang;
 import service.KhachHangService;
 import view.QuanLyKhachHangJPanel;
 import view.QuanLyPhongJPanel;
+
 
 public class QuanLyKhachHangController {
 
@@ -52,6 +51,7 @@ public class QuanLyKhachHangController {
         this.jtfTimKiem=jtfTimKiem;
         this.khachhang=khachhang;
         this.tbKhachHang=tbKhachHang;
+        
         addEvents();
         hienThiDuLieuKhachHang();
     }
@@ -137,16 +137,13 @@ public class QuanLyKhachHangController {
             }
         });
     }
-    
-   
    
    private void refreshData(){
        dtmKhachHang.setRowCount(0);
-      // hienThiDuLieuKhachHang();
+       hienThiDuLieuKhachHang();
        
    }
-    
-    
+   
    public void hienThiDuLieuKhachHang(){
        // Giúp cập nhật bảng sau mỗi thao tác
       
@@ -165,5 +162,5 @@ public class QuanLyKhachHangController {
            tbKhachHang.setModel(dtmKhachHang);
        }
    }
-    
+
 }

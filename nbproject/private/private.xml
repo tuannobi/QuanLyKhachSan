@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Github/QuanLyKhachSan/src/controller/QuanLyNhanVienController.java</file>
             <file>file:/D:/Github/QuanLyKhachSan/src/view/QuanLyKhachHangJPanel.java</file>
             <file>file:/D:/Github/QuanLyKhachSan/src/service/KhachHangService.java</file>
             <file>file:/D:/Github/QuanLyKhachSan/src/service/OracleConnection.java</file>
             <file>file:/D:/Github/QuanLyKhachSan/src/view/QuanLyNhanVienJPanel.java</file>
+=======
+            <file>file:/E:/lap%20trinh%20java/do%20an/QuanLyKhachSan/src/controller/DichVuController.java</file>
+            <file>file:/E:/lap%20trinh%20java/do%20an/QuanLyKhachSan/src/controller/QuanLyKhachHangController.java</file>
+>>>>>>> 451de177f5b4007d493c8a34cd1139b6a517f026
         </group>
     </open-files>
 </project-private>
