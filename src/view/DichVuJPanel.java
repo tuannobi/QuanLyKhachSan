@@ -5,6 +5,13 @@
  */
 package view;
 
+import controller.DichVuController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import miniPopup.SuaDichVuJDialog;
+import model.DichVu;
+import service.DichVuService;
+
 /**
  *
  * @author Tuan
@@ -14,8 +21,14 @@ public class DichVuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DichVuJPanel
      */
+     SuaDichVuJDialog suaDichVuJDialog;
+    DichVuService dvService;
+    DefaultTableModel dtmDichVu;
+    ArrayList<DichVu> listDV;
+    DichVu dichvu;
     public DichVuJPanel() {
         initComponents();
+        DichVuController controller=new DichVuController(jtfTimKiem, jbtCapNhat, jbtXoa, jbtThem, dvService, dtmDichVu, listDV, dichvu, tbDichVu, suaDichVuJDialog);
     }
 
     /**
@@ -34,11 +47,11 @@ public class DichVuJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jpnTimKiem = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfTimKiem = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbtCapNhat = new javax.swing.JButton();
+        jbtXoa = new javax.swing.JButton();
+        jbtThem = new javax.swing.JButton();
         jpnTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDichVu = new javax.swing.JTable();
@@ -88,10 +101,10 @@ public class DichVuJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Tìm kiếm");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtfTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtfTimKiemActionPerformed(evt);
             }
         });
 
@@ -103,7 +116,7 @@ public class DichVuJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpnTimKiemLayout.setVerticalGroup(
@@ -112,20 +125,20 @@ public class DichVuJPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Cập nhật");
+        jbtCapNhat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtCapNhat.setText("Cập nhật");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Xóa");
+        jbtXoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtXoa.setText("Xóa");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Thêm");
+        jbtThem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtThem.setText("Thêm");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,11 +146,11 @@ public class DichVuJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addComponent(jButton1)
+                .addComponent(jbtCapNhat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -145,9 +158,9 @@ public class DichVuJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -212,26 +225,26 @@ public class DichVuJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtfTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTimKiemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtfTimKiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbtCapNhat;
+    private javax.swing.JButton jbtThem;
+    private javax.swing.JButton jbtXoa;
     private javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnThanhTren;
     private javax.swing.JPanel jpnTimKiem;
     private javax.swing.JPanel jpnTitle;
+    private javax.swing.JTextField jtfTimKiem;
     private javax.swing.JTable tbDichVu;
     // End of variables declaration//GEN-END:variables
 }

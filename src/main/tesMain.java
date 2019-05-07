@@ -17,7 +17,6 @@ public class tesMain {
 
 MainJFrame a=new MainJFrame();
 a.setVisible(true);
-
     }
     
 }

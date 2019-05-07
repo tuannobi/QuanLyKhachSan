@@ -36,7 +36,7 @@ public class DichVuService extends OracleConnection{
     }
         public int capNhatDuLieu(DichVu dv){
         try {
-            String sql="update dichvu set tendichvu=?,giatien=? where madichuvu=?";
+            String sql="update dichvu set tendichvu=?,giatien=? where madichvu=?";
         PreparedStatement preStatement =conn.prepareStatement(sql);
         preStatement.setString(1, dv.getTenDichVu());
         preStatement.setFloat(2, dv.getGiaTien());

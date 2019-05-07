@@ -17,32 +17,46 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import miniPopup.HienThiBangTraPhong;
 import miniPopup.SuaKhachHangJDialog;
 import model.KhachHang;
 import service.KhachHangService;
+import view.QuanLyKhachHangJPanel;
+import view.QuanLyPhongJPanel;
+
 
 public class QuanLyKhachHangController {
-   
-    private JTextField jtfTimKiem;
-    private JButton jbtCapNhat,jbtXoa;
-    private DefaultTableModel dtmKhachHang;
+
+    SuaKhachHangJDialog suaKhachHangJDialog;
+    KhachHangService khService;
+    DefaultTableModel dtmKhachHang;
     ArrayList<KhachHang> listKH;
     KhachHang khachhang;
-    KhachHangService khService;
-    private JTable tbKhachHang;
+    JButton jbtCapNhat, jbtXoa, jbtTimKiem;
+    JTextField jtfTimKiem;
+    JTable tbKhachHang;
     
-        public QuanLyKhachHangController(JTextField jtfTimKiem, JButton jbtCapNhat, JButton jbtXoa,DefaultTableModel dtmKhachHang, ArrayList<KhachHang> listKH,JTable tbKhachHang) {
-        this.jtfTimKiem = jtfTimKiem;
-        this.jbtCapNhat = jbtCapNhat;
-        this.jbtXoa = jbtXoa;
-        this.dtmKhachHang = dtmKhachHang;
+    public QuanLyKhachHangController(SuaKhachHangJDialog suaKhachHangJDialog,
+    KhachHangService khService,
+    DefaultTableModel dtmKhachHang,
+    ArrayList<KhachHang> listKH,
+    KhachHang khachhang,JButton jbtCapNhat, JButton jbtXoa, JButton jbtTimKiem, JTextField jtfTimKiem, JTable tbKhachHang) {
+        this.suaKhachHangJDialog=suaKhachHangJDialog;
+        this.dtmKhachHang=dtmKhachHang;
+        this.khService=khService;
         this.listKH=listKH;
+        this.jbtCapNhat=jbtCapNhat;
+        this.jbtTimKiem=jbtTimKiem;
+        this.jbtXoa=jbtXoa;
+        this.jtfTimKiem=jtfTimKiem;
+        this.khachhang=khachhang;
         this.tbKhachHang=tbKhachHang;
         
         addEvents();
+        hienThiDuLieuKhachHang();
     }
-        
-        public void addEvents(){
+   
+    public void addEvents(){
         tbKhachHang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -75,29 +89,29 @@ public class QuanLyKhachHangController {
             }
         });
         
-//        jbtCapNhat.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if (khachhang==null)
-//                    JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng bạn muốn chỉnh sửa");
-//                else
-//                {
-//                    suaKhachHangJDialog=new SuaKhachHangJDialog();
-//                    suaKhachHangJDialog.showWindows();
-//                    suaKhachHangJDialog.setTextHoTen(khachhang.getHoTen());
-//                    suaKhachHangJDialog.setTextMaKH(khachhang.getMaKH());
-//                    /*
-//                    chuyển Date sang string
-//                    */
-//                    SimpleDateFormat formater=new SimpleDateFormat("dd/MM/yyyy");                 
-//                    suaKhachHangJDialog.setTextNgaySinh(formater.format(khachhang.getNgaySinh()));
-//                    suaKhachHangJDialog.setTextCMND( String.valueOf(khachhang.getCMND()));
-//                    suaKhachHangJDialog.setTextGioiTinh(khachhang.getGioiTinh());
-//                    
-//                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//            }
-//            }
-//        });
+        jbtCapNhat.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (khachhang==null)
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng bạn muốn chỉnh sửa");
+                else
+                {
+                    suaKhachHangJDialog=new SuaKhachHangJDialog();
+                    suaKhachHangJDialog.showWindows();
+                    suaKhachHangJDialog.setTextHoTen(khachhang.getHoTen());
+                    suaKhachHangJDialog.setTextMaKH(khachhang.getMaKH());
+                    /*
+                    chuyển Date sang string
+                    */
+                    SimpleDateFormat formater=new SimpleDateFormat("dd/MM/yyyy");                 
+                    suaKhachHangJDialog.setTextNgaySinh(formater.format(khachhang.getNgaySinh()));
+                    suaKhachHangJDialog.setTextCMND( String.valueOf(khachhang.getCMND()));
+                    suaKhachHangJDialog.setTextGioiTinh(khachhang.getGioiTinh());
+                    
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            }
+        });
         
         jbtXoa.addActionListener(new ActionListener() {
             @Override
@@ -124,7 +138,12 @@ public class QuanLyKhachHangController {
         });
     }
    
-
+   private void refreshData(){
+       dtmKhachHang.setRowCount(0);
+       hienThiDuLieuKhachHang();
+       
+   }
+   
    public void hienThiDuLieuKhachHang(){
        // Giúp cập nhật bảng sau mỗi thao tác
       
@@ -143,11 +162,5 @@ public class QuanLyKhachHangController {
            tbKhachHang.setModel(dtmKhachHang);
        }
    }
-   
-   private void refreshData(){
-       dtmKhachHang.setRowCount(0);
-       hienThiDuLieuKhachHang();
-       
-   }
-    
+
 }

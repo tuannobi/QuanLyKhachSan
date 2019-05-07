@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.QuanLyKhachHangController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -31,126 +32,19 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     /**
      * Creates new form QuanLyKhachHangJPanel
      */
-    public QuanLyKhachHangJPanel() {
-        initComponents();
-        addEvents();
-        hienThiDuLieuKhachHang();
-        setVisible(true);
-    }
-    
     SuaKhachHangJDialog suaKhachHangJDialog;
-    
     KhachHangService khService;
     DefaultTableModel dtmKhachHang;
     ArrayList<KhachHang> listKH;
     KhachHang khachhang;
-   public void addEvents(){
-        tbKhachHang.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int row=tbKhachHang.getSelectedRow();
-                if (row==-1)
-                    return;
-                khachhang=listKH.get(row); //lấy giá trị kh khi click chuột vào
-                
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        
-        jbtCapNhat.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (khachhang==null)
-                    JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng bạn muốn chỉnh sửa");
-                else
-                {
-                    suaKhachHangJDialog=new SuaKhachHangJDialog();
-                    suaKhachHangJDialog.showWindows();
-                    suaKhachHangJDialog.setTextHoTen(khachhang.getHoTen());
-                    suaKhachHangJDialog.setTextMaKH(khachhang.getMaKH());
-                    /*
-                    chuyển Date sang string
-                    */
-                    SimpleDateFormat formater=new SimpleDateFormat("dd/MM/yyyy");                 
-                    suaKhachHangJDialog.setTextNgaySinh(formater.format(khachhang.getNgaySinh()));
-                    suaKhachHangJDialog.setTextCMND( String.valueOf(khachhang.getCMND()));
-                    suaKhachHangJDialog.setTextGioiTinh(khachhang.getGioiTinh());
-                    
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-            }
-        });
-        
-        jbtXoa.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (khachhang==null)
-                {
-                    JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng muốn xóa!");
-                }
-                else
-                {
-                    int result=JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa khách hàng này không?","Warning", JOptionPane.YES_NO_OPTION);
-                    if (result==JOptionPane.YES_OPTION){
-                        int count=khService.xoaDuLieu(khachhang.getMaKH());
-                        if (count!=-1){
-                        JOptionPane.showMessageDialog(null, "Đã xóa thành công "+count+" khách hàng");
-                        refreshData();
-                        }
-                        else
-                            JOptionPane.showMessageDialog(null, "Không tìm thấy khách hàng cần xóa");
-                    }
-                }
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
+    public QuanLyKhachHangJPanel() {
+        initComponents();
+        QuanLyKhachHangController controller =new QuanLyKhachHangController(suaKhachHangJDialog, khService, dtmKhachHang, listKH, khachhang, jbtCapNhat, jbtXoa, jbtCapNhat, jtfTimKiem, tbKhachHang);
     }
    
-
-   public void hienThiDuLieuKhachHang(){
-       // Giúp cập nhật bảng sau mỗi thao tác
-      
-       dtmKhachHang=(DefaultTableModel)tbKhachHang.getModel();
-       khService=new KhachHangService();
-       listKH=new ArrayList<KhachHang>();
-       listKH=khService.getDuLieuKhachHang();
-       for (KhachHang kh : listKH){
-           Vector<Object> vec=new Vector<Object>();
-           vec.add(kh.getMaKH());
-           vec.add(kh.getHoTen());
-           vec.add(kh.getNgaySinh());
-           vec.add(kh.getCMND());
-           vec.add(kh.getGioiTinh());
-           dtmKhachHang.addRow(vec);
-           tbKhachHang.setModel(dtmKhachHang);
-       }
-   }
-   
-   private void refreshData(){
-       dtmKhachHang.setRowCount(0);
-       hienThiDuLieuKhachHang();
-       
-   }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,7 +62,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jpnTimKiem = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfTimKiem = new javax.swing.JTextField();
         jpnButton = new javax.swing.JPanel();
         jbtCapNhat = new javax.swing.JButton();
         jbtXoa = new javax.swing.JButton();
@@ -222,7 +116,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             .addGroup(jpnTimKiemLayout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
         );
         jpnTimKiemLayout.setVerticalGroup(
             jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +124,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -283,7 +177,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtXoa;
     private javax.swing.JPanel jpnButton;
@@ -291,6 +184,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jpnThanhTren;
     private javax.swing.JPanel jpnTimKiem;
     private javax.swing.JPanel jpnTitle;
+    private javax.swing.JTextField jtfTimKiem;
     private javax.swing.JTable tbKhachHang;
     // End of variables declaration//GEN-END:variables
 }
