@@ -1,13 +1,11 @@
 
 package dao;
 
+import dto.KhachHangDTO;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import dto.KhachHangDTO;
-import java.sql.Connection;
 
 /**
  *
@@ -17,9 +15,10 @@ public class KhachHangDAO {
     
     public static ArrayList<KhachHangDTO> getDuLieuKhachHang(){
       //  JOptionPane.showMessageDialog(null, "hello");
-        ArrayList<KhachHangDTO> ds=new ArrayList<>();
+        ArrayList<KhachHangDTO> ds=null;
         try {
-            Connection conn=OracleConnection.openConnection();
+            ds=new ArrayList<>();
+           Connection conn=OracleConnection.openConnection();
             String sql="select * from khachhang";
             PreparedStatement preStatement=conn.prepareStatement(sql);
             ResultSet resultSet=preStatement.executeQuery();           

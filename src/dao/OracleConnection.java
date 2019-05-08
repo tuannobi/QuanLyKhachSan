@@ -11,7 +11,7 @@ import java.time.Clock;
  * @author Tuan
  */
 public class OracleConnection {
-    public static Connection conn=null;
+    protected static Connection conn=null;
     
     public static Connection openConnection(){
     try {
@@ -19,13 +19,13 @@ public class OracleConnection {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
             String strConnString="jdbc:oracle:thin:@localhost:1521/orcl";
             conn=DriverManager.getConnection(strConnString, "newDataKS","123456");
-            if (conn!=null){
-                System.out.println("Ket noi thanh cong");
-                conn.close();
-            }
-            else{
-                System.out.println("Ket noi that bai");
-            }
+//            if (conn!=null){
+//                System.out.println("Ket noi thanh cong");
+//                conn.close();
+//            }
+//            else{
+//                System.out.println("Ket noi that bai");
+//            }
             return conn;    
         } catch (Exception e) {
             e.printStackTrace();

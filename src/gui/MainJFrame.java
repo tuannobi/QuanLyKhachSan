@@ -25,8 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-      //  MainJFrameController mainController=new MainJFrameController(jpnQuanLyKhachhang, jpnQuanLyPhong, jpnDichVu, jpnInHoaDon, jpnQuanLyNhanVien1, jpnThongKeDoanhSo, jpnView);
-    }   
+        }   
         
     
     public void showWindow(){
