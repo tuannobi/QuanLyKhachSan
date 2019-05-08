@@ -22,4 +22,13 @@ public class KhachHangBus {
                 JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công");
 }
     
+    public static void capNhatThongTinKhachHang(KhachHangDTO kh){
+        int check=KhachHangDAO.capNhatThongTinKhachHang(kh);
+        if (check==-1){
+            JOptionPane.showMessageDialog(null, "Cập nhật thông tin khách hàng không thành công");
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Cập nhật thông tin khách hàng thành công");
+    }
+    
 }

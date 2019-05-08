@@ -80,6 +80,27 @@ public class KhachHangDAO {
         return -1; //Sai
    }
     
+    public static int capNhatThongTinKhachHang(KhachHangDTO kh){
+        try {
+            Connection conn=OracleConnection.openConnection();
+            String sql="update khachhang set hoten=?,ngaysinh=?,cmnd=?,gioitinh=?,diachi=?,email=?,sdt=?,trangthai=? where makhachhang=?";
+            PreparedStatement preStatement=conn.prepareCall(sql);
+            preStatement.setString(1, kh.getHoTen());
+            preStatement.setDate(2, kh.getNgaySinh());
+            preStatement.setInt(3, kh.getCMND());
+            preStatement.setString(4, kh.getGioiTinh());
+            preStatement.setString(5, kh.getDiaChi());
+            preStatement.setString(6, kh.getEmail());
+            preStatement.setString(7, kh.getSDT());
+            preStatement.setString(8, kh.getTrangThai());
+            preStatement.setInt(9, kh.getMaKH());
+            return preStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; //Khong thanh cong
+    }
+    
 //    public int themMoiMotKhachHang(KhachHangDTO kh){
 //        KhachHangDTO reKH=new KhachHangDTO();
 //        try {

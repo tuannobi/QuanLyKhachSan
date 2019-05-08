@@ -3,26 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package miniPopup;
+package gui.miniPop;
+
 /**
  *
  * @author Tuan
  */
 
-public class SuaKhachHangJDialog extends javax.swing.JDialog {
-    public SuaKhachHangJDialog(java.awt.Frame parent, boolean modal) {
+public class SuaNhanVienJDialog extends javax.swing.JDialog {
+    public SuaNhanVienJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public SuaKhachHangJDialog() {
+    public SuaNhanVienJDialog() {
         initComponents();
     }
 
-    public void showWindow(){
-        setVisible(true);
-        setLocationRelativeTo(null);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,13 +38,16 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jtfHoVaTen = new javax.swing.JTextField();
         jpnNgaySinh = new javax.swing.JPanel();
         lbNgaySinh = new javax.swing.JLabel();
-        jcNgaySinh = new com.toedter.calendar.JDateChooser();
+        jtfNgaySinh = new javax.swing.JTextField();
+        jpnNgayVaoLam = new javax.swing.JPanel();
+        jlbNgayVaoLam = new javax.swing.JLabel();
+        jtfNgayVaoLam = new javax.swing.JTextField();
         jpnCMND = new javax.swing.JPanel();
         lbCMND = new javax.swing.JLabel();
         jtfCMND = new javax.swing.JTextField();
         jpnGioiTinh = new javax.swing.JPanel();
         lbGioiTinh = new javax.swing.JLabel();
-        jtfGioiTinh = new javax.swing.JTextField();
+        jcbbGioiTinh = new javax.swing.JComboBox<>();
         jpnDiaChi = new javax.swing.JPanel();
         jlbDiaChi = new javax.swing.JLabel();
         jtfDiaChi = new javax.swing.JTextField();
@@ -65,10 +65,15 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         jpnMain.setLayout(new javax.swing.BoxLayout(jpnMain, javax.swing.BoxLayout.Y_AXIS));
 
-        lbMaKhachHang.setText("Mã khách hàng");
+        lbMaKhachHang.setText("Mã nhân viên");
 
         jtfMaKhachHang.setEnabled(false);
         jtfMaKhachHang.setPreferredSize(new java.awt.Dimension(60, 20));
+        jtfMaKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfMaKhachHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnMaKhachHangLayout = new javax.swing.GroupLayout(jpnMaKhachHang);
         jpnMaKhachHang.setLayout(jpnMaKhachHangLayout);
@@ -78,8 +83,8 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addComponent(lbMaKhachHang)
                 .addGap(43, 43, 43)
-                .addComponent(jtfMaKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addComponent(jtfMaKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addGap(102, 102, 102))
         );
         jpnMaKhachHangLayout.setVerticalGroup(
             jpnMaKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,8 +92,8 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpnMaKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbMaKhachHang)
-                    .addComponent(jtfMaKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jtfMaKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jpnMain.add(jpnMaKhachHang);
@@ -102,9 +107,9 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnHoVaTenLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbHoVaTen)
-                .addGap(68, 68, 68)
+                .addGap(60, 60, 60)
                 .addComponent(jtfHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jpnHoVaTenLayout.setVerticalGroup(
             jpnHoVaTenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +125,12 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         lbNgaySinh.setText("Ngày sinh");
 
+        jtfNgaySinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNgaySinhActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnNgaySinhLayout = new javax.swing.GroupLayout(jpnNgaySinh);
         jpnNgaySinh.setLayout(jpnNgaySinhLayout);
         jpnNgaySinhLayout.setHorizontalGroup(
@@ -127,21 +138,52 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnNgaySinhLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbNgaySinh)
-                .addGap(69, 69, 69)
-                .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(jtfNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jpnNgaySinhLayout.setVerticalGroup(
             jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnNgaySinhLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNgaySinh))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNgaySinh)
+                    .addComponent(jtfNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpnMain.add(jpnNgaySinh);
+
+        jlbNgayVaoLam.setText("Ngày vào làm");
+
+        jtfNgayVaoLam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNgayVaoLamActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpnNgayVaoLamLayout = new javax.swing.GroupLayout(jpnNgayVaoLam);
+        jpnNgayVaoLam.setLayout(jpnNgayVaoLamLayout);
+        jpnNgayVaoLamLayout.setHorizontalGroup(
+            jpnNgayVaoLamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnNgayVaoLamLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jlbNgayVaoLam)
+                .addGap(43, 43, 43)
+                .addComponent(jtfNgayVaoLam, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+        jpnNgayVaoLamLayout.setVerticalGroup(
+            jpnNgayVaoLamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnNgayVaoLamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpnNgayVaoLamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbNgayVaoLam)
+                    .addComponent(jtfNgayVaoLam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpnMain.add(jpnNgayVaoLam);
 
         lbCMND.setText("CMND");
 
@@ -158,9 +200,9 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnCMNDLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbCMND)
-                .addGap(87, 87, 87)
+                .addGap(79, 79, 79)
                 .addComponent(jtfCMND, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jpnCMNDLayout.setVerticalGroup(
             jpnCMNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,11 +218,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         lbGioiTinh.setText("Giới tính");
 
-        jtfGioiTinh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfGioiTinhActionPerformed(evt);
-            }
-        });
+        jcbbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
         javax.swing.GroupLayout jpnGioiTinhLayout = new javax.swing.GroupLayout(jpnGioiTinh);
         jpnGioiTinh.setLayout(jpnGioiTinhLayout);
@@ -189,18 +227,18 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnGioiTinhLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbGioiTinh)
-                .addGap(78, 78, 78)
-                .addComponent(jtfGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(jcbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         jpnGioiTinhLayout.setVerticalGroup(
             jpnGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnGioiTinhLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(21, 21, 21)
                 .addGroup(jpnGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGioiTinh)
-                    .addComponent(jtfGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jpnMain.add(jpnGioiTinh);
@@ -220,9 +258,9 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnDiaChiLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jlbDiaChi)
-                .addGap(85, 85, 85)
+                .addGap(77, 77, 77)
                 .addComponent(jtfDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jpnDiaChiLayout.setVerticalGroup(
             jpnDiaChiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,9 +289,9 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnEmailLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jlbEmail)
-                .addGap(92, 92, 92)
+                .addGap(84, 84, 84)
                 .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jpnEmailLayout.setVerticalGroup(
             jpnEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,9 +320,9 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnsdtLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jlbsdt)
-                .addGap(53, 53, 53)
+                .addGap(47, 47, 47)
                 .addComponent(jtfSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jpnsdtLayout.setVerticalGroup(
             jpnsdtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,13 +388,13 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtHuyActionPerformed
 
+    private void jtfNgaySinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNgaySinhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNgaySinhActionPerformed
+
     private void jtfCMNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCMNDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfCMNDActionPerformed
-
-    private void jtfGioiTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfGioiTinhActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfGioiTinhActionPerformed
 
     private void jtfDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDiaChiActionPerformed
         // TODO add your handling code here:
@@ -370,18 +408,23 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfSDTActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-  
+    private void jtfMaKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaKhachHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfMaKhachHangActionPerformed
+
+    private void jtfNgayVaoLamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNgayVaoLamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNgayVaoLamActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtHuy;
     private javax.swing.JButton jbtLuu;
-    private com.toedter.calendar.JDateChooser jcNgaySinh;
+    private javax.swing.JComboBox<String> jcbbGioiTinh;
     private javax.swing.JLabel jlbDiaChi;
     private javax.swing.JLabel jlbEmail;
+    private javax.swing.JLabel jlbNgayVaoLam;
     private javax.swing.JLabel jlbsdt;
     private javax.swing.JPanel jpnButton;
     private javax.swing.JPanel jpnCMND;
@@ -392,13 +435,15 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jpnMaKhachHang;
     private javax.swing.JPanel jpnMain;
     private javax.swing.JPanel jpnNgaySinh;
+    private javax.swing.JPanel jpnNgayVaoLam;
     private javax.swing.JPanel jpnsdt;
     private javax.swing.JTextField jtfCMND;
     private javax.swing.JTextField jtfDiaChi;
     private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfGioiTinh;
     private javax.swing.JTextField jtfHoVaTen;
     private javax.swing.JTextField jtfMaKhachHang;
+    private javax.swing.JTextField jtfNgaySinh;
+    private javax.swing.JTextField jtfNgayVaoLam;
     private javax.swing.JTextField jtfSDT;
     private javax.swing.JLabel lbCMND;
     private javax.swing.JLabel lbGioiTinh;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.miniPop;
 
 import bus.DichVuBus;
 import dto.DichVu;
@@ -25,7 +25,7 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
         initComponents();
     }
 
-    ThemDichVuJDialog() {
+     public  ThemDichVuJDialog() {
         initComponents();
     }
 

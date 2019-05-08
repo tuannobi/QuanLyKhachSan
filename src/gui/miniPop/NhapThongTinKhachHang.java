@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package miniPopup;
+package gui.miniPop;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
