@@ -235,6 +235,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtXoaMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbtThem">
               <Properties>
@@ -243,6 +246,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtThemMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -302,6 +308,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbDichVuMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -141,6 +141,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jlbDichVu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlbDichVu.setForeground(new java.awt.Color(255, 255, 255));
         jlbDichVu.setText("Dịch vụ");
+        jlbDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbDichVuMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnDichVuLayout = new javax.swing.GroupLayout(jpnDichVu);
         jpnDichVu.setLayout(jpnDichVuLayout);
@@ -311,8 +316,17 @@ public class MainJFrame extends javax.swing.JFrame {
         jpnView.add(khJPanel,BorderLayout.CENTER);     
         jpnView.repaint();
         jpnView.validate();
-        khJPanel.setVisible(true);
     }//GEN-LAST:event_jpnQuanLyKhachhangMouseClicked
+
+    private void jlbDichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDichVuMouseClicked
+        // TODO add your handling code here:
+        DichVuJPanel dvPannel=new DichVuJPanel();
+        jpnView.removeAll();
+        jpnView.setLayout(new BorderLayout());
+        jpnView.add(dvPannel,BorderLayout.CENTER);
+        jpnView.repaint();
+        jpnView.validate();
+    }//GEN-LAST:event_jlbDichVuMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

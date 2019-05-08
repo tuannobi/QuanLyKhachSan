@@ -5,14 +5,12 @@
  */
 package gui;
 
-import controller.DichVuController;
-import controller.minipopupController.ThemDichVuController;
+import bus.DichVuBus;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import miniPopup.SuaDichVuJDialog;
-import miniPopup.ThemDichVuJDialog;
 import dto.DichVu;
-import dao.DichVuDAO;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,11 +21,38 @@ public class DichVuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DichVuJPanel
      */
+    DefaultTableModel dtmDichVu=null;
+    ArrayList<DichVu>listDV=null;
+    DichVu selectedDV;
+    
     public DichVuJPanel() {
         initComponents();
-      //  DichVuController controller=new DichVuController(jtfTimKiem, jbtCapNhat, jbtXoa, jbtThem, dvService, dtmDichVu, listDV, dichvu, tbDichVu, suaDichVuJDialog,themDichVuDialog);
+        hienThiDanhSachDichVu();
     }
+private void hienThiDanhSachDichVu()
+{
+    listDV=new ArrayList<>();
+    listDV=DichVuBus.getDuLieuDichVu();
+    dtmDichVu=(DefaultTableModel)tbDichVu.getModel();
+    Vector<Object> vt=new Vector<Object>();
+    for(DichVu dv:listDV)
+    {
+        vt.add(dv.getMaDichVu());
+        vt.add(dv.getTenDichVu());
+        vt.add(dv.getGiaTien());
+        dtmDichVu.addRow(vt);
+    }    
+}
 
+private void refreshDichVu()
+{
+    dtmDichVu.setRowCount(0);
+    hienThiDanhSachDichVu();
+}
+//public void showWindow(){
+//        setVisible(true);
+//        setLocationRelativeTo(null);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,9 +158,19 @@ public class DichVuJPanel extends javax.swing.JPanel {
 
         jbtXoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtXoa.setText("Xóa");
+        jbtXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtXoaMouseClicked(evt);
+            }
+        });
 
         jbtThem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtThem.setText("Thêm");
+        jbtThem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtThemMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -190,6 +225,11 @@ public class DichVuJPanel extends javax.swing.JPanel {
                 "Mã dịch vụ", "Tên dịch vụ", "Giá tiền"
             }
         ));
+        tbDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDichVuMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDichVu);
 
         javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
@@ -225,6 +265,39 @@ public class DichVuJPanel extends javax.swing.JPanel {
     private void jtfTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfTimKiemActionPerformed
+
+    private void jbtXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtXoaMouseClicked
+        // TODO add your handling code here:
+        if(selectedDV==null)
+        {
+            JOptionPane.showMessageDialog(null,"Vui lòng chọn dịch vụ để xóa");
+        }
+        else
+        {
+            int check=JOptionPane.showConfirmDialog(null,"Bạn có chắc chắn muốn xóa dịch vụ này không?","Cảnh báo",JOptionPane.YES_NO_OPTION);
+            if(check==JOptionPane.YES_OPTION)
+            {
+                DichVuBus.xoaDichVu(selectedDV.getMaDichVu());
+                refreshDichVu();
+            }
+        }
+    }//GEN-LAST:event_jbtXoaMouseClicked
+
+    private void tbDichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDichVuMouseClicked
+        // TODO add your handling code here:
+        int selectedRow=tbDichVu.getSelectedRow();
+        if(selectedRow==-1)
+            return;
+        selectedDV=listDV.get(selectedRow);
+    }//GEN-LAST:event_tbDichVuMouseClicked
+
+    private void jbtThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtThemMouseClicked
+        // TODO add your handling code here:
+        ThemDichVuJDialog themDichVuJDialog=new ThemDichVuJDialog();
+        themDichVuJDialog.setVisible(true);
+        themDichVuJDialog.setLocationRelativeTo(null);
+        
+    }//GEN-LAST:event_jbtThemMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

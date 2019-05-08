@@ -5,36 +5,40 @@
  */
 package dao;
 
+
+import static dao.OracleConnection.conn;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import dto.DichVu;
+import java.sql.Connection;
 
 /**
  *
  * @author COMPUTER
  */
-public class DichVuDAO extends OracleConnection{
-        public ArrayList<DichVu> getDuLieuDichVu(){
-        ArrayList<DichVu> ds=new ArrayList<>();
-        try {
-            
-            String sql="select * from dichvu";
-            PreparedStatement preStatement=conn.prepareStatement(sql);
-            ResultSet resultSet=preStatement.executeQuery();           
-            while(resultSet.next()){
-                DichVu dv=new DichVu(0,"",0);
-                dv.setMaDichVu(resultSet.getInt(1));
-                dv.setTenDichVu(resultSet.getString(2));
-                dv.setGiaTien(resultSet.getFloat(3));
-                ds.add(dv);
+public class DichVuDAO {
+        public static ArrayList<DichVu> getDuLieuDichVu(){
+            ArrayList<DichVu> ds=null;
+            try {
+                ds=new ArrayList<>();
+                Connection conn=OracleConnection.openConnection();
+                String sql="select * from dichvu";
+                PreparedStatement preStatement=conn.prepareStatement(sql);
+                ResultSet resultSet=preStatement.executeQuery();           
+                while(resultSet.next()){
+                    DichVu dv=new DichVu(0,"",0);
+                    dv.setMaDichVu(resultSet.getInt(1));
+                    dv.setTenDichVu(resultSet.getString(2));
+                    dv.setGiaTien(resultSet.getFloat(3));
+                    ds.add(dv);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return ds;
     }
-        public int capNhatDuLieu(DichVu dv){
+        public static int capNhatDuLieu(DichVu dv){
         try {
             String sql="update dichvu set tendichvu=?,giatien=? where madichvu=?";
         PreparedStatement preStatement =conn.prepareStatement(sql);
@@ -48,7 +52,7 @@ public class DichVuDAO extends OracleConnection{
         return -1; //sai       
    }
     
-    public int xoaDuLieu(int madv){
+    public static int xoaDuLieu(int madv){
         
         try {
             String sql="delete from DichVu where maDichVu=?";
@@ -61,7 +65,7 @@ public class DichVuDAO extends OracleConnection{
         return -1; //Sai
     }
     
-    public int themMoiMotDichVu(DichVu dv){
+    public static int themMoiMotDichVu(DichVu dv){
         try {
             String sql ="insert into DichVu(tendichvu,giatien) values(?,?)";
             PreparedStatement preStatement=conn.prepareStatement(sql);
