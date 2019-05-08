@@ -6,11 +6,11 @@
 package gui;
 
 import controller.DichVuController;
-import controller.minipopupController.ThemDichVuController;
+import a.ThemDichVuController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import miniPopup.SuaDichVuJDialog;
-import miniPopup.ThemDichVuJDialog;
+import gui.miniPop.SuaDichVuJDialog;
+import gui.miniPop.ThemDichVuJDialog;
 import dto.DichVu;
 import dao.DichVuDAO;
 

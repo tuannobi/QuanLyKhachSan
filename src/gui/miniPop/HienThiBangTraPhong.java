@@ -3,26 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package miniPopup;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
+package gui.miniPop;
 
 /**
  *
  * @author Tuan
  */
-public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
+public class HienThiBangTraPhong extends javax.swing.JDialog {
 
     /**
      * Creates new form HienThiChiTietPhongJDialog
      */
-    public HienThiBangDatHoacThuePhongJDialog(java.awt.Frame parent, boolean modal) {
+    public HienThiBangTraPhong(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public HienThiBangDatHoacThuePhongJDialog(){
+    public HienThiBangTraPhong(){
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -47,8 +44,7 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
         jlbChenMaPhong = new javax.swing.JLabel();
         jlbChenMaLoaiPhong = new javax.swing.JLabel();
         jpnButton = new javax.swing.JPanel();
-        jbtDatPhong = new javax.swing.JButton();
-        jbtThuePhong = new javax.swing.JButton();
+        jbtTraPhong = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Chi tiết phòng");
@@ -70,7 +66,7 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
                 .addComponent(jlbPhong)
                 .addGap(18, 18, 18)
                 .addComponent(jlbMaSoPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(506, Short.MAX_VALUE))
         );
         jpnThanhTrenLayout.setVerticalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,12 +86,10 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
 
         jlbChenMaLoaiPhong.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jbtDatPhong.setText("Đặt phòng");
-
-        jbtThuePhong.setText("Thuê Phòng");
-        jbtThuePhong.addActionListener(new java.awt.event.ActionListener() {
+        jbtTraPhong.setText("Trả phòng");
+        jbtTraPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtThuePhongActionPerformed(evt);
+                jbtTraPhongActionPerformed(evt);
             }
         });
 
@@ -104,19 +98,15 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
         jpnButtonLayout.setHorizontalGroup(
             jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnButtonLayout.createSequentialGroup()
-                .addContainerGap(409, Short.MAX_VALUE)
-                .addComponent(jbtDatPhong)
-                .addGap(57, 57, 57)
-                .addComponent(jbtThuePhong)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtTraPhong)
                 .addGap(35, 35, 35))
         );
         jpnButtonLayout.setVerticalGroup(
             jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnButtonLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtDatPhong)
-                    .addComponent(jbtThuePhong))
+                .addComponent(jbtTraPhong)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -171,9 +161,9 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtThuePhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtThuePhongActionPerformed
+    private void jbtTraPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTraPhongActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtThuePhongActionPerformed
+    }//GEN-LAST:event_jbtTraPhongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,21 +182,23 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HienThiBangDatHoacThuePhongJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HienThiBangTraPhong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HienThiBangDatHoacThuePhongJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HienThiBangTraPhong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HienThiBangDatHoacThuePhongJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HienThiBangTraPhong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HienThiBangDatHoacThuePhongJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HienThiBangTraPhong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HienThiBangDatHoacThuePhongJDialog dialog = new HienThiBangDatHoacThuePhongJDialog(new javax.swing.JFrame(), true);
+                HienThiBangTraPhong dialog = new HienThiBangTraPhong(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -214,40 +206,13 @@ public class HienThiBangDatHoacThuePhongJDialog extends javax.swing.JDialog {
                     }
                 });
                 dialog.setVisible(true);
-                
             }
         });
     }
 
-    public void setJlbChenMaLoaiPhong(String jlbChenMaLoaiPhong) {
-        this.jlbChenMaLoaiPhong.setText(jlbChenMaLoaiPhong); 
-    }
-
-    public void setJlbChenMaPhong(String jlbChenMaPhong) {
-        this.jlbChenMaPhong.setText(jlbChenMaPhong);
-    }
-
-    public void setJlbMaSoPhong(String jlbMaSoPhong) {
-        this.jlbMaSoPhong.setText(jlbMaSoPhong);
-    }
-
-    private void addEvents(){
-        
-    }
-
-    public JButton getJbtDatPhong() {
-        return jbtDatPhong;
-    }
-
-    public JButton getJbtThuePhong() {
-        return jbtThuePhong;
-    }
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jbtDatPhong;
-    private javax.swing.JButton jbtThuePhong;
+    private javax.swing.JButton jbtTraPhong;
     private javax.swing.JLabel jlbChenMaLoaiPhong;
     private javax.swing.JLabel jlbChenMaPhong;
     private javax.swing.JLabel jlbMaLoaiPhong;

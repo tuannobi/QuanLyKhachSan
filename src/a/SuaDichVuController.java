@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.minipopupController;
+package a;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,25 +18,27 @@ import dao.DichVuDAO;
  *
  * @author COMPUTER
  */
-public class ThemDichVuController {
+public class SuaDichVuController {
+    private JTextField jtfMaDichVu;
     private JTextField jtfTenDichVu;
     private JTextField jtfGiaTien;
     private JButton jbtLuu;
-    JDialog ThemDichVuJDialog;
-    private JDialog ThemDV;
+    JDialog suaDichVuJDialog;
+    private JDialog SuaDV;
     
     DichVu dv=null;
     DichVuDAO dvService = null;
 
-    public ThemDichVuController(JTextField jtfTenDichVu, JTextField jtfGiaTien, JButton jbtLuu) {
+    public SuaDichVuController(JTextField jtfMaDichVu, JTextField jtfTenDichVu, JTextField jtfGiaTien,JButton jbtLuu) {
+        this.jtfMaDichVu = jtfMaDichVu;
         this.jtfTenDichVu = jtfTenDichVu;
         this.jtfGiaTien = jtfGiaTien;
-        this.jbtLuu = jbtLuu;
+        this.jbtLuu=jbtLuu;
         
         Events();
     }
     
-        public void Events()
+    public void Events()
     {
         
         jbtLuu.addActionListener(new ActionListener() {
@@ -44,11 +46,12 @@ public class ThemDichVuController {
             @Override
             public void actionPerformed(ActionEvent e) {
                DichVu dv=new DichVu(0,"",0);
+                dv.setMaDichVu(Integer.parseInt(jtfMaDichVu.getText()));
                 dv.setTenDichVu(jtfTenDichVu.getText());
                 dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
 
                 DichVuDAO dvService=new DichVuDAO();
-                int flag=dvService.themMoiMotDichVu(dv);
+                int flag=dvService.capNhatDuLieu(dv);
                 if (flag==-1)
                 {
                     JOptionPane.showMessageDialog(null, "Cập nhật không thành công");
@@ -59,8 +62,8 @@ public class ThemDichVuController {
                     
                 }
             }
+        });
         
-            });
-    
     }
-}
+    }
+    
