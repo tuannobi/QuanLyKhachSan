@@ -4,23 +4,6 @@
  * and open the template in the editor.
  */
 package miniPopup;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import model.KhachHang;
-import service.KhachHangService;
-import view.QuanLyKhachHangJPanel;
-
 /**
  *
  * @author Tuan

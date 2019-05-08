@@ -3,9 +3,9 @@ package main;
 
 import javax.swing.JPanel;
 import miniPopup.HienThiBangDatHoacThuePhongJDialog;
-import view.DangNhapJFrame;
-import view.MainJFrame;
-import view.QuanLyKhachHangJPanel;
+import gui.DangNhapJFrame;
+import gui.MainJFrame;
+import gui.QuanLyKhachHangJPanel;
 
 
 public class tesMain {
@@ -16,7 +16,7 @@ public class tesMain {
 //        a.showWindow();
 
 MainJFrame a=new MainJFrame();
-a.setVisible(true);
+a.showWindow();
     }
     
 }

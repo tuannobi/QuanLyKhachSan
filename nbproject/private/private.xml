@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Github/QuanLyKhachSan/src/view/QuanLyKhachHangJPanel.java</file>
-            <file>file:/D:/Github/QuanLyKhachSan/src/controller/QuanLyKhachHangController.java</file>
-            <file>file:/D:/Github/QuanLyKhachSan/src/miniPopup/SuaKhachHangJDialog.java</file>
-            <file>file:/D:/Github/QuanLyKhachSan/src/service/KhachHangService.java</file>
-            <file>file:/D:/Github/QuanLyKhachSan/src/model/KhachHang.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/gui/QuanLyKhachHangJPanel.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/dao/OracleConnection.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/gui/MainJFrame.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/gui/DichVuJPanel.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/gui/QuanLyPhongJPanel.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/bus/KhachHangBus.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/main/tesMain.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/dao/KhachHangDAO.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/controller/minipopupController/SuaDichVuController.java</file>
         </group>
     </open-files>
 </project-private>

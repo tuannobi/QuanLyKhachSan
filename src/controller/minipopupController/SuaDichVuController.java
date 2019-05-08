@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import model.DichVu;
-import service.DichVuService;
+import dto.DichVu;
+import dao.DichVuDAO;
 
 /**
  *
@@ -27,7 +27,7 @@ public class SuaDichVuController {
     private JDialog SuaDV;
     
     DichVu dv=null;
-    DichVuService dvService = null;
+    DichVuDAO dvService = null;
 
     public SuaDichVuController(JTextField jtfMaDichVu, JTextField jtfTenDichVu, JTextField jtfGiaTien,JButton jbtLuu) {
         this.jtfMaDichVu = jtfMaDichVu;
@@ -50,7 +50,7 @@ public class SuaDichVuController {
                 dv.setTenDichVu(jtfTenDichVu.getText());
                 dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
 
-                DichVuService dvService=new DichVuService();
+                DichVuDAO dvService=new DichVuDAO();
                 int flag=dvService.capNhatDuLieu(dv);
                 if (flag==-1)
                 {

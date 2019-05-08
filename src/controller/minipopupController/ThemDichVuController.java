@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import model.DichVu;
-import service.DichVuService;
+import dto.DichVu;
+import dao.DichVuDAO;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ThemDichVuController {
     private JDialog ThemDV;
     
     DichVu dv=null;
-    DichVuService dvService = null;
+    DichVuDAO dvService = null;
 
     public ThemDichVuController(JTextField jtfTenDichVu, JTextField jtfGiaTien, JButton jbtLuu) {
         this.jtfTenDichVu = jtfTenDichVu;
@@ -47,7 +47,7 @@ public class ThemDichVuController {
                 dv.setTenDichVu(jtfTenDichVu.getText());
                 dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
 
-                DichVuService dvService=new DichVuService();
+                DichVuDAO dvService=new DichVuDAO();
                 int flag=dvService.themMoiMotDichVu(dv);
                 if (flag==-1)
                 {
