@@ -66,18 +66,19 @@ public class KhachHangDAO {
 //        return -1; //sai       
 //   }
 //    
-//    public int xoaKhachHang(int makh){
-//        
-//        try {
-//            String sql="delete from khachhang where makhachhang=?";
-//            PreparedStatement preparedStatement=conn.prepareCall(sql);
-//            preparedStatement.setInt(1, makh);
-//            return preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return -1; //Sai
-//    }
+    public static int xoaKhachHang(int makh){
+        
+        try {
+            String sql="delete from khachhang where makhachhang=?";
+            Connection conn=OracleConnection.openConnection();
+            PreparedStatement preparedStatement=conn.prepareCall(sql);
+            preparedStatement.setInt(1, makh);
+            return preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; //Sai
+   }
     
 //    public int themMoiMotKhachHang(KhachHangDTO kh){
 //        KhachHangDTO reKH=new KhachHangDTO();

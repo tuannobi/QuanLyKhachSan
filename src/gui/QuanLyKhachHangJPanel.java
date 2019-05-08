@@ -23,6 +23,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
      */
      ArrayList <KhachHangDTO> listKH;
     DefaultTableModel dtmKH=new DefaultTableModel();
+    KhachHangDTO selectedKhachHang;
     
     public QuanLyKhachHangJPanel() {
         initComponents();
@@ -198,15 +199,33 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtXoaActionPerformed
+      if (selectedKhachHang==null)
+      {
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để xóa");
+      }
+      else{
+         int check= JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa khách hàng này không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+          if (check==JOptionPane.YES_OPTION){
+              KhachHangBus.xoaKhachHang(selectedKhachHang.getMaKH());
+          }
+          else if (check==JOptionPane.NO_OPTION){
+              
+          }
+      }
         
     }//GEN-LAST:event_jbtXoaActionPerformed
 
     private void jtfTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTimKiemActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jtfTimKiemActionPerformed
 
     private void tbKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachHangMouseClicked
-       
+        
+        int selectedRow=tbKhachHang.getSelectedRow();
+        if (selectedRow==-1)
+            return;
+        selectedKhachHang=listKH.get(selectedRow);
+
     }//GEN-LAST:event_tbKhachHangMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
