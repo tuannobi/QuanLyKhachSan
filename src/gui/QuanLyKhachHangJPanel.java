@@ -11,6 +11,7 @@ import gui.miniPop.SuaKhachHangJDialog;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -243,7 +244,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để cập nhật thông tin");
         }
         else{
-            SuaKhachHangJDialog suaKhachHangJDialog=new SuaKhachHangJDialog(dtmKH,tbKhachHang, selectedKhachHang);
+            SuaKhachHangJDialog suaKhachHangJDialog=new SuaKhachHangJDialog(listKH, dtmKH,tbKhachHang, selectedKhachHang);
             suaKhachHangJDialog.showWindow();
         }
     }//GEN-LAST:event_jbtCapNhatActionPerformed

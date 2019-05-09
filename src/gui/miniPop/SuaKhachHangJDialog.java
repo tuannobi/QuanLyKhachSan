@@ -8,7 +8,13 @@ package gui.miniPop;
 import bus.KhachHangBus;
 import dto.KhachHangDTO;
 import gui.QuanLyKhachHangJPanel;
+import java.sql.DatabaseMetaData;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.TableColumnModelEvent;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,24 +25,24 @@ import javax.swing.table.DefaultTableModel;
 public class SuaKhachHangJDialog extends javax.swing.JDialog {
     DefaultTableModel dtm;
     JTable jtable;
-    KhachHangDTO kh;
+    KhachHangDTO kh; 
+    KhachHangDTO newInfoKhachHangDTO; //lưu trữ dữ liệu mới của người dùng nhập vào
+    ArrayList<KhachHangDTO> listKH;
 
     public SuaKhachHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
     }
     
-    public SuaKhachHangJDialog(DefaultTableModel dtm,JTable jtable,KhachHangDTO kh ) {
+    public SuaKhachHangJDialog(ArrayList<KhachHangDTO> listKH, DefaultTableModel dtm,JTable jtable,KhachHangDTO kh ) {            
+        initComponents();
         this.dtm=dtm;
         this.jtable=jtable;
-        this.kh=kh;       
-        initComponents();
-        chuyenDuLieu();               
+        this.kh=kh;
+        this.listKH=listKH;
+        
+        chuyenDuLieu();
     }
-    public SuaKhachHangJDialog(QuanLyKhachHangJPanel jpnQuanLyKhachHangJPanel){
-        initComponents();
-        chuyenDuLieu();               
-    }
+    
 
     public void showWindow(){
         setVisible(true);
@@ -66,7 +72,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jtfCMND = new javax.swing.JTextField();
         jpnGioiTinh = new javax.swing.JPanel();
         lbGioiTinh = new javax.swing.JLabel();
-        jtfGioiTinh = new javax.swing.JTextField();
+        jcbbGioiTinh = new javax.swing.JComboBox<>();
         jpnDiaChi = new javax.swing.JPanel();
         jlbDiaChi = new javax.swing.JLabel();
         jtfDiaChi = new javax.swing.JTextField();
@@ -192,6 +198,8 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         lbGioiTinh.setText("Giới tính");
 
+        jcbbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+
         javax.swing.GroupLayout jpnGioiTinhLayout = new javax.swing.GroupLayout(jpnGioiTinh);
         jpnGioiTinh.setLayout(jpnGioiTinhLayout);
         jpnGioiTinhLayout.setHorizontalGroup(
@@ -199,9 +207,9 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnGioiTinhLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbGioiTinh)
-                .addGap(78, 78, 78)
-                .addComponent(jtfGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(79, 79, 79)
+                .addComponent(jcbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(292, Short.MAX_VALUE))
         );
         jpnGioiTinhLayout.setVerticalGroup(
             jpnGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,8 +217,8 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(jpnGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGioiTinh)
-                    .addComponent(jtfGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jpnMain.add(jpnGioiTinh);
@@ -379,8 +387,13 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtHuyActionPerformed
 
     private void jbtLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLuuActionPerformed
-       KhachHangBus.capNhatThongTinKhachHang(kh);
-       
+        layDuLieuTuForm();
+        if (newInfoKhachHangDTO!=null){
+        KhachHangBus.capNhatThongTinKhachHang(newInfoKhachHangDTO);   
+        refreshData();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Lỗi");
     }//GEN-LAST:event_jbtLuuActionPerformed
 
     private void jtfTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTrangThaiActionPerformed
@@ -391,15 +404,15 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         this.dispose();
     }
     
-    private void refreshData(){
-        dtm.setRowCount(0);
-    }
+//    private void refreshData(){
+//        dtm.setRowCount(0);
+//    }
     
     private void chuyenDuLieu(){
-        jtfMaKhachHang.setText(Integer.toString(kh.getMaKH()));
+        jtfMaKhachHang.setText(Integer.toString(kh.getMaKH())); //chuyển số về chuỗi
         jtfHoVaTen.setText(kh.getHoTen());
         jtfCMND.setText(Integer.toString(kh.getCMND()));
-        jtfGioiTinh.setText(kh.getGioiTinh());
+        jcbbGioiTinh.setSelectedItem(kh.getGioiTinh());
         jtfDiaChi.setText(kh.getDiaChi());
         jtfEmail.setText(kh.getEmail());
         jtfSDT.setText(kh.getSDT());
@@ -407,11 +420,43 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jtfTrangThai.setText(kh.getTrangThai());
     }
     
+    private void layDuLieuTuForm() {
+        newInfoKhachHangDTO=new KhachHangDTO();
+        newInfoKhachHangDTO.setMaKH(Integer.parseInt(jtfMaKhachHang.getText()));
+        newInfoKhachHangDTO.setHoTen(jtfHoVaTen.getText());
+        newInfoKhachHangDTO.setCMND(Integer.parseInt(jtfCMND.getText()));
+        newInfoKhachHangDTO.setDiaChi(jtfDiaChi.getText());
+        newInfoKhachHangDTO.setGioiTinh(jcbbGioiTinh.getSelectedItem().toString());
+        newInfoKhachHangDTO.setNgaySinh(jcNgaySinh.getDate());
+        newInfoKhachHangDTO.setSDT(jtfSDT.getText());
+        newInfoKhachHangDTO.setTrangThai(jtfTrangThai.getText());
+        newInfoKhachHangDTO.setEmail(jtfEmail.getText());
+    }
+    
+    private void refreshData(){
+        dtm.setRowCount(0);
+        listKH=KhachHangBus.getDuLieuKhachHang();
+        for (KhachHangDTO khachHangDTO:listKH){
+            Vector<Object> vec=new Vector<Object>();
+            vec.add(khachHangDTO.getMaKH());
+            vec.add(khachHangDTO.getHoTen());
+            vec.add(khachHangDTO.getNgaySinh());
+            vec.add(khachHangDTO.getCMND());
+            vec.add(khachHangDTO.getGioiTinh());
+            vec.add(khachHangDTO.getDiaChi());
+            vec.add(khachHangDTO.getEmail());
+            vec.add(khachHangDTO.getSDT());
+            vec.add(khachHangDTO.getTrangThai());
+            dtm.addRow(vec);
+    }
+    }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtHuy;
     private javax.swing.JButton jbtLuu;
     private com.toedter.calendar.JDateChooser jcNgaySinh;
+    private javax.swing.JComboBox<String> jcbbGioiTinh;
     private javax.swing.JLabel jlbDiaChi;
     private javax.swing.JLabel jlbEmail;
     private javax.swing.JLabel jlbTrangThai;
@@ -430,7 +475,6 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jtfCMND;
     private javax.swing.JTextField jtfDiaChi;
     private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfGioiTinh;
     private javax.swing.JTextField jtfHoVaTen;
     private javax.swing.JTextField jtfMaKhachHang;
     private javax.swing.JTextField jtfSDT;
@@ -441,4 +485,6 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lbMaKhachHang;
     private javax.swing.JLabel lbNgaySinh;
     // End of variables declaration//GEN-END:variables
+
+    
 }
