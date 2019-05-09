@@ -12,9 +12,9 @@ import java.util.ArrayList;
  *
  * @author Tuan
  */
-public class NhanVienDAO {
-    public static ArrayList<NhanVien> getDuLieuNhanVien()
-    {
-        
-    }
-}
+//public class NhanVienDAO {
+//    public static ArrayList<NhanVien> getDuLieuNhanVien()
+//    {
+//       
+//    }
+//}
