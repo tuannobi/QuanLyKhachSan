@@ -5,8 +5,8 @@
  */
 package gui;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 import bus.DichVuBus;
 import dao.DichVuDAO;
 import java.util.ArrayList;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import gui.miniPop.ThemDichVuJDialog;
 
-=======
 import controller.DichVuController;
 import controller.minipopupController.ThemDichVuController;
 import java.util.ArrayList;
