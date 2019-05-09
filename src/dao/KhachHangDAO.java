@@ -82,6 +82,7 @@ public class KhachHangDAO {
    }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     public static int capNhatThongTinKhachHang(KhachHangDTO kh){
@@ -108,6 +109,8 @@ public class KhachHangDAO {
 
 =======
 >>>>>>> parent of 1f08786... Update_KhachHang
+=======
+>>>>>>> parent of 21a8e3c... update dịch vụ
 //    public int themMoiMotKhachHang(KhachHangDTO kh){
 //        KhachHangDTO reKH=new KhachHangDTO();
 //        try {

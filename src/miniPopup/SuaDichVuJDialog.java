@@ -7,6 +7,7 @@ package miniPopup;
 
 <<<<<<< HEAD:src/miniPopup/SuaDichVuJDialog.java
 <<<<<<< HEAD:src/miniPopup/SuaDichVuJDialog.java
+<<<<<<< HEAD:src/miniPopup/SuaDichVuJDialog.java
 <<<<<<< HEAD:src/gui/miniPop/SuaDichVuJDialog.java
 import bus.DichVuBus;
 import dto.DichVu;
@@ -21,6 +22,9 @@ import controller.minipopupController.SuaDichVuController;
 =======
 import controller.minipopupController.SuaDichVuController;
 >>>>>>> parent of 1f08786... Update_KhachHang:src/miniPopup/SuaDichVuJDialog.java
+=======
+import controller.minipopupController.SuaDichVuController;
+>>>>>>> parent of 21a8e3c... update dịch vụ:src/miniPopup/SuaDichVuJDialog.java
 
 /**
  *
