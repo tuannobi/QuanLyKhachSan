@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author Tuan
  */
-<<<<<<< HEAD
+
 public class NhanVienDAO {
     public static ArrayList<NhanVien> getDuLieuNhanVien() throws SQLException
     {
@@ -53,11 +53,10 @@ public class NhanVienDAO {
         
     }
 }
-=======
+
 //public class NhanVienDAO {
 //    public static ArrayList<NhanVien> getDuLieuNhanVien()
 //    {
 //       
 //    }
 //}
->>>>>>> 6f5462afd3fcdccab611e74f2fdb99a48404f09c

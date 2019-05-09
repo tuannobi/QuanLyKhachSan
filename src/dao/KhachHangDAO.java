@@ -83,9 +83,16 @@ public class KhachHangDAO {
         try {
             listKH=new ArrayList<>();
             Connection conn=OracleConnection.openConnection();
-            String sql ="select * from khachhang where hoten like ? ";
+            String sql ="select * from khachhang where makhachhang like ? or hoten like ? or cmnd like ? or gioitinh like ? or diachi like ? or email like ? or sdt like ? or trangthai like ?  ";
             PreparedStatement preStatement=conn.prepareStatement(sql);
             preStatement.setString(1, "%"+tuKhoa+"%");
+            preStatement.setString(2, "%"+tuKhoa+"%");
+            preStatement.setString(3, "%"+tuKhoa+"%");
+            preStatement.setString(4, "%"+tuKhoa+"%");
+            preStatement.setString(5, "%"+tuKhoa+"%");
+            preStatement.setString(6, "%"+tuKhoa+"%");
+            preStatement.setString(7, "%"+tuKhoa+"%");
+            preStatement.setString(8, "%"+tuKhoa+"%");
             ResultSet resultSet=preStatement.executeQuery();
             while(resultSet.next()){
                 KhachHangDTO kh=new KhachHangDTO();
