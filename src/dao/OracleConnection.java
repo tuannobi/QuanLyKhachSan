@@ -34,12 +34,8 @@ public class OracleConnection {
         }
     return null;
     }
-//   public static void main(String[] args) throws SQLException {
-//        
-//        Connection c=openConnection();
-//        System.out.println(c.toString());
-//        c.close();
-//        
-//    }
+
+   
+
    
 }

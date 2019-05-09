@@ -16,9 +16,10 @@ public class KhachHangDAO {
     public static ArrayList<KhachHangDTO> getDuLieuKhachHang(){
       //  JOptionPane.showMessageDialog(null, "hello");
         ArrayList<KhachHangDTO> ds=null;
+        Connection conn;
         try {
             ds=new ArrayList<>();
-           Connection conn=OracleConnection.openConnection();
+         conn=OracleConnection.openConnection();
             String sql="select * from khachhang";
             PreparedStatement preStatement=conn.prepareStatement(sql);
             ResultSet resultSet=preStatement.executeQuery();           
@@ -84,9 +85,9 @@ public class KhachHangDAO {
         try {
             Connection conn=OracleConnection.openConnection();
             String sql="update khachhang set hoten=?,ngaysinh=?,cmnd=?,gioitinh=?,diachi=?,email=?,sdt=?,trangthai=? where makhachhang=?";
-            PreparedStatement preStatement=conn.prepareCall(sql);
+            PreparedStatement preStatement=conn.prepareStatement(sql);
             preStatement.setString(1, kh.getHoTen());
-            preStatement.setDate(2, kh.getNgaySinh());
+            preStatement.setDate(2, new java.sql.Date(kh.getNgaySinh().getTime()));
             preStatement.setInt(3, kh.getCMND());
             preStatement.setString(4, kh.getGioiTinh());
             preStatement.setString(5, kh.getDiaChi());
@@ -94,7 +95,7 @@ public class KhachHangDAO {
             preStatement.setString(7, kh.getSDT());
             preStatement.setString(8, kh.getTrangThai());
             preStatement.setInt(9, kh.getMaKH());
-            return preStatement.executeUpdate();
+                   return preStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

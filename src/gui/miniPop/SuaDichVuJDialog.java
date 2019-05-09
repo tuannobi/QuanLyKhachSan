@@ -5,7 +5,10 @@
  */
 package gui.miniPop;
 
-import a.SuaDichVuController;
+import bus.DichVuBus;
+import dto.DichVu;
+import gui.DichVuJPanel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +19,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
     /**
      * Creates new form SuaDichVu
      */
+    DichVuJPanel jpanel=new DichVuJPanel();
     public SuaDichVuJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -23,10 +27,9 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
 
     public SuaDichVuJDialog() {
         initComponents();
-        SuaDichVuController controller =new SuaDichVuController(jtfMaDichVu, jtfTenDichVu, jtfGiaTien, jbtLuu);
         jtfMaDichVu.disable();
     }
-
+    
     public void setTextTenDichVu(String tendv){
         this.jtfTenDichVu.setText(tendv);
     }
@@ -64,16 +67,30 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         jtfGiaTien = new javax.swing.JTextField();
         jpnButton = new javax.swing.JPanel();
         jbtLuu = new javax.swing.JButton();
+        jbtHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Mã dịch vụ");
 
+        jtfMaDichVu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Tên dịch vụ");
 
-        jLabel3.setText("Giá TIỀN");
+        jtfTenDichVu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel3.setText("Giá tiền");
 
         jbtLuu.setText("Lưu");
+        jbtLuu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtLuuMouseClicked(evt);
+            }
+        });
+
+        jbtHuy.setText("Hủy");
 
         javax.swing.GroupLayout jpnButtonLayout = new javax.swing.GroupLayout(jpnButton);
         jpnButton.setLayout(jpnButtonLayout);
@@ -82,13 +99,17 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnButtonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
         jpnButtonLayout.setVerticalGroup(
             jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnButtonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbtLuu)
+                .addGroup(jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtLuu)
+                    .addComponent(jbtHuy))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -115,16 +136,16 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
             .addGroup(jpnMainLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfMaDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfMaDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTenDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTenDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtfGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jpnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -148,11 +169,26 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLuuMouseClicked
+        // TODO add your handling code here:
+        if(jtfTenDichVu.getText().length()==0||jtfGiaTien.getText().length()==0)
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
+        else
+        {
+            DichVu dv=new DichVu(0,"",0);
+            dv.setMaDichVu(Integer.parseInt(jtfMaDichVu.getText()));
+            dv.setTenDichVu(jtfTenDichVu.getText());
+            dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+            DichVuBus.suaDichVu(dv);
+            }
+    }//GEN-LAST:event_jbtLuuMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jbtHuy;
     private javax.swing.JButton jbtLuu;
     private javax.swing.JPanel jpnButton;
     private javax.swing.JPanel jpnMain;

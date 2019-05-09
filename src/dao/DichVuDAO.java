@@ -6,7 +6,7 @@
 package dao;
 
 
-import static dao.OracleConnection.conn;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -33,6 +33,9 @@ public class DichVuDAO {
                     dv.setGiaTien(resultSet.getFloat(3));
                     ds.add(dv);
                 }
+                conn.close();
+                preStatement.close();
+                resultSet.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -40,12 +43,15 @@ public class DichVuDAO {
     }
         public static int capNhatDuLieu(DichVu dv){
         try {
-            String sql="update dichvu set tendichvu=?,giatien=? where madichvu=?";
-        PreparedStatement preStatement =conn.prepareStatement(sql);
+            String sql="update dichvu set tendichvu=?,giatien=? where madichvu=?";     
+            Connection conn=OracleConnection.openConnection();
+            PreparedStatement preStatement =conn.prepareStatement(sql);
         preStatement.setString(1, dv.getTenDichVu());
         preStatement.setFloat(2, dv.getGiaTien());
         preStatement.setInt(3, dv.getMaDichVu());
-        return preStatement.executeUpdate(); //trả về số dòng cập nhật thành công
+                preStatement.close();
+                conn.close();
+                return preStatement.executeUpdate(); //trả về số dòng cập nhật thành công
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,10 +61,14 @@ public class DichVuDAO {
     public static int xoaDuLieu(int madv){
         
         try {
+            Connection conn=OracleConnection.openConnection();
             String sql="delete from DichVu where maDichVu=?";
             PreparedStatement preparedStatement=conn.prepareCall(sql);
             preparedStatement.setInt(1, madv);
-            return preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
+             preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
+             preparedStatement.close();
+                conn.close();
+                return 1;
         } catch (Exception e) {
             e.printStackTrace();
         }

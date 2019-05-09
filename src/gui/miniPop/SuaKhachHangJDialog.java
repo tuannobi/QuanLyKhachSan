@@ -149,18 +149,18 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnNgaySinhLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbNgaySinh)
-                .addGap(69, 69, 69)
-                .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jpnNgaySinhLayout.setVerticalGroup(
             jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnNgaySinhLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(15, 15, 15)
+                .addGroup(jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNgaySinh))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpnMain.add(jpnNgaySinh);

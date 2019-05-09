@@ -5,10 +5,16 @@
  */
 package dao;
 
+import dto.NhanVien;
+import java.util.ArrayList;
+
 /**
  *
  * @author Tuan
  */
 public class NhanVienDAO {
-    
+    public static ArrayList<NhanVien> getDuLieuNhanVien()
+    {
+        
+    }
 }
