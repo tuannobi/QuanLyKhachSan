@@ -3,39 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.miniPop;
-
-import bus.KhachHangBus;
-import dto.KhachHangDTO;
-import gui.QuanLyKhachHangJPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
+package miniPopup;
 /**
  *
  * @author Tuan
  */
 
 public class SuaKhachHangJDialog extends javax.swing.JDialog {
-    DefaultTableModel dtm;
-    JTable jtable;
-    KhachHangDTO kh;
-
     public SuaKhachHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public SuaKhachHangJDialog(DefaultTableModel dtm,JTable jtable,KhachHangDTO kh ) {
-        this.dtm=dtm;
-        this.jtable=jtable;
-        this.kh=kh;       
+    public SuaKhachHangJDialog() {
         initComponents();
-        chuyenDuLieu();               
-    }
-    public SuaKhachHangJDialog(QuanLyKhachHangJPanel jpnQuanLyKhachHangJPanel){
-        initComponents();
-        chuyenDuLieu();               
     }
 
     public void showWindow(){
@@ -76,9 +57,6 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jpnsdt = new javax.swing.JPanel();
         jlbsdt = new javax.swing.JLabel();
         jtfSDT = new javax.swing.JTextField();
-        jpnTrangThai = new javax.swing.JPanel();
-        jlbTrangThai = new javax.swing.JLabel();
-        jtfTrangThai = new javax.swing.JTextField();
         jpnButton = new javax.swing.JPanel();
         jbtLuu = new javax.swing.JButton();
         jbtHuy = new javax.swing.JButton();
@@ -167,6 +145,12 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         lbCMND.setText("CMND");
 
+        jtfCMND.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfCMNDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnCMNDLayout = new javax.swing.GroupLayout(jpnCMND);
         jpnCMND.setLayout(jpnCMNDLayout);
         jpnCMNDLayout.setHorizontalGroup(
@@ -191,6 +175,12 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jpnMain.add(jpnCMND);
 
         lbGioiTinh.setText("Giới tính");
+
+        jtfGioiTinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfGioiTinhActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnGioiTinhLayout = new javax.swing.GroupLayout(jpnGioiTinh);
         jpnGioiTinh.setLayout(jpnGioiTinhLayout);
@@ -217,6 +207,12 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         jlbDiaChi.setText("Địa chỉ");
 
+        jtfDiaChi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfDiaChiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnDiaChiLayout = new javax.swing.GroupLayout(jpnDiaChi);
         jpnDiaChi.setLayout(jpnDiaChiLayout);
         jpnDiaChiLayout.setHorizontalGroup(
@@ -241,6 +237,12 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jpnMain.add(jpnDiaChi);
 
         jlbEmail.setText("Email");
+
+        jtfEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfEmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnEmailLayout = new javax.swing.GroupLayout(jpnEmail);
         jpnEmail.setLayout(jpnEmailLayout);
@@ -267,6 +269,12 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         jlbsdt.setText("Số điện thoại");
 
+        jtfSDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfSDTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnsdtLayout = new javax.swing.GroupLayout(jpnsdt);
         jpnsdt.setLayout(jpnsdtLayout);
         jpnsdtLayout.setHorizontalGroup(
@@ -290,43 +298,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         jpnMain.add(jpnsdt);
 
-        jlbTrangThai.setText("Trạng thái");
-
-        jtfTrangThai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfTrangThaiActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpnTrangThaiLayout = new javax.swing.GroupLayout(jpnTrangThai);
-        jpnTrangThai.setLayout(jpnTrangThaiLayout);
-        jpnTrangThaiLayout.setHorizontalGroup(
-            jpnTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTrangThaiLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jlbTrangThai)
-                .addGap(64, 64, 64)
-                .addComponent(jtfTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
-        jpnTrangThaiLayout.setVerticalGroup(
-            jpnTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTrangThaiLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jpnTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbTrangThai)
-                    .addComponent(jtfTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jpnMain.add(jpnTrangThai);
-
         jbtLuu.setText("Lưu");
-        jbtLuu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtLuuActionPerformed(evt);
-            }
-        });
 
         jbtHuy.setText("Hủy");
         jbtHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -367,7 +339,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -375,37 +347,33 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHuyActionPerformed
-       stopWindow();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jbtHuyActionPerformed
 
-    private void jbtLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLuuActionPerformed
-       KhachHangBus.capNhatThongTinKhachHang(kh);
-       
-    }//GEN-LAST:event_jbtLuuActionPerformed
-
-    private void jtfTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTrangThaiActionPerformed
+    private void jtfCMNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCMNDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfTrangThaiActionPerformed
+    }//GEN-LAST:event_jtfCMNDActionPerformed
 
-    private void stopWindow(){
-        this.dispose();
-    }
-    
-    private void refreshData(){
-        dtm.setRowCount(0);
-    }
-    
-    private void chuyenDuLieu(){
-        jtfMaKhachHang.setText(Integer.toString(kh.getMaKH()));
-        jtfHoVaTen.setText(kh.getHoTen());
-        jtfCMND.setText(Integer.toString(kh.getCMND()));
-        jtfGioiTinh.setText(kh.getGioiTinh());
-        jtfDiaChi.setText(kh.getDiaChi());
-        jtfEmail.setText(kh.getEmail());
-        jtfSDT.setText(kh.getSDT());
-        jcNgaySinh.setDate(kh.getNgaySinh());
-        jtfTrangThai.setText(kh.getTrangThai());
-    }
+    private void jtfGioiTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfGioiTinhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfGioiTinhActionPerformed
+
+    private void jtfDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDiaChiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfDiaChiActionPerformed
+
+    private void jtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfEmailActionPerformed
+
+    private void jtfSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSDTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfSDTActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+  
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -414,7 +382,6 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser jcNgaySinh;
     private javax.swing.JLabel jlbDiaChi;
     private javax.swing.JLabel jlbEmail;
-    private javax.swing.JLabel jlbTrangThai;
     private javax.swing.JLabel jlbsdt;
     private javax.swing.JPanel jpnButton;
     private javax.swing.JPanel jpnCMND;
@@ -425,7 +392,6 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jpnMaKhachHang;
     private javax.swing.JPanel jpnMain;
     private javax.swing.JPanel jpnNgaySinh;
-    private javax.swing.JPanel jpnTrangThai;
     private javax.swing.JPanel jpnsdt;
     private javax.swing.JTextField jtfCMND;
     private javax.swing.JTextField jtfDiaChi;
@@ -434,7 +400,6 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jtfHoVaTen;
     private javax.swing.JTextField jtfMaKhachHang;
     private javax.swing.JTextField jtfSDT;
-    private javax.swing.JTextField jtfTrangThai;
     private javax.swing.JLabel lbCMND;
     private javax.swing.JLabel lbGioiTinh;
     private javax.swing.JLabel lbHoVaTen;

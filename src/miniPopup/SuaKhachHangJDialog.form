@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jpnMain" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jpnButton" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -195,6 +195,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfCMND">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfCMNDActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -232,6 +235,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfGioiTinh">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfGioiTinhActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -269,6 +275,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfDiaChi">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfDiaChiActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -306,6 +315,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfEmail">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfEmailActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -343,45 +355,8 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfSDT">
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jpnTrangThai">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jlbTrangThai" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                      <Component id="jtfTrangThai" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace pref="96" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jlbTrangThai">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jtfTrangThai">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfTrangThaiActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfSDTActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -420,9 +395,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtLuuActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtHuy">
           <Properties>

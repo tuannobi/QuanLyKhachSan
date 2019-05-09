@@ -7,7 +7,6 @@ package gui;
 
 import bus.KhachHangBus;
 import dto.KhachHangDTO;
-import gui.miniPop.SuaKhachHangJDialog;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -120,11 +119,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jpnButton.setBackground(new java.awt.Color(153, 153, 255));
 
         jbtCapNhat.setText("Cập nhật");
-        jbtCapNhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCapNhatActionPerformed(evt);
-            }
-        });
 
         jbtXoa.setText("Xóa");
         jbtXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -213,7 +207,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
          int check= JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa khách hàng này không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
           if (check==JOptionPane.YES_OPTION){
               KhachHangBus.xoaKhachHang(selectedKhachHang.getMaKH());
-              refreshData();
           }
           else if (check==JOptionPane.NO_OPTION){
               
@@ -235,22 +228,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tbKhachHangMouseClicked
 
-    private void jbtCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCapNhatActionPerformed
-        if (selectedKhachHang==null)
-        {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để cập nhật thông tin");
-        }
-        else{
-            SuaKhachHangJDialog suaKhachHangJDialog=new SuaKhachHangJDialog(dtmKH,tbKhachHang, selectedKhachHang);
-            suaKhachHangJDialog.showWindow();
-        }
-    }//GEN-LAST:event_jbtCapNhatActionPerformed
-
-    public void refreshData(){
-        dtmKH.setRowCount(0);
-        hienThiDanhSachKhachHang();
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtTimKiem;

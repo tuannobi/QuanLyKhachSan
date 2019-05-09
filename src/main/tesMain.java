@@ -2,7 +2,7 @@
 package main;
 
 import javax.swing.JPanel;
-import gui.miniPop.HienThiBangDatHoacThuePhongJDialog;
+import miniPopup.HienThiBangDatHoacThuePhongJDialog;
 import gui.DangNhapJFrame;
 import gui.MainJFrame;
 import gui.QuanLyKhachHangJPanel;
