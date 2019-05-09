@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package gui;
-
-import controller.QuanLyPhongController;
 import newClass.JPanelPhong;
 import java.awt.BorderLayout;
 import java.awt.Color;
