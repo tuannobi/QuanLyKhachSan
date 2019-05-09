@@ -6,10 +6,14 @@
 package miniPopup;
 
 <<<<<<< HEAD:src/miniPopup/ThemDichVuJDialog.java
+<<<<<<< HEAD:src/miniPopup/ThemDichVuJDialog.java
 <<<<<<< HEAD:src/gui/miniPop/ThemDichVuJDialog.java
 import bus.DichVuBus;
 import dto.DichVu;
 import javax.swing.JOptionPane;
+=======
+import controller.minipopupController.ThemDichVuController;
+>>>>>>> parent of 1f08786... Update_KhachHang:src/miniPopup/ThemDichVuJDialog.java
 =======
 import controller.minipopupController.ThemDichVuController;
 >>>>>>> parent of 1f08786... Update_KhachHang:src/miniPopup/ThemDichVuJDialog.java
