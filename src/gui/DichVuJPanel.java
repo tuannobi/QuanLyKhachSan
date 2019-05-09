@@ -5,33 +5,16 @@
  */
 package gui;
 
-
-
 import bus.DichVuBus;
 import dao.DichVuDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import controller.minipopupController.ThemDichVuController;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import miniPopup.SuaDichVuJDialog;
-import miniPopup.ThemDichVuJDialog;
-import controller.minipopupController.ThemDichVuController;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import miniPopup.SuaDichVuJDialog;
-import miniPopup.ThemDichVuJDialog;
-import controller.minipopupController.ThemDichVuController;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import miniPopup.SuaDichVuJDialog;
-import miniPopup.ThemDichVuJDialog;
-=======
->>>>>>> parent of 21a8e3c... update dịch vụ
+import gui.miniPop.ThemDichVuJDialog;
+
 import dto.DichVu;
+import gui.miniPop.SuaDichVuJDialog;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -45,7 +28,7 @@ public class DichVuJPanel extends javax.swing.JPanel {
      * Creates new form DichVuJPanel
      */
     DichVuDAO a=null;
-    DefaultTableModel dtmDichVu=null;
+    DefaultTableModel dtmDichVu=new DefaultTableModel();
     ArrayList<DichVu>listDV=null;
     DichVu selectedDV;
     
@@ -58,13 +41,16 @@ private void hienThiDanhSachDichVu()
     listDV=new ArrayList<>();
     listDV=DichVuBus.getDuLieuDichVu();
     dtmDichVu=(DefaultTableModel)tbDichVu.getModel();
-    Vector<Object> vt=new Vector<Object>();
+    
+    
     for(DichVu dv:listDV)
     {
+        Vector<Object> vt=new Vector<Object>();
         vt.add(dv.getMaDichVu());
         vt.add(dv.getTenDichVu());
         vt.add(dv.getGiaTien());
         dtmDichVu.addRow(vt);
+        //tbDichVu.setModel(dtmDichVu);
     }    
 }
 

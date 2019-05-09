@@ -11,7 +11,7 @@ import java.time.Clock;
  * @author Tuan
  */
 public class OracleConnection {
-    protected static Connection conn=null;
+    public static Connection conn=null;
     
     public static Connection openConnection(){
     try {
@@ -35,7 +35,13 @@ public class OracleConnection {
     return null;
     }
 
-   
+       public static void main(String[] args) throws SQLException {
+        
+        Connection c=openConnection();
+        System.out.println(c.toString());
+        c.close();
+        
+    }
 
    
 }

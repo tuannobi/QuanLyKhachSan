@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import miniPopup.SuaKhachHangJDialog;
+import gui.miniPop.SuaKhachHangJDialog;
 import dto.KhachHangDTO;
 import dao.KhachHangDAO;
 

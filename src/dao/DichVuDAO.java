@@ -46,12 +46,14 @@ public class DichVuDAO {
             String sql="update dichvu set tendichvu=?,giatien=? where madichvu=?";     
             Connection conn=OracleConnection.openConnection();
             PreparedStatement preStatement =conn.prepareStatement(sql);
-        preStatement.setString(1, dv.getTenDichVu());
-        preStatement.setFloat(2, dv.getGiaTien());
-        preStatement.setInt(3, dv.getMaDichVu());
-                preStatement.close();
-                conn.close();
-                return preStatement.executeUpdate(); //trả về số dòng cập nhật thành công
+            preStatement.setString(1, dv.getTenDichVu());
+            preStatement.setFloat(2, dv.getGiaTien());
+            preStatement.setInt(3, dv.getMaDichVu());
+            preStatement.executeUpdate();
+            preStatement.close();
+            conn.close();
+           // return preStatement.executeUpdate(); //trả về số dòng cập nhật thành công
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,12 +65,12 @@ public class DichVuDAO {
         try {
             Connection conn=OracleConnection.openConnection();
             String sql="delete from DichVu where maDichVu=?";
-            PreparedStatement preparedStatement=conn.prepareCall(sql);
+            PreparedStatement preparedStatement=conn.prepareStatement(sql);
             preparedStatement.setInt(1, madv);
-             preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
-             preparedStatement.close();
-                conn.close();
-                return 1;
+            preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
+            preparedStatement.close();
+            conn.close();
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,11 +79,15 @@ public class DichVuDAO {
     
     public static int themMoiMotDichVu(DichVu dv){
         try {
+            Connection conn=OracleConnection.openConnection();
             String sql ="insert into DichVu(tendichvu,giatien) values(?,?)";
             PreparedStatement preStatement=conn.prepareStatement(sql);
             preStatement.setString(1, dv.getTenDichVu());
             preStatement.setFloat(2, dv.getGiaTien());
-            return preStatement.executeUpdate();
+            preStatement.executeQuery();
+            preStatement.close();
+            conn.close();
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
         }

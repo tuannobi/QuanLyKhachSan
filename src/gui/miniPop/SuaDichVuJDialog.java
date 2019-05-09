@@ -3,28 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package miniPopup;
+package gui.miniPop;
 
-<<<<<<< HEAD:src/miniPopup/SuaDichVuJDialog.java
-<<<<<<< HEAD:src/miniPopup/SuaDichVuJDialog.java
-<<<<<<< HEAD:src/miniPopup/SuaDichVuJDialog.java
-<<<<<<< HEAD:src/gui/miniPop/SuaDichVuJDialog.java
 import bus.DichVuBus;
 import dto.DichVu;
 import gui.DichVuJPanel;
 import javax.swing.JOptionPane;
-=======
-import controller.minipopupController.SuaDichVuController;
->>>>>>> parent of 1f08786... Update_KhachHang:src/miniPopup/SuaDichVuJDialog.java
-=======
-import controller.minipopupController.SuaDichVuController;
->>>>>>> parent of 1f08786... Update_KhachHang:src/miniPopup/SuaDichVuJDialog.java
-=======
-import controller.minipopupController.SuaDichVuController;
->>>>>>> parent of 1f08786... Update_KhachHang:src/miniPopup/SuaDichVuJDialog.java
-=======
-import controller.minipopupController.SuaDichVuController;
->>>>>>> parent of 21a8e3c... update dịch vụ:src/miniPopup/SuaDichVuJDialog.java
 
 /**
  *

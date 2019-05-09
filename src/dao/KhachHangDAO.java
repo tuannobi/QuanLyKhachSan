@@ -81,10 +81,6 @@ public class KhachHangDAO {
         return -1; //Sai
    }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
     public static int capNhatThongTinKhachHang(KhachHangDTO kh){
         try {
             Connection conn=OracleConnection.openConnection();
@@ -106,11 +102,6 @@ public class KhachHangDAO {
         return -1; //Khong thanh cong
     }
     
-
-=======
->>>>>>> parent of 1f08786... Update_KhachHang
-=======
->>>>>>> parent of 21a8e3c... update dịch vụ
 //    public int themMoiMotKhachHang(KhachHangDTO kh){
 //        KhachHangDTO reKH=new KhachHangDTO();
 //        try {
