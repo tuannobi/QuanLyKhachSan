@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import dto.DichVu;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -92,5 +95,36 @@ public class DichVuDAO {
             e.printStackTrace();
         }
         return -1;
+    }
+    
+     public static ArrayList<DichVu> timKiemDichVu(String tk){
+    
+        ArrayList<DichVu> ds=null;
+            try {
+                ds=new ArrayList<>();
+                Connection conn=OracleConnection.openConnection();
+                String sql="SELECT * FROM DICHVU WHERE TENDICHVU LIKE ? OR GIATIEN LIKE ?";
+                PreparedStatement ps=conn.prepareStatement(sql);
+                ps.setString(1,"%"+ tk+"%");
+                ps.setString(2, "%"+ tk+"%");
+                ResultSet rs=ps.executeQuery();
+                while(rs.next())
+                {
+                    DichVu dv=new DichVu(0, "", 0);
+                    dv.setMaDichVu(rs.getInt(1));
+                    dv.setTenDichVu(rs.getString(2));
+                    dv.setGiaTien(rs.getFloat(3));
+                    ds.add(dv);
+                }
+                conn.close();
+                ps.close();
+                rs.close();
+                
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return ds;
+        
     }
 }

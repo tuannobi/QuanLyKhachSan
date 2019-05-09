@@ -16,7 +16,7 @@ public class NhanVien {
     private String hoTen;
     private Date ngaySinh;
     private Date ngayVaoLam;
-    private String CMND;
+    private int CMND;
     private String soDT;
     private int maNguoiQL;
     private String gioiTinh;
@@ -38,7 +38,7 @@ public class NhanVien {
         return ngayVaoLam;
     }
 
-    public String getCMND() {
+    public int getCMND() {
         return CMND;
     }
 
@@ -74,7 +74,7 @@ public class NhanVien {
         this.ngayVaoLam = ngayVaoLam;
     }
 
-    public void setCMND(String CMND) {
+    public void setCMND(int CMND) {
         this.CMND = CMND;
     }
 
