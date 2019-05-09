@@ -27,7 +27,6 @@ public class DichVuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DichVuJPanel
      */
-    DichVuDAO a=null;
     DefaultTableModel dtmDichVu=new DefaultTableModel();
     ArrayList<DichVu>listDV=null;
     DichVu selectedDV;
@@ -54,10 +53,33 @@ private void hienThiDanhSachDichVu()
     }    
 }
 
+private void hienThiDanhSachDichVuTimKiem(String tk)
+{
+    listDV=new ArrayList<>();
+    listDV=DichVuBus.timKiemDichVu(tk);
+    dtmDichVu=(DefaultTableModel)tbDichVu.getModel();
+    
+    
+    for(DichVu dv:listDV)
+    {
+        Vector<Object> vt=new Vector<Object>();
+        vt.add(dv.getMaDichVu());
+        vt.add(dv.getTenDichVu());
+        vt.add(dv.getGiaTien());
+        dtmDichVu.addRow(vt);
+        //tbDichVu.setModel(dtmDichVu);
+    }    
+}
 private void refreshDichVu()
 {
     dtmDichVu.setRowCount(0);
     hienThiDanhSachDichVu();
+}
+
+private void refreshDichVuTimKiem(String tk)
+{
+    dtmDichVu.setRowCount(0);
+    hienThiDanhSachDichVuTimKiem(tk);
 }
 
     @SuppressWarnings("unchecked")
@@ -70,8 +92,8 @@ private void refreshDichVu()
         jpnTitle = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpnTimKiem = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jtfTimKiem = new javax.swing.JTextField();
+        jbtTimKiem = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jbtCapNhat = new javax.swing.JButton();
         jbtXoa = new javax.swing.JButton();
@@ -122,13 +144,17 @@ private void refreshDichVu()
 
         jpnTimKiem.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Tìm kiếm");
-
         jtfTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfTimKiemActionPerformed(evt);
+            }
+        });
+
+        jbtTimKiem.setText("Tìm kiếm");
+        jbtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtTimKiemMouseClicked(evt);
             }
         });
 
@@ -138,18 +164,18 @@ private void refreshDichVu()
             jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnTimKiemLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtTimKiem)
+                .addGap(18, 18, 18)
                 .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpnTimKiemLayout.setVerticalGroup(
             jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnTimKiemLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtTimKiem))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -293,7 +319,7 @@ private void refreshDichVu()
                 {
                     JOptionPane.showMessageDialog(null, "Không tìm thấy dữ liệu cần xóa");
                 }
-                //refreshDichVu();
+                refreshDichVu();
             }
         }
     }//GEN-LAST:event_jbtXoaMouseClicked
@@ -331,16 +357,31 @@ private void refreshDichVu()
         }
     }//GEN-LAST:event_jbtCapNhatMouseClicked
 
+    private void jbtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtTimKiemMouseClicked
+        // TODO add your handling code here:
+        String tk=jtfTimKiem.getText();
+        if(tk.length()==0)
+        {
+            refreshDichVu();
+        }
+        else
+        {
+            refreshDichVuTimKiem(tk);
+                
+        }
+        
+    }//GEN-LAST:event_jbtTimKiemMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtThem;
+    private javax.swing.JButton jbtTimKiem;
     private javax.swing.JButton jbtXoa;
     private javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnThanhTren;

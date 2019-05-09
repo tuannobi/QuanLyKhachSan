@@ -41,4 +41,11 @@ public class DichVuBus {
             JOptionPane.showMessageDialog(null, "Sửa thành công");
         }
     }
+    public static ArrayList<DichVu> timKiemDichVu(String tk)
+    {
+//        ArrayList<DichVu> ds= DichVuDAO.timKiemDichVu(tk);
+//        if(ds==null)
+//            JOptionPane.showMessageDialog(null, "Không tìm thấy dữ liệu");
+        return DichVuDAO.timKiemDichVu(tk);
+    }
 }
