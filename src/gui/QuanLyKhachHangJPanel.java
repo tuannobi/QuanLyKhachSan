@@ -90,6 +90,16 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
 
         jpnTimKiem.setBackground(new java.awt.Color(153, 153, 255));
 
+        jtfTimKiem.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jtfTimKiemMouseMoved(evt);
+            }
+        });
+        jtfTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jtfTimKiemMouseReleased(evt);
+            }
+        });
         jtfTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfTimKiemActionPerformed(evt);
@@ -231,7 +241,9 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtXoaActionPerformed
 
     private void jtfTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTimKiemActionPerformed
-        
+       if ( jtfTimKiem.getText().isEmpty()){
+           refreshData();
+       }
     }//GEN-LAST:event_jtfTimKiemActionPerformed
 
     private void tbKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachHangMouseClicked
@@ -265,6 +277,14 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             xuLyKetQuaTimKiem();
         }
     }//GEN-LAST:event_jbtTimKiemActionPerformed
+
+    private void jtfTimKiemMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfTimKiemMouseReleased
+
+    }//GEN-LAST:event_jtfTimKiemMouseReleased
+
+    private void jtfTimKiemMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfTimKiemMouseMoved
+
+    }//GEN-LAST:event_jtfTimKiemMouseMoved
 
     public void refreshData(){
         dtmKH.setRowCount(0);

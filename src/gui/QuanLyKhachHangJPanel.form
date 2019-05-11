@@ -117,6 +117,8 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="jtfTimKiem">
                   <Events>
+                    <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jtfTimKiemMouseMoved"/>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtfTimKiemMouseReleased"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfTimKiemActionPerformed"/>
                   </Events>
                 </Component>
