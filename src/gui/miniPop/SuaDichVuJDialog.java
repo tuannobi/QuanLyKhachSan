@@ -8,7 +8,11 @@ package gui.miniPop;
 import bus.DichVuBus;
 import dto.DichVu;
 import gui.DichVuJPanel;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,17 +23,26 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
     /**
      * Creates new form SuaDichVu
      */
-    DichVuJPanel jpanel=new DichVuJPanel();
-    public SuaDichVuJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+    DefaultTableModel dtm;
+    JTable jtable;
+    DichVu dv; 
+    DichVu newInfoDichVu; //lưu trữ dữ liệu mới của người dùng nhập vào
+    ArrayList<DichVu> listDV;
+    
 
-    public SuaDichVuJDialog() {
+//    public SuaDichVuJDialog() {
+//        initComponents();
+//        jtfMaDichVu.disable();
+//    }
+    public SuaDichVuJDialog(ArrayList<DichVu> listDV, DefaultTableModel dtm,JTable jtable,DichVu dv ) {            
         initComponents();
         jtfMaDichVu.disable();
+        this.dtm=dtm;
+        this.jtable=jtable;
+        this.dv=dv;
+        this.listDV=listDV;
+        chuyenDuLieu();
     }
-    
     public void setTextTenDichVu(String tendv){
         this.jtfTenDichVu.setText(tendv);
     }
@@ -42,6 +55,32 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
     {
         this.jtfGiaTien.setText(gia+"");
     }
+    
+    private void chuyenDuLieu(){
+        jtfMaDichVu.setText(Integer.toString(dv.getMaDichVu())); //chuyển số về chuỗi
+        jtfTenDichVu.setText(dv.getTenDichVu());
+        jtfGiaTien.setText(Float.toString(dv.getGiaTien()));
+    }
+    
+    private void refreshData(){
+        dtm.setRowCount(0);
+        listDV=DichVuBus.getDuLieuDichVu();
+        for (DichVu dv : listDV){
+            Vector<Object> vec=new Vector<Object>();
+            vec.add(dv.getMaDichVu());
+            vec.add(dv.getTenDichVu());
+            vec.add(dv.getGiaTien());
+            dtm.addRow(vec);
+        }
+    }
+        
+     private void layDuLieuTuForm() {
+        newInfoDichVu=new DichVu(0,"",0);
+        newInfoDichVu.setMaDichVu(Integer.parseInt(jtfMaDichVu.getText()));
+        newInfoDichVu.setTenDichVu(jtfTenDichVu.getText());
+        newInfoDichVu.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+    }
+        
     
      public void showWindows(){
        // this.setSize(400,500);
@@ -75,6 +114,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         jLabel1.setText("Mã dịch vụ");
 
         jtfMaDichVu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfMaDichVu.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Tên dịch vụ");
@@ -175,12 +215,19 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
         else
         {
-            DichVu dv=new DichVu(0,"",0);
-            dv.setMaDichVu(Integer.parseInt(jtfMaDichVu.getText()));
-            dv.setTenDichVu(jtfTenDichVu.getText());
-            dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
-            DichVuBus.suaDichVu(dv);
+//            DichVu dv=new DichVu(0,"",0);
+//            dv.setMaDichVu(Integer.parseInt(jtfMaDichVu.getText()));
+//            dv.setTenDichVu(jtfTenDichVu.getText());
+//            dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+//            DichVuBus.suaDichVu(dv);
+            layDuLieuTuForm();
+            if (newInfoDichVu!=null){
+                DichVuBus.suaDichVu(newInfoDichVu);   
+                refreshData();
             }
+            else
+                JOptionPane.showMessageDialog(null, "Lỗi");
+         }
     }//GEN-LAST:event_jbtLuuMouseClicked
 
 

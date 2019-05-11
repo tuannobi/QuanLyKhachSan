@@ -10,8 +10,11 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -335,14 +338,20 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jlbDichVuMouseClicked
 
     private void jlbQuanLyNhanVien1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbQuanLyNhanVien1MouseClicked
-        // TODO add your handling code here:
         
-        QuanLyNhanVienJPanel nvPanel=new QuanLyNhanVienJPanel();
-        jpnView.removeAll();
-        jpnView.setLayout(new BorderLayout());
-        jpnView.add(nvPanel);
-        jpnView.repaint();
-        jpnView.validate();
+        try {
+            // TODO add your handling code here:
+            
+            QuanLyNhanVienJPanel nvPanel=new QuanLyNhanVienJPanel();
+            jpnView.removeAll();
+            jpnView.setLayout(new BorderLayout());
+            jpnView.add(nvPanel);
+            jpnView.repaint();
+            jpnView.validate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jlbQuanLyNhanVien1MouseClicked
 
 

@@ -334,7 +334,7 @@ private void refreshDichVuTimKiem(String tk)
 
     private void jbtThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtThemMouseClicked
         // TODO add your handling code here:
-        ThemDichVuJDialog themDichVuJDialog=new ThemDichVuJDialog();
+        ThemDichVuJDialog themDichVuJDialog=new ThemDichVuJDialog(listDV, dtmDichVu, tbDichVu);
         themDichVuJDialog.setVisible(true);
         themDichVuJDialog.setLocationRelativeTo(null);
         
@@ -342,7 +342,7 @@ private void refreshDichVuTimKiem(String tk)
 
     private void jbtCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtCapNhatMouseClicked
         // TODO add your handling code here:
-        SuaDichVuJDialog suaDichVuJDialog=new SuaDichVuJDialog();
+        SuaDichVuJDialog suaDichVuJDialog=new SuaDichVuJDialog(listDV, dtmDichVu, tbDichVu, selectedDV);
         
         if(selectedDV==null)
         {

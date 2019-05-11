@@ -7,7 +7,11 @@ package gui.miniPop;
 
 import bus.DichVuBus;
 import dto.DichVu;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,18 +22,38 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
     /**
      * Creates new form ThemDichVuJDialog
      */
+    DichVu newInfoDichVu;
+    DefaultTableModel dtm;
+    JTable jtable;
+    ArrayList<DichVu> listDV;
     
-    
-    public ThemDichVuJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+
+     public  ThemDichVuJDialog(ArrayList<DichVu> listDV, DefaultTableModel dtm,JTable jtable) {
         initComponents();
+        this.listDV=listDV;
+        this.jtable=jtable;
+        this.dtm=dtm;
     }
 
-     public  ThemDichVuJDialog() {
-        initComponents();
+    public void layDuLieuTuForm()
+    {
+        newInfoDichVu=new DichVu(0,"",0);
+        newInfoDichVu.setTenDichVu(jtfTenDichVu.getText());
+        newInfoDichVu.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+        
     }
-
     
+    private void refreshData(){
+        dtm.setRowCount(0);
+        listDV=DichVuBus.getDuLieuDichVu();
+        for (DichVu dv:listDV){
+            Vector<Object> vec=new Vector<Object>();
+            vec.add(dv.getMaDichVu());
+            vec.add(dv.getTenDichVu());
+            vec.add(dv.getGiaTien());
+            dtm.addRow(vec);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,15 +141,14 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
 
     private void jbtLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLuuMouseClicked
         // TODO add your handling code here:
-        DichVu dv=new DichVu(5,"",0);
+        
+        
         if(jtfTenDichVu.getText().length()==0||jtfGiaTien.getText().length()==0)
             JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
         else
         {
-            dv.setTenDichVu(jtfTenDichVu.getText());
-            dv.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
-            
-            int check=DichVuBus.themDichVu(dv);
+            layDuLieuTuForm();
+            int check=DichVuBus.themDichVu(newInfoDichVu);
             if(check==-1)
             {
                 JOptionPane.showMessageDialog(null,"Thêm dữ liệu không thành công");
@@ -135,6 +158,7 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Thêm dữ liệu thành công");
             }
         }
+        refreshData();
         
     }//GEN-LAST:event_jbtLuuMouseClicked
 
