@@ -5,20 +5,19 @@
  */
 package gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.text.SimpleDateFormat;
+import bus.DichVuBus;
+import bus.NhanVienBus;
 import java.util.ArrayList;
 import java.util.Vector;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import gui.miniPop.SuaKhachHangJDialog;
-import dto.KhachHangDTO;
-import dao.KhachHangDAO;
+import dto.DichVu;
+import dto.NhanVien;
+import gui.miniPop.SuaNhanVienJDialog;
+import gui.miniPop.ThemNhanVienJDialog;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,11 +26,48 @@ import dao.KhachHangDAO;
 public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form QuanLyKhachHangJPanel
+     * Creates new form QuanLyNhanVienJPanel
      */
-    public QuanLyNhanVienJPanel() {
+    DefaultTableModel dtmNhanVien=new DefaultTableModel();
+    ArrayList<NhanVien>listNV=null;
+    NhanVien selectedNV;
+    
+    public QuanLyNhanVienJPanel() throws SQLException {
         initComponents();
+        hienThiDanhSachNhanVien();
     }
+    
+   private void hienThiDanhSachNhanVien() throws SQLException
+{
+    listNV=new ArrayList<>();
+    listNV=NhanVienBus.getDuLieuNhanVien();
+    dtmNhanVien=(DefaultTableModel)tbNhanVien.getModel();
+    
+    
+    for(NhanVien nv:listNV)
+    {
+        Vector<Object> vt=new Vector<Object>();
+        vt.add(nv.getMaNhanVien());
+        vt.add(nv.getHoTen());
+        vt.add(nv.getNgaySinh());
+        vt.add(nv.getNgayVaoLam());
+        vt.add(nv.getCMND());
+        vt.add(nv.getSoDT());
+        vt.add(nv.getTenNguoiQL());
+        vt.add(nv.getGioiTinh());
+        vt.add(nv.getEmail());
+        vt.add(nv.getDiaChi());
+        vt.add(nv.getTrangThai());
+
+        dtmNhanVien.addRow(vt);
+    }    
+}
+   
+   private void refreshNhanVien() throws SQLException
+{
+    dtmNhanVien.setRowCount(0);
+    hienThiDanhSachNhanVien();
+}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,15 +144,25 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         jpnButton.setBackground(new java.awt.Color(153, 153, 255));
 
         jbtCapNhat.setText("Cập nhật");
+        jbtCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtCapNhatMouseClicked(evt);
+            }
+        });
 
         jbtXoa.setText("Xóa");
-        jbtXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtXoaActionPerformed(evt);
+        jbtXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtXoaMouseClicked(evt);
             }
         });
 
         jbtThem.setText("Thêm");
+        jbtThem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtThemMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnButtonLayout = new javax.swing.GroupLayout(jpnButton);
         jpnButton.setLayout(jpnButtonLayout);
@@ -149,9 +195,14 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã nhân viên", "Họ và tên", "Ngày sinh", "Ngày vào làm", "CMND", "Số điện thoại", "Người quản lý", "Giới tính", "Email"
+                "Mã nhân viên", "Họ và tên", "Ngày sinh", "Ngày vào làm", "CMND", "Số điện thoại", "Người quản lý", "Giới tính", "Email", "Địa chỉ", "Trạng thái"
             }
         ));
+        tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbNhanVienMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbNhanVien);
 
         javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
@@ -187,13 +238,67 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         add(jpnMain);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtXoaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtXoaActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jbtXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtXoaMouseClicked
+        // TODO add your handling code here:
+        if(selectedNV==null)
+        {
+            JOptionPane.showMessageDialog(null,"Vui lòng chọn dịch vụ để xóa");
+        }
+        else
+        {
+            int check=JOptionPane.showConfirmDialog(null,"Bạn có chắc chắn muốn xóa nhân viên này không?","Cảnh báo",JOptionPane.YES_NO_OPTION);
+            if(check==JOptionPane.YES_OPTION)
+            {
+                try {
+                    int check2=NhanVienBus.xoaNhanVien(selectedNV.getMaNhanVien());
+                    if(check2!=-1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Xóa thành công");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Không tìm thấy dữ liệu cần xóa");
+                    }
+                    refreshNhanVien();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jbtXoaMouseClicked
+
+    private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
+        // TODO add your handling code here:
+        int selectedRow=tbNhanVien.getSelectedRow();
+        if(selectedRow==-1)
+            return;
+        selectedNV=listNV.get(selectedRow);
+    }//GEN-LAST:event_tbNhanVienMouseClicked
+
+    private void jbtCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtCapNhatMouseClicked
+        // TODO add your handling code here:
+        if (selectedNV==null)
+        {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để cập nhật thông tin");
+        }
+        else{
+            SuaNhanVienJDialog suaNhanVienJDialog=new SuaNhanVienJDialog(listNV, dtmNhanVien, tbNhanVien, selectedNV);
+            suaNhanVienJDialog.showWindows();
+        }
+    }//GEN-LAST:event_jbtCapNhatMouseClicked
+
+    private void jbtThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtThemMouseClicked
+        // TODO add your handling code here:
+        ThemNhanVienJDialog ThemNhanVien=new ThemNhanVienJDialog(listNV, dtmNhanVien, tbNhanVien);
+        ThemNhanVien.setVisible(true);
+        ThemNhanVien.setLocationRelativeTo(null);
+        
+    }//GEN-LAST:event_jbtThemMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

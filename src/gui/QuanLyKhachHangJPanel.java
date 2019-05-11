@@ -97,6 +97,11 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         });
 
         jbtTimKiem.setText("Tìm kiếm");
+        jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
         jpnTimKiem.setLayout(jpnTimKiemLayout);
@@ -249,9 +254,38 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbtCapNhatActionPerformed
 
+    private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
+        listKH=KhachHangBus.timKiemKhachHang(jtfTimKiem.getText());
+        if (listKH==null){
+            JOptionPane.showMessageDialog(null, "Không tìm kiếm thấy thông tin khách hàng này");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Các kết quả được tìm thấy");
+            xuLyKetQuaTimKiem();
+        }
+    }//GEN-LAST:event_jbtTimKiemActionPerformed
+
     public void refreshData(){
         dtmKH.setRowCount(0);
         hienThiDanhSachKhachHang();
+    }
+    
+    public void xuLyKetQuaTimKiem(){
+        dtmKH.setRowCount(0);
+        for (KhachHangDTO khachHangDTO:listKH){
+            Vector<Object> vec=new Vector<Object>();
+            vec.add(khachHangDTO.getMaKH());
+            vec.add(khachHangDTO.getHoTen());
+            vec.add(khachHangDTO.getNgaySinh());
+            vec.add(khachHangDTO.getCMND());
+            vec.add(khachHangDTO.getGioiTinh());
+            vec.add(khachHangDTO.getDiaChi());
+            vec.add(khachHangDTO.getEmail());
+            vec.add(khachHangDTO.getSDT());
+            vec.add(khachHangDTO.getTrangThai());
+            dtmKH.addRow(vec);
+    }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

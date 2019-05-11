@@ -72,7 +72,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jtfCMND = new javax.swing.JTextField();
         jpnGioiTinh = new javax.swing.JPanel();
         lbGioiTinh = new javax.swing.JLabel();
-        jcbbGioiTinh = new javax.swing.JComboBox<>();
+        jcbbGioiTinh = new javax.swing.JComboBox<String>();
         jpnDiaChi = new javax.swing.JPanel();
         jlbDiaChi = new javax.swing.JLabel();
         jtfDiaChi = new javax.swing.JTextField();
@@ -155,18 +155,18 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
             .addGroup(jpnNgaySinhLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbNgaySinh)
-                .addGap(68, 68, 68)
-                .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jpnNgaySinhLayout.setVerticalGroup(
             jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnNgaySinhLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jpnNgaySinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNgaySinh))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jpnMain.add(jpnNgaySinh);
@@ -198,7 +198,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
 
         lbGioiTinh.setText("Giới tính");
 
-        jcbbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        jcbbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nam", "Nữ" }));
 
         javax.swing.GroupLayout jpnGioiTinhLayout = new javax.swing.GroupLayout(jpnGioiTinh);
         jpnGioiTinh.setLayout(jpnGioiTinhLayout);
@@ -390,6 +390,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         layDuLieuTuForm();
         if (newInfoKhachHangDTO!=null){
         KhachHangBus.capNhatThongTinKhachHang(newInfoKhachHangDTO);   
+        
         refreshData();
         }
         else

@@ -18,9 +18,19 @@ public class NhanVien {
     private Date ngayVaoLam;
     private int CMND;
     private String soDT;
-    private int maNguoiQL;
+    private String tenNguoiQL;
     private String gioiTinh;
     private String email;
+    private String diaChi;
+    private String trangThai;
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
 
     public int getMaNhanVien() {
         return maNhanVien;
@@ -46,8 +56,8 @@ public class NhanVien {
         return soDT;
     }
 
-    public int getMaNguoiQL() {
-        return maNguoiQL;
+    public String getTenNguoiQL() {
+        return tenNguoiQL;
     }
 
     public String getGioiTinh() {
@@ -82,8 +92,8 @@ public class NhanVien {
         this.soDT = soDT;
     }
 
-    public void setMaNguoiQL(int maNguoiQL) {
-        this.maNguoiQL = maNguoiQL;
+    public void setTenNguoiQL(String tenNguoiQL) {
+        this.tenNguoiQL = tenNguoiQL;
     }
 
     public void setGioiTinh(String gioiTinh) {
@@ -92,6 +102,18 @@ public class NhanVien {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public NhanVien(String tenNguoiQL) {
+        this.tenNguoiQL = tenNguoiQL;
     }
     
     

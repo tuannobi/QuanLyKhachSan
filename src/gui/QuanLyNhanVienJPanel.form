@@ -167,19 +167,25 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtCapNhatMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jbtXoa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtXoaActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtXoaMouseClicked"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jbtThem">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbtThemMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -210,7 +216,7 @@
                 <Component class="javax.swing.JTable" name="tbNhanVien">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="0">
+                      <Table columnCount="11" rowCount="0">
                         <Column editable="true" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
                         <Column editable="true" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
                         <Column editable="true" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
@@ -220,10 +226,22 @@
                         <Column editable="true" title="Ng&#x1b0;&#x1edd;i qu&#x1ea3;n l&#xfd;" type="java.lang.Object"/>
                         <Column editable="true" title="Gi&#x1edb;i t&#xed;nh" type="java.lang.Object"/>
                         <Column editable="true" title="Email" type="java.lang.Object"/>
+                        <Column editable="true" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
+                        <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -275,6 +293,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbNhanVienMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

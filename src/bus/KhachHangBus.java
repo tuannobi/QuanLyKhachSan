@@ -30,4 +30,7 @@ public class KhachHangBus {
             JOptionPane.showMessageDialog(null, "Cập nhật thông tin khách hàng thành công");
     }
     
+    public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
+        return KhachHangDAO.timKiemKhachHang(tuKhoa);
+    }
 }
