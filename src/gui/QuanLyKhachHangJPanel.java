@@ -23,16 +23,17 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     /**
      * Creates new form QuanLyKhachHangJPanel
      */
-     ArrayList <KhachHangDTO> listKH;
-    DefaultTableModel dtmKH=new DefaultTableModel();
-    KhachHangDTO selectedKhachHang;
+   public static ArrayList <KhachHangDTO> listKH;
+    public static DefaultTableModel dtmKH;
+    public static KhachHangDTO selectedKhachHang;
     
     public QuanLyKhachHangJPanel() {
         initComponents();
         hienThiDanhSachKhachHang();
     }
     
-   private void hienThiDanhSachKhachHang (){
+   public static void hienThiDanhSachKhachHang (){
+       dtmKH=new DefaultTableModel();
         listKH=new ArrayList<KhachHangDTO>();
         listKH=KhachHangBus.getDuLieuKhachHang();
         dtmKH=(DefaultTableModel)tbKhachHang.getModel();
@@ -50,9 +51,10 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             vec.add(khachHangDTO.getTrangThai());
             dtmKH.addRow(vec);
     }
-       // tbKhachHang.setModel(dtmKH);
+        tbKhachHang.setModel(dtmKH);
    }
    
+
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -179,15 +181,17 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã khách hàng", "Học và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoạil", "Trạng thái"
+                "Mã khách hàng", "Họ và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
             }
         ));
+        tbKhachHang.setColumnSelectionAllowed(true);
         tbKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKhachHangMouseClicked(evt);
             }
         });
         jspTable.setViewportView(tbKhachHang);
+        tbKhachHang.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
         jpnTable.setLayout(jpnTableLayout);
@@ -231,7 +235,8 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
          int check= JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa khách hàng này không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
           if (check==JOptionPane.YES_OPTION){
               KhachHangBus.xoaKhachHang(selectedKhachHang.getMaKH());
-              refreshData();
+              hienThiDanhSachKhachHang();
+           refreshData();
           }
           else if (check==JOptionPane.NO_OPTION){
               
@@ -241,18 +246,15 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtXoaActionPerformed
 
     private void jtfTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTimKiemActionPerformed
-       if ( jtfTimKiem.getText().isEmpty()){
-           refreshData();
-       }
+
     }//GEN-LAST:event_jtfTimKiemActionPerformed
 
     private void tbKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachHangMouseClicked
-        
+        selectedKhachHang=new KhachHangDTO();
         int selectedRow=tbKhachHang.getSelectedRow();
         if (selectedRow==-1)
             return;
         selectedKhachHang=listKH.get(selectedRow);
-
     }//GEN-LAST:event_tbKhachHangMouseClicked
 
     private void jbtCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCapNhatActionPerformed
@@ -261,7 +263,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để cập nhật thông tin");
         }
         else{
-            SuaKhachHangJDialog suaKhachHangJDialog=new SuaKhachHangJDialog(listKH, dtmKH,tbKhachHang, selectedKhachHang);
+            SuaKhachHangJDialog suaKhachHangJDialog=new SuaKhachHangJDialog(selectedKhachHang);
             suaKhachHangJDialog.showWindow();
         }
     }//GEN-LAST:event_jbtCapNhatActionPerformed
@@ -286,10 +288,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jtfTimKiemMouseMoved
 
-    public void refreshData(){
-        dtmKH.setRowCount(0);
-        hienThiDanhSachKhachHang();
-    }
     
     public void xuLyKetQuaTimKiem(){
         dtmKH.setRowCount(0);
@@ -308,6 +306,13 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     }
     }
     
+    public static void refreshData(){
+        dtmKH.setRowCount(0);
+        hienThiDanhSachKhachHang();
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtTimKiem;
@@ -321,6 +326,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jpnTitle;
     private javax.swing.JScrollPane jspTable;
     private javax.swing.JTextField jtfTimKiem;
-    private javax.swing.JTable tbKhachHang;
+    private static javax.swing.JTable tbKhachHang;
     // End of variables declaration//GEN-END:variables
 }

@@ -191,13 +191,9 @@ public class NhanVienDAO {
    }
 }
 
-<<<<<<< HEAD
-
-=======
 //public class NhanVienDAO {
 //    public static ArrayList<NhanVien> getDuLieuNhanVien()
 //    {
 //       
 //    }
 //}
->>>>>>> 1207efb469fed3995e9746146923fd1e2ec285e8
