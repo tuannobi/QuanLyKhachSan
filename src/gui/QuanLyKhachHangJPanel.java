@@ -184,14 +184,13 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
                 "Mã khách hàng", "Họ và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
             }
         ));
-        tbKhachHang.setColumnSelectionAllowed(true);
+        tbKhachHang.getTableHeader().setReorderingAllowed(false);
         tbKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKhachHangMouseClicked(evt);
             }
         });
         jspTable.setViewportView(tbKhachHang);
-        tbKhachHang.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
         jpnTable.setLayout(jpnTableLayout);
