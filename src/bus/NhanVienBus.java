@@ -41,5 +41,10 @@ public class NhanVienBus {
     {
         return NhanVienDAO.themNhanVien(nv);
     }
+    
+    public static ArrayList<NhanVien> timKiemNhanVien(String tk)
+    {
+        return NhanVienDAO.timKiemNhanVien(tk);
+    }
 }
 

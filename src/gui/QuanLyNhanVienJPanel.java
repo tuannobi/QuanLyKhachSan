@@ -28,16 +28,16 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     /**
      * Creates new form QuanLyNhanVienJPanel
      */
-    DefaultTableModel dtmNhanVien=new DefaultTableModel();
-    ArrayList<NhanVien>listNV=null;
-    NhanVien selectedNV;
+    public static DefaultTableModel dtmNhanVien=new DefaultTableModel();
+    public static ArrayList<NhanVien>listNV=null;
+    public static NhanVien selectedNV;
     
     public QuanLyNhanVienJPanel() throws SQLException {
         initComponents();
         hienThiDanhSachNhanVien();
     }
     
-   private void hienThiDanhSachNhanVien() throws SQLException
+   public static void hienThiDanhSachNhanVien() throws SQLException
 {
     listNV=new ArrayList<>();
     listNV=NhanVienBus.getDuLieuNhanVien();
@@ -63,12 +63,44 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     }    
 }
    
-   private void refreshNhanVien() throws SQLException
+   public static void refreshNhanVien() throws SQLException
 {
     dtmNhanVien.setRowCount(0);
     hienThiDanhSachNhanVien();
 }
     
+   private void hienThiDanhSachNhanVienTimKiem(String tk)
+{
+    listNV=new ArrayList<>();
+    listNV=NhanVienBus.timKiemNhanVien(tk);
+    dtmNhanVien=(DefaultTableModel)tbNhanVien.getModel();
+    
+    
+    for(NhanVien nv:listNV)
+    {
+        Vector<Object> vt=new Vector<Object>();
+        vt.add(nv.getMaNhanVien());
+        vt.add(nv.getHoTen());
+        vt.add(nv.getNgaySinh());
+        vt.add(nv.getNgayVaoLam());
+        vt.add(nv.getCMND());
+        vt.add(nv.getSoDT());
+        vt.add(nv.getTenNguoiQL());
+        vt.add(nv.getGioiTinh());
+        vt.add(nv.getDiaChi());
+        vt.add(nv.getEmail());
+        vt.add(nv.getTrangThai());
+             
+        dtmNhanVien.addRow(vt);
+        //tbDichVu.setModel(dtmDichVu);
+    }    
+}
+   
+   private void refreshNhanVienTimKiem(String tk)
+{
+    dtmNhanVien.setRowCount(0);
+    hienThiDanhSachNhanVienTimKiem(tk);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,8 +115,8 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         jpnTitle = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpnTimKiem = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jtfTimKiem = new javax.swing.JTextField();
+        jbtTimKiem = new javax.swing.JButton();
         jpnButton = new javax.swing.JPanel();
         jbtCapNhat = new javax.swing.JButton();
         jbtXoa = new javax.swing.JButton();
@@ -111,22 +143,21 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
 
         jpnTimKiem.setBackground(new java.awt.Color(153, 153, 255));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        jbtTimKiem.setText("Tìm kiếm");
+        jbtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtTimKiemMouseClicked(evt);
             }
         });
-
-        jButton1.setText("Tìm kiếm");
 
         javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
         jpnTimKiem.setLayout(jpnTimKiemLayout);
         jpnTimKiemLayout.setHorizontalGroup(
             jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnTimKiemLayout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtTimKiem)
                 .addContainerGap())
         );
         jpnTimKiemLayout.setVerticalGroup(
@@ -134,8 +165,8 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
             .addGroup(jpnTimKiemLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtTimKiem))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -238,10 +269,6 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         add(jpnMain);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jbtXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtXoaMouseClicked
         // TODO add your handling code here:
         if(selectedNV==null)
@@ -300,14 +327,32 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jbtThemMouseClicked
 
+    private void jbtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtTimKiemMouseClicked
+        // TODO add your handling code here:
+        String tk=jtfTimKiem.getText();
+        if(tk.length()==0)
+        {
+            try {
+                refreshNhanVien();
+            } catch (SQLException ex) {
+                Logger.getLogger(QuanLyNhanVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            refreshNhanVienTimKiem(tk);
+                
+        }
+        
+    }//GEN-LAST:event_jbtTimKiemMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtThem;
+    private javax.swing.JButton jbtTimKiem;
     private javax.swing.JButton jbtXoa;
     private javax.swing.JPanel jpnButton;
     private javax.swing.JPanel jpnMain;
@@ -315,6 +360,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jpnThanhTren;
     private javax.swing.JPanel jpnTimKiem;
     private javax.swing.JPanel jpnTitle;
-    private javax.swing.JTable tbNhanVien;
+    private javax.swing.JTextField jtfTimKiem;
+    private static javax.swing.JTable tbNhanVien;
     // End of variables declaration//GEN-END:variables
 }

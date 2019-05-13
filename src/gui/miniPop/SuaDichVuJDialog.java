@@ -63,16 +63,17 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
     }
     
     private void refreshData(){
-        dtm.setRowCount(0);
-        listDV=DichVuBus.getDuLieuDichVu();
-        for (DichVu dv : listDV){
-            Vector<Object> vec=new Vector<Object>();
-            vec.add(dv.getMaDichVu());
-            vec.add(dv.getTenDichVu());
-            vec.add(dv.getGiaTien());
-            dtm.addRow(vec);
+//        dtm.setRowCount(0);
+//        listDV=DichVuBus.getDuLieuDichVu();
+//        for (DichVu dv : listDV){
+//            Vector<Object> vec=new Vector<Object>();
+//            vec.add(dv.getMaDichVu());
+//            vec.add(dv.getTenDichVu());
+//            vec.add(dv.getGiaTien());
+//            dtm.addRow(vec);
+        DichVuJPanel.refreshDichVu();
         }
-    }
+    
         
      private void layDuLieuTuForm() {
         newInfoDichVu=new DichVu(0,"",0);
@@ -131,6 +132,11 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         });
 
         jbtHuy.setText("Hủy");
+        jbtHuy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtHuyMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnButtonLayout = new javax.swing.GroupLayout(jpnButton);
         jpnButton.setLayout(jpnButtonLayout);
@@ -229,6 +235,11 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Lỗi");
          }
     }//GEN-LAST:event_jbtLuuMouseClicked
+
+    private void jbtHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtHuyMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbtHuyMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

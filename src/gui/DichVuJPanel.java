@@ -27,15 +27,15 @@ public class DichVuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DichVuJPanel
      */
-    DefaultTableModel dtmDichVu=new DefaultTableModel();
-    ArrayList<DichVu>listDV=null;
-    DichVu selectedDV;
+    public static DefaultTableModel dtmDichVu=new DefaultTableModel();
+    public static ArrayList<DichVu>listDV=null;
+    public static DichVu selectedDV;
     
     public DichVuJPanel() {
         initComponents();
         hienThiDanhSachDichVu();
     }
-private void hienThiDanhSachDichVu()
+public static void hienThiDanhSachDichVu()
 {
     listDV=new ArrayList<>();
     listDV=DichVuBus.getDuLieuDichVu();
@@ -70,7 +70,7 @@ private void hienThiDanhSachDichVuTimKiem(String tk)
         //tbDichVu.setModel(dtmDichVu);
     }    
 }
-private void refreshDichVu()
+public static void refreshDichVu()
 {
     dtmDichVu.setRowCount(0);
     hienThiDanhSachDichVu();
@@ -269,7 +269,7 @@ private void refreshDichVuTimKiem(String tk)
         jpnTable.setLayout(jpnTableLayout);
         jpnTableLayout.setHorizontalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1022, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jpnTableLayout.setVerticalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,8 +282,8 @@ private void refreshDichVuTimKiem(String tk)
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpnThanhTren, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,11 +383,11 @@ private void refreshDichVuTimKiem(String tk)
     private javax.swing.JButton jbtThem;
     private javax.swing.JButton jbtTimKiem;
     private javax.swing.JButton jbtXoa;
-    private javax.swing.JPanel jpnTable;
+    private static javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnThanhTren;
     private javax.swing.JPanel jpnTimKiem;
     private javax.swing.JPanel jpnTitle;
     private javax.swing.JTextField jtfTimKiem;
-    private javax.swing.JTable tbDichVu;
+    private static javax.swing.JTable tbDichVu;
     // End of variables declaration//GEN-END:variables
 }

@@ -90,23 +90,24 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
     }
 
      private void refreshData() throws SQLException{
-        dtm.setRowCount(0);
-        listNV=NhanVienBus.getDuLieuNhanVien();
-        for (NhanVien nv:listNV){
-            Vector<Object> vec=new Vector<Object>();
-            vec.add(nv.getMaNhanVien());
-            vec.add(nv.getHoTen());
-            vec.add(nv.getNgaySinh());
-            vec.add(nv.getNgayVaoLam());
-            vec.add(nv.getCMND());
-            vec.add(nv.getSoDT());
-            vec.add(nv.getTenNguoiQL());
-            vec.add(nv.getGioiTinh());
-            vec.add(nv.getEmail());
-            vec.add(nv.getDiaChi());
-            vec.add(nv.getTrangThai());
-            dtm.addRow(vec);
-        }
+//        dtm.setRowCount(0);
+//        listNV=NhanVienBus.getDuLieuNhanVien();
+//        for (NhanVien nv:listNV){
+//            Vector<Object> vec=new Vector<Object>();
+//            vec.add(nv.getMaNhanVien());
+//            vec.add(nv.getHoTen());
+//            vec.add(nv.getNgaySinh());
+//            vec.add(nv.getNgayVaoLam());
+//            vec.add(nv.getCMND());
+//            vec.add(nv.getSoDT());
+//            vec.add(nv.getTenNguoiQL());
+//            vec.add(nv.getGioiTinh());
+//            vec.add(nv.getEmail());
+//            vec.add(nv.getDiaChi());
+//            vec.add(nv.getTrangThai());
+//            dtm.addRow(vec);
+//        }
+         QuanLyNhanVienJPanel.refreshNhanVien();
     }
         
     /**

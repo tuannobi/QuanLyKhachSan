@@ -44,7 +44,13 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
     {
         newInfoNhanVien=new NhanVien("");
         newInfoNhanVien.setHoTen(jtfHoVaten.getText());
+        try{
         newInfoNhanVien.setCMND(Integer.parseInt(jtfCMND.getText()));
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(null, "lỗi cmnd");
+        }
         newInfoNhanVien.setDiaChi(jtfDiaChi.getText());
         newInfoNhanVien.setGioiTinh(jcbbGioiTinh.getSelectedItem().toString());
         newInfoNhanVien.setNgaySinh(jcNgaySinh.getDate());
