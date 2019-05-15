@@ -32,12 +32,12 @@ import newClass.JPanelPhong;
  *
  * @author Tuan
  */
-public class ThuePhongJPanel extends javax.swing.JPanel {
+public class DatPhongJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form QuanLyPhongJPanel
      */
-    public ThuePhongJPanel() {
+    public DatPhongJPanel() {
         initComponents();
         //hienThiListPhong();
         loadLoaiPhong();
