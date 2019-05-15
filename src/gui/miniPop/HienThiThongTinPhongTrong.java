@@ -41,8 +41,6 @@ public class HienThiThongTinPhongTrong extends javax.swing.JDialog {
         jlbPhong = new javax.swing.JLabel();
         jlbMaSoPhong = new javax.swing.JLabel();
         jpnContent = new javax.swing.JPanel();
-        jlbLoaiPhong = new javax.swing.JLabel();
-        jlbTinhTrang = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -78,24 +76,16 @@ public class HienThiThongTinPhongTrong extends javax.swing.JDialog {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jlbLoaiPhong.setText("Loại phòng");
-
-        jlbTinhTrang.setText("Tình trạng");
-
         javax.swing.GroupLayout jpnContentLayout = new javax.swing.GroupLayout(jpnContent);
         jpnContent.setLayout(jpnContentLayout);
         jpnContentLayout.setHorizontalGroup(
             jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnContentLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(110, 110, 110)
                 .addGroup(jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpnContentLayout.createSequentialGroup()
-                        .addComponent(jlbTinhTrang)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpnContentLayout.createSequentialGroup()
-                        .addComponent(jlbLoaiPhong)
-                        .addGap(18, 18, 18)
+                        .addGap(3, 3, 3)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(489, Short.MAX_VALUE))
         );
@@ -105,13 +95,9 @@ public class HienThiThongTinPhongTrong extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpnContentLayout.createSequentialGroup()
-                        .addGroup(jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlbLoaiPhong)
-                            .addComponent(jLabel1))
-                        .addGap(29, 29, 29))
-                    .addGroup(jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlbTinhTrang)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel1)
+                        .addGap(43, 43, 43))
+                    .addComponent(jLabel2))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
 
@@ -143,10 +129,8 @@ public class HienThiThongTinPhongTrong extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jlbLoaiPhong;
     private javax.swing.JLabel jlbMaSoPhong;
     private javax.swing.JLabel jlbPhong;
-    private javax.swing.JLabel jlbTinhTrang;
     private javax.swing.JPanel jpnContent;
     private javax.swing.JPanel jpnMain;
     private javax.swing.JPanel jpnThanhTren;

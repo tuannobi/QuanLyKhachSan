@@ -58,6 +58,7 @@ public class PhongDAO {
        callableStatement.setInt(3, loaiPhong);
        callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
        callableStatement.registerOutParameter(5, OracleTypes.CURSOR);
+       callableStatement.execute();
        ResultSet rs1=(ResultSet) callableStatement.getObject(4);
        ResultSet rs2=(ResultSet) callableStatement.getObject(5);
        while (rs1.next()){

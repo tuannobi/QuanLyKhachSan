@@ -39,9 +39,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
      */
     public ThuePhongJPanel() {
         initComponents();
-        //hienThiListPhong();
         loadLoaiPhong();
-        //addJScrollPane();
     }
 
     private ArrayList<JPanelPhong> listPhongJPanels;
@@ -167,17 +165,20 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
         jpnHienThi.removeAll();
         listPhongDuocThue=new ArrayList<>();
         
-        //
+        //Chuyển String sang int
         ArrayList<LoaiPhongDTO> listLoaiPhongDTOs=new ArrayList<>();
         listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
         int maLoaiPhong = 0;
         for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.toString()))){
-                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();
+            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.getSelectedItem()))){
+                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();             
         }
+        }
+        JOptionPane.showMessageDialog(null, maLoaiPhong);
         //
         
         listPhongDuocThue=PhongBUS.getCacPhongDuocThue(jcTuNgay.getDate(), jcDenNgay.getDate(),maLoaiPhong );
+        JOptionPane.showMessageDialog(null, listPhongDuocThue.get(0));
         jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
         for (int maPhong:listPhongDuocThue){
             for (JPanelPhong phong:listPhongJPanels){
@@ -189,7 +190,6 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
         }
         jpnHienThi.repaint();
         jpnHienThi.validate();
-    }
     }
     
     private void loadLoaiPhong(){
@@ -304,7 +304,10 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
         jpnMainLayout.setHorizontalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jspHienThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jpnMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jspHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnMainLayout.setVerticalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -5,6 +5,7 @@
  */
 package newClass;
 
+import java.util.Date;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JPanel;
 import javax.swing.event.EventListenerList;
@@ -19,6 +20,11 @@ public class JPanelPhong extends JPanel {
         private String tenLoaiPhong;
         private String trangThai;
         private long giaPhong;
+        
+        private String tenKhachHang;
+        private String cmnd;
+        private Date ngayDen;
+        private Date ngayDi;
 
     public int getMaPhong() {
         return maPhong;
