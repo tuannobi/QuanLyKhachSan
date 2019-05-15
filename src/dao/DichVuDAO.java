@@ -11,10 +11,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import dto.DichVu;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -23,22 +26,25 @@ import java.util.logging.Logger;
 public class DichVuDAO {
         public static ArrayList<DichVu> getDuLieuDichVu(){
             ArrayList<DichVu> ds=null;
+            String sql="{CALL PROC_XEMDICHVU(?)}";
             try {
                 ds=new ArrayList<>();
-                Connection conn=OracleConnection.openConnection();
-                String sql="select * from dichvu";
-                PreparedStatement preStatement=conn.prepareStatement(sql);
-                ResultSet resultSet=preStatement.executeQuery();           
-                while(resultSet.next()){
-                    DichVu dv=new DichVu(0,"",0);
-                    dv.setMaDichVu(resultSet.getInt(1));
-                    dv.setTenDichVu(resultSet.getString(2));
-                    dv.setGiaTien(resultSet.getFloat(3));
+                Connection conn = OracleConnection.openConnection();
+                CallableStatement cs=conn.prepareCall(sql);
+                cs.registerOutParameter(1, OracleTypes.CURSOR);
+                cs.execute();
+                ResultSet rs=(ResultSet) cs.getObject(1);        
+                while(rs.next()){
+                    DichVu dv=new DichVu();
+                    dv.setMaDichVu(rs.getInt(1));
+                    dv.setTenDichVu(rs.getString(2));
+                    dv.setGiaTien(rs.getFloat(3));
+                    dv.setTrangThai(rs.getString(4));
                     ds.add(dv);
                 }
                 conn.close();
-                preStatement.close();
-                resultSet.close();
+                cs.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -46,17 +52,24 @@ public class DichVuDAO {
     }
         public static int capNhatDuLieu(DichVu dv){
         try {
-            String sql="update dichvu set tendichvu=?,giatien=? where madichvu=?";     
+            String sql="{CALL PROC_SUADICHVU(?,?,?,?)}"; 
             Connection conn=OracleConnection.openConnection();
-            PreparedStatement preStatement =conn.prepareStatement(sql);
-            preStatement.setString(1, dv.getTenDichVu());
-            preStatement.setFloat(2, dv.getGiaTien());
-            preStatement.setInt(3, dv.getMaDichVu());
-            preStatement.executeUpdate();
-            preStatement.close();
+            CallableStatement cs=conn.prepareCall(sql);
+            try{
+            cs.setString(1, dv.getTenDichVu());
+            cs.setFloat(2, dv.getGiaTien());
+            cs.setString(3, dv.getTrangThai());
+            cs.setInt(4, dv.getMaDichVu());
+            
+            cs.execute();
+            cs.close();
             conn.close();
            // return preStatement.executeUpdate(); //trả về số dòng cập nhật thành công
             return 1;
+            }
+            catch(SQLException e)
+            {
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,14 +96,20 @@ public class DichVuDAO {
     public static int themMoiMotDichVu(DichVu dv){
         try {
             Connection conn=OracleConnection.openConnection();
-            String sql ="insert into DichVu(tendichvu,giatien) values(?,?)";
-            PreparedStatement preStatement=conn.prepareStatement(sql);
-            preStatement.setString(1, dv.getTenDichVu());
-            preStatement.setFloat(2, dv.getGiaTien());
-            preStatement.executeQuery();
-            preStatement.close();
+            String sql ="{CALL PROC_THEMDICHVU(?,?)}";
+            CallableStatement cs =conn.prepareCall(sql);
+            try{
+            cs.setString(1, dv.getTenDichVu());
+            cs.setFloat(2, dv.getGiaTien());
+            cs.execute();
+            cs.close();
             conn.close();
             return 1;
+            }
+            catch(SQLIntegrityConstraintViolationException a)
+            {
+                
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +129,7 @@ public class DichVuDAO {
                 ResultSet rs=ps.executeQuery();
                 while(rs.next())
                 {
-                    DichVu dv=new DichVu(0, "", 0);
+                    DichVu dv=new DichVu();
                     dv.setMaDichVu(rs.getInt(1));
                     dv.setTenDichVu(rs.getString(2));
                     dv.setGiaTien(rs.getFloat(3));

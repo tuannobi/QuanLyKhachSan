@@ -7,6 +7,7 @@ package gui.miniPop;
 
 import bus.NhanVienBus;
 import dto.NhanVien;
+import gui.QuanLyNhanVienJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -44,7 +45,13 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
     {
         newInfoNhanVien=new NhanVien("");
         newInfoNhanVien.setHoTen(jtfHoVaten.getText());
+        try{
         newInfoNhanVien.setCMND(Integer.parseInt(jtfCMND.getText()));
+        }
+        catch(NumberFormatException nfe)
+        {
+            return;
+        }
         newInfoNhanVien.setDiaChi(jtfDiaChi.getText());
         newInfoNhanVien.setGioiTinh(jcbbGioiTinh.getSelectedItem().toString());
         newInfoNhanVien.setNgaySinh(jcNgaySinh.getDate());
@@ -299,11 +306,14 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
         {
             JOptionPane.showMessageDialog(null, e,"Lỗi",1);
         }
+
         try {
             refreshData();
+            QuanLyNhanVienJPanel.refreshNhanVien();
         } catch (SQLException ex) {
             Logger.getLogger(ThemNhanVienJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jbtLuuMouseClicked
 
 
