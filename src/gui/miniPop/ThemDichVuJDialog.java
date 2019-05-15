@@ -7,6 +7,7 @@ package gui.miniPop;
 
 import bus.DichVuBus;
 import dto.DichVu;
+import gui.DichVuJPanel;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -37,9 +38,15 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
 
     public void layDuLieuTuForm()
     {
-        newInfoDichVu=new DichVu(0,"",0);
-        newInfoDichVu.setTenDichVu(jtfTenDichVu.getText());
+        newInfoDichVu=new DichVu();
+        try{
         newInfoDichVu.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+        }
+        catch(NumberFormatException nfe)
+        {
+            return;
+        }
+        newInfoDichVu.setTenDichVu(jtfTenDichVu.getText());
         
     }
     
@@ -51,6 +58,7 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
             vec.add(dv.getMaDichVu());
             vec.add(dv.getTenDichVu());
             vec.add(dv.getGiaTien());
+            vec.add(dv.getTrangThai());
             dtm.addRow(vec);
         }
     }
@@ -69,6 +77,7 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jtfGiaTien = new javax.swing.JTextField();
         jbtLuu = new javax.swing.JButton();
+        jbtHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dịch vụ");
@@ -90,24 +99,34 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
             }
         });
 
+        jbtHuy.setText("Hủy");
+        jbtHuy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtHuyMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfTenDichVu)
-                    .addComponent(jtfGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
-                .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfTenDichVu)
+                            .addComponent(jtfGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtHuy)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +140,9 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jbtLuu)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtLuu)
+                    .addComponent(jbtHuy))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -129,11 +150,11 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -141,12 +162,6 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
 
     private void jbtLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLuuMouseClicked
         // TODO add your handling code here:
-        
-        
-        if(jtfTenDichVu.getText().length()==0||jtfGiaTien.getText().length()==0)
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
-        else
-        {
             layDuLieuTuForm();
             int check=DichVuBus.themDichVu(newInfoDichVu);
             if(check==-1)
@@ -157,15 +172,20 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
             {
                 JOptionPane.showMessageDialog(null, "Thêm dữ liệu thành công");
             }
-        }
         refreshData();
-        
+        DichVuJPanel.refreshDichVu();
     }//GEN-LAST:event_jbtLuuMouseClicked
+
+    private void jbtHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtHuyMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbtHuyMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtHuy;
     private javax.swing.JButton jbtLuu;
     private javax.swing.JTextField jtfGiaTien;
     private javax.swing.JTextField jtfTenDichVu;

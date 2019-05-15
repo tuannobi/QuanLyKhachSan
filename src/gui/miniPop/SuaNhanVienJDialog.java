@@ -65,9 +65,16 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
     
     private void layDuLieuTuForm() {
         newInfoNhanVien=new NhanVien("");
+        try{
+        newInfoNhanVien.setCMND(Integer.parseInt(jtfCMND.getText()));
+        }
+        catch(NumberFormatException nfe)
+        {
+            return;
+        }
         newInfoNhanVien.setMaNhanVien(Integer.parseInt(jtfMaNhanVien.getText()));
         newInfoNhanVien.setHoTen(jtfHoVaten.getText());
-        newInfoNhanVien.setCMND(Integer.parseInt(jtfCMND.getText()));
+        
         newInfoNhanVien.setDiaChi(jtfDiaChi.getText());
         newInfoNhanVien.setGioiTinh(jcbbGioiTinh.getSelectedItem().toString());
         newInfoNhanVien.setNgaySinh(jcNgaySinh.getDate());
@@ -75,12 +82,17 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         newInfoNhanVien.setSoDT(jtfSoDT.getText());
         newInfoNhanVien.setTrangThai(jcbbTrangThai.getSelectedItem().toString());
         newInfoNhanVien.setEmail(jtfEmail.getText());
+       try{
         if(jcbbNguoiQuanLy.getSelectedItem().toString().equals(""))
             newInfoNhanVien.setTenNguoiQL(null);
         else
         {
             newInfoNhanVien.setTenNguoiQL(jcbbNguoiQuanLy.getSelectedItem().toString());
         }
+       }
+       catch(NullPointerException ne)
+       {
+       }
     }
     public void showWindows(){
        // this.setSize(400,500);
@@ -333,12 +345,16 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         
         try
         {
-            if(newInfoNhanVien!=null)
+            if(newInfoNhanVien!=null){
                 if(NhanVienBus.suaNhanVien(newInfoNhanVien)==1)
-                        {
-                            JOptionPane.showMessageDialog(null, "Cập nhật xong");
-                        }
-                
+                {
+                    JOptionPane.showMessageDialog(null, "Cập nhật xong");
+                 }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Cập nhật không thành công");
+                }
+            }   
             refreshData();
         }
         catch(Exception e)

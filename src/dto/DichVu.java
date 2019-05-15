@@ -13,6 +13,11 @@ public class DichVu {
     private int maDichVu;
     private String tenDichVu;
     private float giaTien;
+    private String trangThai;
+
+    public String getTrangThai() {
+        return trangThai;
+    }
 
     public int getMaDichVu() {
         return maDichVu;
@@ -38,10 +43,8 @@ public class DichVu {
         this.giaTien = giaTien;
     }  
 
-    public DichVu(int maDichVu, String tenDichVu, float giaTien) {
-        this.maDichVu = maDichVu;
-        this.tenDichVu = tenDichVu;
-        this.giaTien = giaTien;
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
     
     

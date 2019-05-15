@@ -30,16 +30,10 @@ public class DichVuBus {
         return DichVuDAO.themMoiMotDichVu(dv);
     }
     
-    public static void suaDichVu(DichVu dv)
+    public static int suaDichVu(DichVu dv)
     {
-        int check= DichVuDAO.capNhatDuLieu(dv);
-        if (check==-1){
-            JOptionPane.showMessageDialog(null, "Sửa không thành công");
-        }
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "Sửa thành công");
-        }
+        return DichVuDAO.capNhatDuLieu(dv);
+        
     }
     public static ArrayList<DichVu> timKiemDichVu(String tk)
     {

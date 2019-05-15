@@ -6,15 +6,18 @@
 package dao;
 
 import dto.NhanVien;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -24,16 +27,15 @@ import javax.swing.JOptionPane;
 public class NhanVienDAO {
     public static ArrayList<NhanVien> getDuLieuNhanVien() throws SQLException
     {
-        ArrayList<NhanVien> ds=null;
+        ArrayList<NhanVien> ds=new ArrayList<>();
+        String sql="{CALL PROC_XEMNHANVIEN(?)}";
+        try{
         Connection conn = OracleConnection.openConnection();
-        ds=new ArrayList<>();
-        PreparedStatement st;
-        ResultSet rs;
-         {
-            String sql="select A.manhanvien,A.hoten,A.ngaysinh,A.ngayvaolam,A.cmnd,A.sodt,b.hoten,A.gioitinh,A.email,A.diachi,A.trangthai from nhanvien A LEFT join nhanvien b\n" +
-"on A.manguoiquanly=b.manhanvien";
-            st = conn.prepareStatement(sql);
-            rs = st.executeQuery();
+        CallableStatement cs=conn.prepareCall(sql);
+        cs.registerOutParameter(1, OracleTypes.CURSOR);
+        cs.execute();
+        ResultSet rs=(ResultSet) cs.getObject(1);
+ 
             while(rs.next())
             {
                 NhanVien nv=new NhanVien("");
@@ -51,10 +53,15 @@ public class NhanVienDAO {
                 ds.add(nv);
                 
             }
-        }
-        st.close();
+        
+        cs.close();
         rs.close();
         conn.close();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
         return ds;
         
     }
@@ -63,14 +70,16 @@ public class NhanVienDAO {
         
         try {
             Connection conn=OracleConnection.openConnection();
-            String sql="delete from NHANVIEN where maNHANVIEN=?";
-            PreparedStatement preparedStatement=conn.prepareStatement(sql);
-            preparedStatement.setInt(1, manv);
-            preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
-            preparedStatement.close();
+            //String sql="delete from NHANVIEN where maNHANVIEN=?";
+            String sql="{CALL PROC_XOANHANVIEN(?)}";
+//            PreparedStatement preparedStatement=conn.prepareStatement(sql);
+            CallableStatement cs= conn.prepareCall(sql);
+            cs.setInt(1, manv);
+            cs.execute(); //trả về số dòng xóa thành công
+            cs.close();
             conn.close();
             return 1;
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrace();
         }
         return -1; //Sai
@@ -78,33 +87,46 @@ public class NhanVienDAO {
     
      public static int capNhatDuLieu(NhanVien nv){
         try {
-            String sql="update NhanVien set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
-            
+            //String sql="update NhanVien set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
+            String sql="{CALL PROC_SUANHANVIEN(?,?,?,?,?,?,?,?,?,?,?)}";
             Connection conn=OracleConnection.openConnection();
-            PreparedStatement preStatement =conn.prepareStatement(sql);
-            preStatement.setString(1, nv.getHoTen());
-            preStatement.setDate(2, new java.sql.Date(nv.getNgaySinh().getTime()));
-            preStatement.setDate(3, new java.sql.Date(nv.getNgayVaoLam().getTime()));
-            preStatement.setInt(4, nv.getCMND());
-            preStatement.setString(5, nv.getSoDT());
+            //PreparedStatement preStatement =conn.prepareStatement(sql);
+            CallableStatement cs=conn.prepareCall(sql);
+            try{
+            cs.setString(1, nv.getHoTen());
+            cs.setDate(2, new java.sql.Date(nv.getNgaySinh().getTime()));
+            cs.setDate(3, new java.sql.Date(nv.getNgayVaoLam().getTime()));
+            cs.setInt(4, nv.getCMND());
+            cs.setString(5, nv.getSoDT());
             if(maNhanVien(nv.getTenNguoiQL())!=0)
-            {preStatement.setInt(6, maNhanVien(nv.getTenNguoiQL()));}
+            {cs.setInt(6, maNhanVien(nv.getTenNguoiQL()));}
             else
             {
-                preStatement.setString(6, "");
+                cs.setString(6, "");
             }
-            preStatement.setString(7, nv.getGioiTinh());
-            preStatement.setString(8, nv.getEmail());
-            preStatement.setInt(11, nv.getMaNhanVien());
-            preStatement.setString(9, nv.getDiaChi());
-            preStatement.setString(10, nv.getTrangThai());
+            cs.setString(7, nv.getGioiTinh());
+            cs.setString(8, nv.getEmail());
+            cs.setInt(11, nv.getMaNhanVien());
+            cs.setString(9, nv.getDiaChi());
+            cs.setString(10, nv.getTrangThai());
             
             
-            preStatement.executeUpdate();
-            preStatement.close();
+            cs.execute();
+            cs.close();
             conn.close();
            // return preStatement.executeUpdate(); //trả về số dòng cập nhật thành công
             return 1;
+            }
+            catch(SQLException ex)
+            {
+                
+            }
+            catch(NullPointerException ex)
+            {
+                
+            }
+
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -155,39 +177,41 @@ public class NhanVienDAO {
    public static int themNhanVien(NhanVien nv)
    {
        
-       String sql="insert into nhanvien (hoten,ngaysinh,ngayvaolam,cmnd,sodt,gioitinh,email,trangthai,diachi) VALUES(?,?,?,?,?,?,?,?,?)";
+       String sql="{CALL PROC_THEMNHANVIEN(?,?,?,?,?,?,?,?,?,?)}";
        try
        {
           Connection conn=OracleConnection.openConnection();
-           PreparedStatement preStatement =conn.prepareStatement(sql);
-            preStatement.setString(1, nv.getHoTen());
-            preStatement.setDate(2, new java.sql.Date(nv.getNgaySinh().getTime()));
-            preStatement.setDate(3, new java.sql.Date(nv.getNgayVaoLam().getTime()));
-            try{
-            preStatement.setInt(4, nv.getCMND());
-            }
-            catch(NumberFormatException ex)
+           CallableStatement cs=conn.prepareCall(sql);
+           try{
+            cs.setString(1, nv.getHoTen());
+            cs.setDate(2, new java.sql.Date(nv.getNgaySinh().getTime()));
+            cs.setDate(3, new java.sql.Date(nv.getNgayVaoLam().getTime()));
+            cs.setInt(4, nv.getCMND());
+            cs.setString(5, nv.getSoDT());
+            cs.setString(6, nv.getGioiTinh());
+            cs.setString(7, nv.getEmail());
+            cs.setString(8, nv.getDiaChi());
+            cs.setString(9, nv.getTrangThai());
+            if(maNhanVien(nv.getTenNguoiQL())!=0)
+            {cs.setInt(10, maNhanVien(nv.getTenNguoiQL()));}
+            else
             {
-                JOptionPane.showMessageDialog(null, "lỗi cmnd");
+                cs.setString(10, "");
             }
-            preStatement.setString(5, nv.getSoDT());
-//            if(maNhanVien(nv.getTenNguoiQL())!=0)
-//            {preStatement.setInt(6, maNhanVien(nv.getTenNguoiQL()));}
-//            else
-//            {
-//                preStatement.setString(6, "");
-//            }
-            preStatement.setString(6, nv.getGioiTinh());
-            preStatement.setString(7, nv.getEmail());
-            preStatement.setString(9, nv.getDiaChi());
-            preStatement.setString(8, nv.getTrangThai());
+            cs.execute();
             
-            preStatement.executeUpdate();
-            
-            preStatement.close();
+            cs.close();
             conn.close();
             return 1;
-           
+           }
+           catch(SQLIntegrityConstraintViolationException sqlicve)
+           {
+               
+           }
+           catch(NullPointerException ex)
+           {
+               
+           }
        }
        catch(Exception e)
        {

@@ -311,7 +311,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (selectedNV==null)
         {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để cập nhật thông tin");
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để cập nhật");
         }
         else{
             SuaNhanVienJDialog suaNhanVienJDialog=new SuaNhanVienJDialog(listNV, dtmNhanVien, tbNhanVien, selectedNV);
