@@ -32,8 +32,8 @@ public class QuanLyPhongJPanel extends javax.swing.JPanel {
         jpnThuePhong.add(thuePhongJPanel,BorderLayout.CENTER);
         
         DatPhongJPanel datPhongJPanel =new DatPhongJPanel();
-        jpnThuePhong.setLayout(new BorderLayout());
-        jpnThuePhong.add(datPhongJPanel,BorderLayout.CENTER);
+        jpnDatPhong.setLayout(new BorderLayout());
+        jpnDatPhong.add(datPhongJPanel,BorderLayout.CENTER);
     }
     /**
      * This method is called from within the constructor to initialize the form.
