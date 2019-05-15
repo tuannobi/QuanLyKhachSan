@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Github/QuanLyKhachSan/src/gui/ThuePhongJPanel.java</file>
-            <file>file:/D:/Github/QuanLyKhachSan/src/dto/PhongDTO.java</file>
+            <file>file:/D:/Github/QuanLyKhachSan/src/dto/LoaiPhongDTO.java</file>
             <file>file:/D:/Github/QuanLyKhachSan/src/bus/PhongBUS.java</file>
-            <file>file:/D:/Github/QuanLyKhachSan/src/newClass/JPanelPhong.java</file>
             <file>file:/D:/Github/QuanLyKhachSan/src/dao/PhongDAO.java</file>
         </group>
     </open-files>

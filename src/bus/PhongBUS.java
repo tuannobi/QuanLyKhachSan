@@ -6,8 +6,11 @@
 package bus;
 
 import dao.PhongDAO;
+import dto.LoaiPhongDTO;
 import dto.PhongDTO;
 import java.util.ArrayList;
+import java.util.Date;
+import sun.net.www.content.audio.x_aiff;
 
 /**
  *
@@ -17,4 +20,11 @@ public class PhongBUS {
     public static ArrayList<PhongDTO> getDuLieuPhong(){
         return PhongDAO.getDuLieuPhong();
     }
+    
+  
+   
+   public static ArrayList<Integer> getCacPhongDuocThue(Date x, Date y, int maPhong){
+       return PhongDAO.getCacPhongDuocThue(x, y, maPhong);
+   }
+    
 }
