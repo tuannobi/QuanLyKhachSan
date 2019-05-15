@@ -121,6 +121,11 @@ private void refreshDichVuTimKiem(String tk)
         setPreferredSize(new java.awt.Dimension(884, 359));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
+        jpnThanhTren.setBackground(new java.awt.Color(204, 204, 255));
+
+        jpnTitle.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("QUẢN LÝ DỊCH VỤ");
 
@@ -139,6 +144,8 @@ private void refreshDichVuTimKiem(String tk)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jpnTimKiem.setBackground(new java.awt.Color(204, 204, 255));
 
         jbtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtTimKiem.setText("Tìm kiếm");
@@ -170,6 +177,8 @@ private void refreshDichVuTimKiem(String tk)
                     .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jpn.setBackground(new java.awt.Color(204, 204, 255));
 
         jbtThem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtThem.setText("Thêm");
