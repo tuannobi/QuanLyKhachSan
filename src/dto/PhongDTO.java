@@ -9,25 +9,26 @@ package dto;
  *
  * @author Tuan
  */
-public class Phong {
-    String maPhong;
-    String maLoaiPhong;
+public class PhongDTO {
+    int maPhong;
+    String tenLoaiPhong;
     String trangThai;
+    long giaPhong;
 
-    public String getMaPhong() {
+    public int getMaPhong() {
         return maPhong;
     }
 
-    public void setMaPhong(String maPhong) {
+    public void setMaPhong(int maPhong) {
         this.maPhong = maPhong;
     }
 
-    public String getMaLoaiPhong() {
-        return maLoaiPhong;
+    public String getTenLoaiPhong() {
+        return tenLoaiPhong;
     }
 
-    public void setMaLoaiPhong(String maLoaiPhong) {
-        this.maLoaiPhong = maLoaiPhong;
+    public void setTenLoaiPhong(String tenLoaiPhong) {
+        this.tenLoaiPhong = tenLoaiPhong;
     }
 
     public String getTrangThai() {
@@ -37,5 +38,15 @@ public class Phong {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
+    public long getGiaPhong() {
+        return giaPhong;
+    }
+
+    public void setGiaPhong(long giaPhong) {
+        this.giaPhong = giaPhong;
+    }
+
+    
     
 }

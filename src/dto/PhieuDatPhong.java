@@ -10,41 +10,11 @@ package dto;
  * @author Tuan
  */
 public class PhieuDatPhong {
-    String maPhieu;
-    String maKhachHang;
-    String maPhong;
+    int maPhieu;
+    int maKhachHang;
+    int maPhong;
     String ngayDat;
 
-    public String getMaPhieu() {
-        return maPhieu;
-    }
-
-    public void setMaPhieu(String maPhieu) {
-        this.maPhieu = maPhieu;
-    }
-
-    public String getMaKhachHang() {
-        return maKhachHang;
-    }
-
-    public void setMaKhachHang(String maKhachHang) {
-        this.maKhachHang = maKhachHang;
-    }
-
-    public String getMaPhong() {
-        return maPhong;
-    }
-
-    public void setMaPhong(String maPhong) {
-        this.maPhong = maPhong;
-    }
-
-    public String getNgayDat() {
-        return ngayDat;
-    }
-
-    public void setNgayDat(String ngayDat) {
-        this.ngayDat = ngayDat;
-    }
+    
     
 }

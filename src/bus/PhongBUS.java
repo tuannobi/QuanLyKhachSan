@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dto;
+package bus;
+
+import dao.PhongDAO;
+import dto.PhongDTO;
+import java.util.ArrayList;
 
 /**
  *
  * @author Tuan
  */
-public class LoaiPhong {
-    
+public class PhongBUS {
+    public static ArrayList<PhongDTO> getDuLieuPhong(){
+        return PhongDAO.getDuLieuPhong();
+    }
 }
