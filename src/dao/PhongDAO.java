@@ -21,22 +21,28 @@ import oracle.jdbc.OracleTypes;
  */
 public class PhongDAO {
     public static ArrayList<PhongDTO> getDuLieuPhong(){
-        ArrayList<PhongDTO> listPhong =new ArrayList<>();
+        ArrayList<PhongDTO> listPhong=null;
         try {
-            Connection conn=OracleConnection.openConnection();
-            String sql="select maphong,tenloaiphong,trangthai,giaphong \n" +
-"from phong inner join loaiphong on phong.maloaiphong=loaiphong.maloaiphong\n" +
-"order by maphong";
-            PreparedStatement preparedStatement=conn.prepareStatement(sql);
-            ResultSet rs =preparedStatement.executeQuery();
-            while(rs.next())
-            {
-                PhongDTO phong=new PhongDTO();
-                phong.setMaPhong(rs.getInt(1));
-                phong.setTenLoaiPhong(rs.getString(2));
-                phong.setTrangThai(rs.getString(3));
-                phong.setGiaPhong(rs.getLong(4));
-                listPhong.add(phong);
+                listPhong=new ArrayList<>();
+                Connection conn=OracleConnection.openConnection();
+                String getCursorSql="{call ThongTinLuuTru(?)}";
+                CallableStatement callableStatement=conn.prepareCall(getCursorSql);
+                callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+                callableStatement.execute();
+                ResultSet rs=(ResultSet) callableStatement.getObject(1);
+                while(rs.next()){
+                    PhongDTO phongDTO =new PhongDTO();
+                    phongDTO.setMaPhong(rs.getInt(1));
+                    phongDTO.setTenLoaiPhong(rs.getString(2));
+                    phongDTO.setTrangThai(rs.getString(3));
+                    phongDTO.setGiaPhong(rs.getLong(4));
+                    phongDTO.setTenKhachHang(rs.getString(5));
+                    phongDTO.setCmndKH(rs.getInt(6));
+                    phongDTO.setNgayDen(rs.getDate(7));
+                    phongDTO.setNgayDi(rs.getDate(8));
+                    phongDTO.setHotenNV(rs.getString(9));
+                    phongDTO.setCmndNV(rs.getInt(10));
+                    listPhong.add(phongDTO);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,12 +52,41 @@ public class PhongDAO {
     
    
    
-   public static ArrayList<Integer> getCacPhongDuocThue(Date x, Date y,int loaiPhong){
+   public static ArrayList<Integer> getCacPhongDuocThue(Date y,int loaiPhong){
        ArrayList<Integer> listMaPhong=null;
        try {
            listMaPhong=new ArrayList<>();
            Connection conn =OracleConnection.openConnection();
-       String getCursorsql="{call PHONGTRONG_THUEPHONGA(?,?,?,?,?)}";
+       String getCursorsql="{call PHONGTRONG_THUEPHONGA(?,?,?,?)}";
+       CallableStatement callableStatement=conn.prepareCall(getCursorsql);
+       callableStatement.setDate(1, new java.sql.Date (y.getTime()));
+       callableStatement.setInt(2, loaiPhong);
+       callableStatement.registerOutParameter(3, OracleTypes.CURSOR);
+       callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
+       callableStatement.execute();
+       ResultSet rs1=(ResultSet) callableStatement.getObject(3);
+       ResultSet rs2=(ResultSet) callableStatement.getObject(4);
+       while (rs1.next()){
+           int maLoaiPhong=rs1.getInt(1);
+           listMaPhong.add(maLoaiPhong);
+       }
+       while(rs2.next()){
+           int maLoaiPhong=rs2.getInt(1);
+           listMaPhong.add(maLoaiPhong);
+       }
+       
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       return listMaPhong;
+   }
+   
+   public static ArrayList<Integer> getCacPhongCoTheDat(Date x, Date y,int loaiPhong){
+       ArrayList<Integer> listMaPhong=null;
+       try {
+           listMaPhong=new ArrayList<>();
+           Connection conn =OracleConnection.openConnection();
+       String getCursorsql="{call THUEPHONG(?,?,?,?,?)}";
        CallableStatement callableStatement=conn.prepareCall(getCursorsql);
        callableStatement.setDate(1, new java.sql.Date (x.getTime())); //new java.sql.Date(x.getTime())
        callableStatement.setDate(2, new java.sql.Date (y.getTime()));
@@ -62,14 +97,12 @@ public class PhongDAO {
        ResultSet rs1=(ResultSet) callableStatement.getObject(4);
        ResultSet rs2=(ResultSet) callableStatement.getObject(5);
        while (rs1.next()){
-           int maPhong ;
-           maPhong=rs1.getInt(4);
-           listMaPhong.add(maPhong);
+           int maLoaiPhong=rs1.getInt(1);
+           listMaPhong.add(maLoaiPhong);
        }
        while(rs2.next()){
-           int maPhong;
-           maPhong=rs2.getInt(5);
-           listMaPhong.add(maPhong);
+           int maLoaiPhong=rs2.getInt(1);
+           listMaPhong.add(maLoaiPhong);
        }
        
        } catch (Exception e) {
@@ -77,6 +110,5 @@ public class PhongDAO {
        }
        return listMaPhong;
    }
-   
    
 }

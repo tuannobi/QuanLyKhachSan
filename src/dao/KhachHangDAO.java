@@ -19,7 +19,7 @@ public class KhachHangDAO {
         Connection conn;
         try {
             ds=new ArrayList<>();
-         conn=OracleConnection.openConnection();
+            conn=OracleConnection.openConnection();
             String sql="select * from khachhang";
             PreparedStatement preStatement=conn.prepareStatement(sql);
             ResultSet resultSet=preStatement.executeQuery();           

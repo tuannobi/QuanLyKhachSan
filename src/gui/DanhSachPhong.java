@@ -9,7 +9,7 @@ import bus.LoaiPhongBUS;
 import bus.PhongBUS;
 import dto.LoaiPhongDTO;
 import dto.PhongDTO;
-import gui.miniPop.HienThiThongTinPhongTrong;
+import gui.miniPop.HienThiThongTinPhong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -44,7 +44,7 @@ public class DanhSachPhong extends javax.swing.JPanel {
 
     private ArrayList<JPanelPhong> listPhongJPanels;
     private ArrayList<PhongDTO> listPhongDTOs;
-    private JPanelPhong selectedJPanelPhong;
+   // private JPanelPhong selectedJPanelPhong;
     private ArrayList<LoaiPhongDTO> listLoaiPhongDTOs;
     //private ArrayList<JPanelPhong> listPhongHienThoiJPanels;
 
@@ -92,6 +92,14 @@ public class DanhSachPhong extends javax.swing.JPanel {
             tempJPanel.setTenLoaiPhong(listPhongDTOs.get(i).getTenLoaiPhong());
             tempJPanel.setTrangThai(listPhongDTOs.get(i).getTrangThai());
             tempJPanel.setGiaPhong(listPhongDTOs.get(i).getGiaPhong());
+            
+            //--Các thuộc tính bổ sung:
+            tempJPanel.setTenKhachHang(listPhongDTOs.get(i).getTenKhachHang());
+            tempJPanel.setCmndKH(listPhongDTOs.get(i).getCmndKH());
+            tempJPanel.setNgayDen(listPhongDTOs.get(i).getNgayDen());
+            tempJPanel.setNgayDi(listPhongDTOs.get(i).getNgayDi());
+            tempJPanel.setHotenNV(listPhongDTOs.get(i).getHotenNV());
+            tempJPanel.setCmndNV(listPhongDTOs.get(i).getCmndNV());
             //setback ground
             if (tempJPanel.getTrangThai().equalsIgnoreCase("C")){
                 tempMaPhongJPanel.setBackground(Color.blue);
@@ -161,16 +169,14 @@ public class DanhSachPhong extends javax.swing.JPanel {
     private void addEventEveryRoom(){
         Component[] coms=jpnHienThi.getComponents(); //lấy tất cả componet trên màn hình hiển thị
         for (Component com:coms){
-            if (com instanceof JPanelPhong){
-                selectedJPanelPhong = (JPanelPhong) com;
+            if (com instanceof JPanelPhong){ //lấy ra các loại kiểu dữ liệu JPanelPhong
+                JPanelPhong selectedJPanelPhong = (JPanelPhong) com;
                 selectedJPanelPhong.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("K")){
-                            HienThiThongTinPhongTrong phongTrongJpn =new HienThiThongTinPhongTrong();
-                        }
-                      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
+                        //hiển thị popup thông tin phòng lên
+                            HienThiThongTinPhong phongTrongJpn =new HienThiThongTinPhong(selectedJPanelPhong);
+                     }
 
                     @Override
                     public void mousePressed(MouseEvent e) {

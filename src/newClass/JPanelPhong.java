@@ -16,16 +16,23 @@ import javax.swing.plaf.ComponentUI;
  * @author Tuan
  */
 public class JPanelPhong extends JPanel {
+    //thong tin phong
         private int maPhong;
         private String tenLoaiPhong;
         private String trangThai;
         private long giaPhong;
         
+        //thong tin khach hang
         private String tenKhachHang;
-        private String cmnd;
+        private int cmndKH;
         private Date ngayDen;
         private Date ngayDi;
-
+        //thong tin nhanvien
+        private String hotenNV;
+        private int cmndNV;
+        
+        
+        
     public int getMaPhong() {
         return maPhong;
     }
@@ -58,29 +65,53 @@ public class JPanelPhong extends JPanel {
         this.giaPhong = giaPhong;
     }
 
-    public ComponentUI getUi() {
-        return ui;
+    public String getTenKhachHang() {
+        return tenKhachHang;
     }
 
-    public void setUi(ComponentUI ui) {
-        this.ui = ui;
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
     }
 
-    public EventListenerList getListenerList() {
-        return listenerList;
+    public int getCmndKH() {
+        return cmndKH;
     }
 
-    public void setListenerList(EventListenerList listenerList) {
-        this.listenerList = listenerList;
+    public void setCmndKH(int cmndKH) {
+        this.cmndKH = cmndKH;
     }
 
-    public AccessibleContext getAccessibleContext() {
-        return accessibleContext;
+    public Date getNgayDen() {
+        return ngayDen;
     }
 
-    public void setAccessibleContext(AccessibleContext accessibleContext) {
-        this.accessibleContext = accessibleContext;
+    public void setNgayDen(Date ngayDen) {
+        this.ngayDen = ngayDen;
     }
-   
+
+    public Date getNgayDi() {
+        return ngayDi;
+    }
+
+    public void setNgayDi(Date ngayDi) {
+        this.ngayDi = ngayDi;
+    }
+
+    public String getHotenNV() {
+        return hotenNV;
+    }
+
+    public void setHotenNV(String hotenNV) {
+        this.hotenNV = hotenNV;
+    }
+
+    public int getCmndNV() {
+        return cmndNV;
+    }
+
+    public void setCmndNV(int cmndNV) {
+        this.cmndNV = cmndNV;
+    }
+
         
 }

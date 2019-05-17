@@ -9,7 +9,7 @@ import bus.LoaiPhongBUS;
 import bus.PhongBUS;
 import dto.LoaiPhongDTO;
 import dto.PhongDTO;
-import gui.miniPop.HienThiThongTinPhongTrong;
+import gui.miniPop.HienThiThongTinPhong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -23,8 +23,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import newClass.JPanelPhong;
 
@@ -39,14 +37,12 @@ public class DatPhongJPanel extends javax.swing.JPanel {
      */
     public DatPhongJPanel() {
         initComponents();
-        //hienThiListPhong();
         loadLoaiPhong();
-        //addJScrollPane();
     }
 
     private ArrayList<JPanelPhong> listPhongJPanels;
     private ArrayList<PhongDTO> listPhongDTOs;
-    private ArrayList<Integer> listPhongDuocThue;
+    private ArrayList<Integer> listPhongDuocDat;
     private JPanelPhong selectedJPanelPhong;
 
     
@@ -132,7 +128,7 @@ public class DatPhongJPanel extends javax.swing.JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("K")){
-                            HienThiThongTinPhongTrong phongTrongJpn =new HienThiThongTinPhongTrong();
+                           // HienThiThongTinPhong phongTrongJpn =new HienThiThongTinPhong();
                         }
                       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
@@ -162,24 +158,27 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         
     }
     
-    public void xuLyHienThiListPhongDuocThue(){
+    public void xuLyHienThiListPhongCoTheDat(){
         loadData();
         jpnHienThi.removeAll();
-        listPhongDuocThue=new ArrayList<>();
+        listPhongDuocDat=new ArrayList<>();
         
-        //
+        //Chuyển String sang int
         ArrayList<LoaiPhongDTO> listLoaiPhongDTOs=new ArrayList<>();
         listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
         int maLoaiPhong = 0;
         for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.toString()))){
-                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();
+            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.getSelectedItem()))){
+                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();             
         }
+        }
+        JOptionPane.showMessageDialog(null, maLoaiPhong);
         //
         
-        listPhongDuocThue=PhongBUS.getCacPhongDuocThue(jcTuNgay.getDate(), jcDenNgay.getDate(),maLoaiPhong );
+        listPhongDuocDat=PhongBUS.getCacPhongCoTheDat(jcTuNgay.getDate(), jcDenNgay.getDate(),maLoaiPhong );
+        JOptionPane.showMessageDialog(null, listPhongDuocDat.get(0).toString());
         jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
-        for (int maPhong:listPhongDuocThue){
+        for (int maPhong:listPhongDuocDat){
             for (JPanelPhong phong:listPhongJPanels){
                 if (maPhong==phong.getMaPhong())
                 {
@@ -189,7 +188,6 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         }
         jpnHienThi.repaint();
         jpnHienThi.validate();
-    }
     }
     
     private void loadLoaiPhong(){
@@ -304,7 +302,10 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         jpnMainLayout.setHorizontalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jspHienThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jpnMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jspHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnMainLayout.setVerticalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +324,7 @@ public class DatPhongJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbbLoaiPhongActionPerformed
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
-        xuLyHienThiListPhongDuocThue();
+        xuLyHienThiListPhongCoTheDat();
         
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
