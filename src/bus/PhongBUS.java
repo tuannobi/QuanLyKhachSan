@@ -27,8 +27,8 @@ public class PhongBUS {
        return PhongDAO.getCacPhongDuocThue( y, maPhong);
    }
     
-   public static ArrayList<Integer> getCacPhongCoTheDat(Date x, Date y, int maPhong){
-       return PhongDAO.getCacPhongCoTheDat(x,y,maPhong);
-   }
+//   public static ArrayList<Integer> getCacPhongCoTheDat(Date x, Date y, int maPhong){
+//       return PhongDAO.getCacPhongCoTheDat(x,y,maPhong);
+//   }
 
 }

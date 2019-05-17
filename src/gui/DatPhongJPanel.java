@@ -158,37 +158,37 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         
     }
     
-    public void xuLyHienThiListPhongCoTheDat(){
-        loadData();
-        jpnHienThi.removeAll();
-        listPhongDuocDat=new ArrayList<>();
-        
-        //Chuyển String sang int
-        ArrayList<LoaiPhongDTO> listLoaiPhongDTOs=new ArrayList<>();
-        listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
-        int maLoaiPhong = 0;
-        for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.getSelectedItem()))){
-                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();             
-        }
-        }
-        JOptionPane.showMessageDialog(null, maLoaiPhong);
-        //
-        
-        listPhongDuocDat=PhongBUS.getCacPhongCoTheDat(jcTuNgay.getDate(), jcDenNgay.getDate(),maLoaiPhong );
-        JOptionPane.showMessageDialog(null, listPhongDuocDat.get(0).toString());
-        jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
-        for (int maPhong:listPhongDuocDat){
-            for (JPanelPhong phong:listPhongJPanels){
-                if (maPhong==phong.getMaPhong())
-                {
-                    jpnHienThi.add(phong);
-                }
-            }
-        }
-        jpnHienThi.repaint();
-        jpnHienThi.validate();
-    }
+//    public void xuLyHienThiListPhongCoTheDat(){
+//        loadData();
+//        jpnHienThi.removeAll();
+//        listPhongDuocDat=new ArrayList<>();
+//        
+//        //Chuyển String sang int
+//        ArrayList<LoaiPhongDTO> listLoaiPhongDTOs=new ArrayList<>();
+//        listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
+//        int maLoaiPhong = 0;
+//        for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
+//            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.getSelectedItem()))){
+//                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();             
+//        }
+//        }
+//        JOptionPane.showMessageDialog(null, maLoaiPhong);
+//        //
+//        
+//        listPhongDuocDat=PhongBUS.getCacPhongCoTheDat(jcTuNgay.getDate(), jcDenNgay.getDate(),maLoaiPhong );
+//        JOptionPane.showMessageDialog(null, listPhongDuocDat.get(0).toString());
+//        jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
+//        for (int maPhong:listPhongDuocDat){
+//            for (JPanelPhong phong:listPhongJPanels){
+//                if (maPhong==phong.getMaPhong())
+//                {
+//                    jpnHienThi.add(phong);
+//                }
+//            }
+//        }
+//        jpnHienThi.repaint();
+//        jpnHienThi.validate();
+//    }
     
     private void loadLoaiPhong(){
         ArrayList<LoaiPhongDTO> listLoaiPhongDTOs =new ArrayList<>();
@@ -324,7 +324,7 @@ public class DatPhongJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbbLoaiPhongActionPerformed
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
-        xuLyHienThiListPhongCoTheDat();
+       // xuLyHienThiListPhongCoTheDat();
         
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
