@@ -2,10 +2,12 @@
 package dao;
 
 import dto.KhachHangDTO;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -78,22 +80,59 @@ public class KhachHangDAO {
         }
         return -1; //Khong thanh cong
     }
+//    public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
+//        ArrayList<KhachHangDTO> listKH=null;
+//        try {
+//            listKH=new ArrayList<>();
+//            Connection conn=OracleConnection.openConnection();
+//            String sql ="select * from khachhang where makhachhang like ? or hoten like ? or cmnd like ? or gioitinh like ? or diachi like ? or email like ? or sdt like ? or trangthai like ?  ";
+//            PreparedStatement preStatement=conn.prepareStatement(sql);
+//            preStatement.setString(1, tuKhoa);
+//            preStatement.setString(2, tuKhoa);
+//            preStatement.setString(3, tuKhoa);
+//            preStatement.setString(4, tuKhoa);
+//            preStatement.setString(5, tuKhoa);
+//            preStatement.setString(6, tuKhoa);
+//            preStatement.setString(7, tuKhoa);
+//            preStatement.setString(8, tuKhoa);
+//            ResultSet resultSet=preStatement.executeQuery();
+//            while(resultSet.next()){
+//                KhachHangDTO kh=new KhachHangDTO();
+//                kh.setMaKH(resultSet.getInt(1));
+//                kh.setHoTen(resultSet.getString(2));
+//                kh.setNgaySinh(resultSet.getDate(3));
+//                kh.setCMND(resultSet.getInt(4));
+//                kh.setGioiTinh(resultSet.getString(5));
+//                kh.setDiaChi(resultSet.getString(6));
+//                kh.setEmail(resultSet.getString(7));
+//                kh.setSDT(resultSet.getString(8));
+//                kh.setTrangThai(resultSet.getString(9));
+//                listKH.add(kh);            
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return listKH;
+//    }
     public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
         ArrayList<KhachHangDTO> listKH=null;
         try {
             listKH=new ArrayList<>();
             Connection conn=OracleConnection.openConnection();
-            String sql ="select * from khachhang where makhachhang like ? or hoten like ? or cmnd like ? or gioitinh like ? or diachi like ? or email like ? or sdt like ? or trangthai like ?  ";
-            PreparedStatement preStatement=conn.prepareStatement(sql);
-            preStatement.setString(1, "%"+tuKhoa+"%");
-            preStatement.setString(2, "%"+tuKhoa+"%");
-            preStatement.setString(3, "%"+tuKhoa+"%");
-            preStatement.setString(4, "%"+tuKhoa+"%");
-            preStatement.setString(5, "%"+tuKhoa+"%");
-            preStatement.setString(6, "%"+tuKhoa+"%");
-            preStatement.setString(7, "%"+tuKhoa+"%");
-            preStatement.setString(8, "%"+tuKhoa+"%");
-            ResultSet resultSet=preStatement.executeQuery();
+            String sql ="{CALL PROC_XEMKHACHHANGTIMKIEM(?,?,?,?,?,?,?,?,?,?)}";
+            CallableStatement cs=conn.prepareCall(sql);
+            cs.setString(1, tuKhoa);
+            cs.setString(2, tuKhoa);
+            cs.setString(3, tuKhoa);
+            cs.setString(4, tuKhoa);
+            cs.setString(5, tuKhoa);
+            cs.setString(6, tuKhoa);
+            cs.setString(7, tuKhoa);
+            cs.setString(8, tuKhoa);
+            cs.setString(9,tuKhoa);
+            cs.registerOutParameter(10, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet resultSet= (ResultSet) cs.getObject(10);
             while(resultSet.next()){
                 KhachHangDTO kh=new KhachHangDTO();
                 kh.setMaKH(resultSet.getInt(1));
@@ -112,5 +151,4 @@ public class KhachHangDAO {
         }
         return listKH;
     }
-    
 }

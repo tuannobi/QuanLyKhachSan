@@ -40,7 +40,7 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
     {
         newInfoDichVu=new DichVu();
         try{
-        newInfoDichVu.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+        newInfoDichVu.setGiaTien(Integer.parseInt(jtfGiaTien.getText()));
         }
         catch(NumberFormatException nfe)
         {
@@ -168,9 +168,13 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
             {
                 JOptionPane.showMessageDialog(null,"Thêm dữ liệu không thành công");
             }
-            else
+            if(check==1)
             {
                 JOptionPane.showMessageDialog(null, "Thêm dữ liệu thành công");
+            }
+            if(check==2)
+            {
+                JOptionPane.showMessageDialog(null, "Nhập dữ liệu bắt buộc");
             }
         refreshData();
         DichVuJPanel.refreshDichVu();

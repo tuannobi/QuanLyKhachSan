@@ -12,7 +12,7 @@ package dto;
 public class DichVu {
     private int maDichVu;
     private String tenDichVu;
-    private float giaTien;
+    private int giaTien;
     private String trangThai;
 
     public String getTrangThai() {
@@ -27,7 +27,7 @@ public class DichVu {
         return tenDichVu;
     }
 
-    public float getGiaTien() {
+    public int getGiaTien() {
         return giaTien;
     }
 
@@ -39,7 +39,7 @@ public class DichVu {
         this.tenDichVu = tenDichVu;
     }
 
-    public void setGiaTien(float giaTien) {
+    public void setGiaTien(int giaTien) {
         this.giaTien = giaTien;
     }  
 

@@ -51,13 +51,14 @@ public class PhongDAO {
        try {
            listMaPhong=new ArrayList<>();
            Connection conn =OracleConnection.openConnection();
-       String getCursorsql="{call PHONGTRONG_THUEPHONGA(?,?,?,?,?)}";
+       String getCursorsql="{CALL PHONGTRONG_THUEPHONGA(?,?,?,?,?)}";
        CallableStatement callableStatement=conn.prepareCall(getCursorsql);
        callableStatement.setDate(1, new java.sql.Date (x.getTime())); //new java.sql.Date(x.getTime())
        callableStatement.setDate(2, new java.sql.Date (y.getTime()));
        callableStatement.setInt(3, loaiPhong);
        callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
        callableStatement.registerOutParameter(5, OracleTypes.CURSOR);
+       callableStatement.execute();
        ResultSet rs1=(ResultSet) callableStatement.getObject(4);
        ResultSet rs2=(ResultSet) callableStatement.getObject(5);
        while (rs1.next()){

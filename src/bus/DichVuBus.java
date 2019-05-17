@@ -20,10 +20,10 @@ public class DichVuBus {
         return DichVuDAO.getDuLieuDichVu();
     }
     
-    public static  int xoaDichVu(int madv)
-    {
-        return DichVuDAO.xoaDuLieu(madv);
-    }
+//    public static  int xoaDichVu(int madv)
+//    {
+//        return DichVuDAO.xoaDuLieu(madv);
+//    }
     
     public static int themDichVu(DichVu dv)
     {
@@ -37,9 +37,6 @@ public class DichVuBus {
     }
     public static ArrayList<DichVu> timKiemDichVu(String tk)
     {
-//        ArrayList<DichVu> ds= DichVuDAO.timKiemDichVu(tk);
-//        if(ds==null)
-//            JOptionPane.showMessageDialog(null, "Không tìm thấy dữ liệu");
         return DichVuDAO.timKiemDichVu(tk);
     }
 }
