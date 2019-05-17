@@ -71,6 +71,9 @@ public class HienThiFormThongTinDichVu_PhongJPanel extends javax.swing.JPanel {
                 "Tên dịch vụ", "Số lượng", "Thành tiền"
             }
         ));
+        jtbDichVu.setColumnSelectionAllowed(true);
+        jtbDichVu.setEnabled(false);
+        jtbDichVu.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(jtbDichVu);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,8 +89,8 @@ public class HienThiFormThongTinDichVu_PhongJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
