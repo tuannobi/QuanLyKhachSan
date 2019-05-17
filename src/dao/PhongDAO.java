@@ -87,6 +87,7 @@ public class PhongDAO {
            listMaPhong=new ArrayList<>();
            Connection conn =OracleConnection.openConnection();
        String getCursorsql="{call THUEPHONG(?,?,?,?,?)}";
+       String getCursorsql="{CALL PHONGTRONG_THUEPHONGA(?,?,?,?,?)}";
        CallableStatement callableStatement=conn.prepareCall(getCursorsql);
        callableStatement.setDate(1, new java.sql.Date (x.getTime())); //new java.sql.Date(x.getTime())
        callableStatement.setDate(2, new java.sql.Date (y.getTime()));

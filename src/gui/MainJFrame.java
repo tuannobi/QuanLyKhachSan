@@ -180,6 +180,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jlbInHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         jlbInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_hoadon.png"))); // NOI18N
         jlbInHoaDon.setText("Hóa đơn");
+        jlbInHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbInHoaDonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnInHoaDonLayout = new javax.swing.GroupLayout(jpnInHoaDon);
         jpnInHoaDon.setLayout(jpnInHoaDonLayout);
@@ -286,7 +291,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jpnView.setLayout(jpnViewLayout);
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1061, Short.MAX_VALUE)
+            .addGap(0, 1152, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,6 +374,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jpnView.repaint();
         jpnView.validate();
     }//GEN-LAST:event_jpnThuePhongMouseClicked
+
+    private void jlbInHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbInHoaDonMouseClicked
+        // TODO add your handling code here:
+        InHoaDonJPanel hoaDonJPanel = new InHoaDonJPanel();
+        jpnView.removeAll();
+        jpnView.setLayout(new BorderLayout());
+        jpnView.add(hoaDonJPanel);
+        jpnView.repaint();
+        jpnView.validate();
+    }//GEN-LAST:event_jlbInHoaDonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -297,11 +297,11 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
         try{
         if(check==1)
             JOptionPane.showMessageDialog(null, "Thêm thành công");
-        else
-            JOptionPane.showMessageDialog(null,"không thành công");
+        if(check==-1)
+            JOptionPane.showMessageDialog(null,"Không thành công");
+        if(check==2)
+            JOptionPane.showMessageDialog(null, "Nhập dữ liệu bắt buộc");
         }
-        
-    
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e,"Lỗi",1);

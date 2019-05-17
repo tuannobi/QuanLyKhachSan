@@ -136,12 +136,14 @@ public class NhanVienDAO {
    public static int maNhanVien(String tennv)
    {
        Connection conn;
-       String sql="Select * from nhanvien where hoten=?";
+       String sql="{CALL PROC_MANHANVIEN(?,?)}";
        try{
            conn=OracleConnection.openConnection();
-           PreparedStatement st=conn.prepareStatement(sql);
-           st.setString(1, tennv);
-           ResultSet rs=st.executeQuery();
+           CallableStatement cs =conn.prepareCall(sql);
+           cs.setString(1, tennv);
+           cs.registerOutParameter(2, OracleTypes.CURSOR);
+           cs.execute();
+           ResultSet rs=(ResultSet) cs.getObject(2);
            int manv=0;
            while(rs.next())
            {
@@ -158,11 +160,13 @@ public class NhanVienDAO {
    public static void loadComboBoxTenNguoiQuanLy(JComboBox ten)
    {
        Connection conn;
-       String sql="SELECT * FROM NHANVIEN";
+       String sql="{CALL PROC_XEMNHANVIEN(?)}";
        try{
            conn=OracleConnection.openConnection();
-           PreparedStatement ps=conn.prepareStatement(sql);
-           ResultSet rs=ps.executeQuery();
+           CallableStatement cs=conn.prepareCall(sql);
+           cs.registerOutParameter(1, OracleTypes.CURSOR);
+           cs.execute();
+           ResultSet rs=(ResultSet) cs.getObject(1);
            while(rs.next())
            {
                ten.addItem(rs.getString(2));
@@ -174,6 +178,25 @@ public class NhanVienDAO {
            e.printStackTrace();
        }
    }
+   //   public static void loadComboBoxTenNguoiQuanLy(JComboBox ten)
+//   {
+//       Connection conn;
+//       String sql="SELECT * FROM NHANVIEN";
+//       try{
+//           conn=OracleConnection.openConnection();
+//           PreparedStatement ps=conn.prepareStatement(sql);
+//           ResultSet rs=ps.executeQuery();
+//           while(rs.next())
+//           {
+//               ten.addItem(rs.getString(2));
+//           }
+//           ten.addItem("");
+//       }
+//       catch(Exception e)
+//       {
+//           e.printStackTrace();
+//       }
+//   }
    public static int themNhanVien(NhanVien nv)
    {
        
@@ -206,11 +229,11 @@ public class NhanVienDAO {
            }
            catch(SQLIntegrityConstraintViolationException sqlicve)
            {
-               
+               return 2;
            }
            catch(NullPointerException ex)
            {
-               
+               return 2;
            }
        }
        catch(Exception e)
@@ -226,19 +249,23 @@ public class NhanVienDAO {
             try {
                 ds=new ArrayList<>();
                 Connection conn=OracleConnection.openConnection();
-                String sql="SELECT * FROM NHANVIEN WHERE  CMND LIKE ? OR SODT LIKE ? OR DIACHI LIKE ? OR EMAIL LIKE ? OR TRANGTHAI LIKE ? OR GIOITINH LIKE ? OR HOTEN LIKE ?";
-                PreparedStatement ps=conn.prepareStatement(sql);
-                ps.setString(1,"%"+ tk+"%");
-                ps.setString(2, "%"+ tk+"%");
-                ps.setString(3, "%"+ tk+"%");
-                ps.setString(4, "%"+ tk+"%");
-                ps.setString(5, "%"+ tk+"%");
-                ps.setString(6, "%"+ tk+"%");
-                ps.setString(7, "%"+ tk+"%");
-                ResultSet rs=ps.executeQuery();
+                String sql="{CALL PROC_XEMNHANVIENTIMKIEM(?,?,?,?,?,?,?,?)}";
+                CallableStatement cs=conn.prepareCall(sql);
+                
+                cs.setString(1, tk);
+                cs.setString(2, tk);
+                cs.setString(3, tk);
+                cs.setString(4, tk);
+                cs.setString(5, tk);
+                cs.setString(6, tk);
+                cs.setString(7, tk);
+                cs.registerOutParameter(8, OracleTypes.CURSOR);
+                cs.execute();
+                ResultSet rs=(ResultSet) cs.getObject(8);
                 while(rs.next())
                 {
                     NhanVien nv=new NhanVien("");
+             
                     nv.setMaNhanVien(rs.getInt(1));
                     nv.setHoTen(rs.getString(2));
                     nv.setNgaySinh(rs.getDate(3));
@@ -253,7 +280,7 @@ public class NhanVienDAO {
                     ds.add(nv);
                 }
                 conn.close();
-                ps.close();
+                cs.close();
                 rs.close();
                 
                 

@@ -15,6 +15,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -36,7 +39,7 @@ public class DichVuDAO {
                     DichVu dv=new DichVu();
                     dv.setMaDichVu(rs.getInt(1));
                     dv.setTenDichVu(rs.getString(2));
-                    dv.setGiaTien(rs.getFloat(3));
+                    dv.setGiaTien(rs.getInt(3));
                     dv.setTrangThai(rs.getString(4));
                     ds.add(dv);
                 }
@@ -74,22 +77,22 @@ public class DichVuDAO {
         return -1; //sai       
    }
     
-    public static int xoaDuLieu(int madv){
-        
-        try {
-            Connection conn=OracleConnection.openConnection();
-            String sql="delete from DichVu where maDichVu=?";
-            PreparedStatement preparedStatement=conn.prepareStatement(sql);
-            preparedStatement.setInt(1, madv);
-            preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
-            preparedStatement.close();
-            conn.close();
-            return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1; //Sai
-    }
+//    public static int xoaDuLieu(int madv){
+//        
+//        try {
+//            Connection conn=OracleConnection.openConnection();
+//            String sql="delete from DichVu where maDichVu=?";
+//            PreparedStatement preparedStatement=conn.prepareStatement(sql);
+//            preparedStatement.setInt(1, madv);
+//            preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
+//            preparedStatement.close();
+//            conn.close();
+//            return 1;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return -1; //Sai
+//    }
     
     public static int themMoiMotDichVu(DichVu dv){
         try {
@@ -106,7 +109,7 @@ public class DichVuDAO {
             }
             catch(SQLIntegrityConstraintViolationException a)
             {
-                
+                return 2;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,21 +123,26 @@ public class DichVuDAO {
             try {
                 ds=new ArrayList<>();
                 Connection conn=OracleConnection.openConnection();
-                String sql="SELECT * FROM DICHVU WHERE TENDICHVU LIKE ? OR GIATIEN LIKE ?";
-                PreparedStatement ps=conn.prepareStatement(sql);
-                ps.setString(1,"%"+ tk+"%");
-                ps.setString(2, "%"+ tk+"%");
-                ResultSet rs=ps.executeQuery();
+                String sql="{CALL PROC_XEMDICHVUTIMKIEM(?,?,?,?)}";
+                CallableStatement cs=conn.prepareCall(sql);
+                
+                cs.setString(1,  tk);
+                cs.setString(2, tk);
+                cs.setString(3,  tk);
+                cs.registerOutParameter(4, OracleTypes.CURSOR);
+                cs.execute();
+                ResultSet rs=(ResultSet) cs.getObject(4);
                 while(rs.next())
                 {
                     DichVu dv=new DichVu();
                     dv.setMaDichVu(rs.getInt(1));
                     dv.setTenDichVu(rs.getString(2));
-                    dv.setGiaTien(rs.getFloat(3));
+                    dv.setGiaTien(rs.getInt(3));
+                    dv.setTrangThai(rs.getString(4));
                     ds.add(dv);
                 }
                 conn.close();
-                ps.close();
+                cs.close();
                 rs.close();
                 
                 
@@ -142,6 +150,5 @@ public class DichVuDAO {
                 ex.printStackTrace();
             }
             return ds;
-        
     }
 }

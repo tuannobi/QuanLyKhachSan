@@ -82,7 +82,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         newInfoDichVu.setMaDichVu(Integer.parseInt(jtfMaDichVu.getText()));
         newInfoDichVu.setTenDichVu(jtfTenDichVu.getText());
         try{
-        newInfoDichVu.setGiaTien(Float.parseFloat(jtfGiaTien.getText()));
+        newInfoDichVu.setGiaTien(Integer.parseInt(jtfGiaTien.getText()));
         
         }
         catch(NumberFormatException nfe)
