@@ -9,6 +9,7 @@ import bus.LoaiPhongBUS;
 import bus.PhongBUS;
 import dto.LoaiPhongDTO;
 import dto.PhongDTO;
+import gui.miniPop.HienThiFormDienThongTinThuePhongJDialog;
 import gui.miniPop.HienThiThongTinPhong;
 import java.awt.Color;
 import java.awt.Component;
@@ -45,7 +46,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
     private ArrayList<JPanelPhong> listPhongJPanels;
     private ArrayList<PhongDTO> listPhongDTOs;
     private ArrayList<Integer> listPhongDuocThue;
-    private JPanelPhong selectedJPanelPhong;
+    
 
     
     private void loadData(){
@@ -119,13 +120,12 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
         Component[] coms=jpnHienThi.getComponents(); //lấy tất cả componet trên màn hình hiển thị
         for (Component com:coms){
             if (com instanceof JPanelPhong){
-                selectedJPanelPhong = (JPanelPhong) com;
+                JPanelPhong selectedJPanelPhong = (JPanelPhong) com;
                 selectedJPanelPhong.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("K")){
-                            HienThiThongTinPhong phongTrongJpn =new HienThiThongTinPhong(selectedJPanelPhong);
-                        }
+                            HienThiFormDienThongTinThuePhongJDialog formThuePhongJDialog=new HienThiFormDienThongTinThuePhongJDialog();
+                        
                       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
 
@@ -306,7 +306,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
         xuLyHienThiListPhongDuocThue();
-        
+        addEventEveryRoom();
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
     
