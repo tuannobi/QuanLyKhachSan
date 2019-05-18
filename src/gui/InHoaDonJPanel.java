@@ -5,6 +5,12 @@
  */
 package gui;
 
+import bus.HoaDonBus;
+import dto.HoaDon;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Tuan
@@ -14,10 +20,74 @@ public class InHoaDonJPanel extends javax.swing.JPanel {
     /**
      * Creates new form InhoaDonJPanel
      */
+    public static DefaultTableModel dtmHoaDon=new DefaultTableModel();
+    public static ArrayList<HoaDon>listHD=null;
+    public static HoaDon selectedHD;
     public InHoaDonJPanel() {
         initComponents();
+        hienThiDanhSachHoaDon();
     }
+    
+    public static void hienThiDanhSachHoaDon()
+    {
+        listHD=new ArrayList<>();
+        listHD=HoaDonBus.getDuLieuHoaDon();
+        dtmHoaDon=(DefaultTableModel) tbHoaDon.getModel();
+        
+        for(HoaDon hd : listHD)
+        {
+            Vector <Object> vt=new Vector<Object>();
+            vt.add(hd.getMaHoaDon());
+            vt.add(hd.getMaPhong());
+            vt.add(hd.getTenKhachHang());
+            vt.add(hd.getTienPhong());
+            vt.add(hd.getTienDichVu());
+            vt.add(hd.getNgayDen());
+            vt.add(hd.getNgayDi());
+            vt.add(hd.getNgayLap());
+            vt.add(hd.getTenNhanVien());
+            vt.add(hd.getTrangThai());
+            vt.add(hd.getTongTien());
+            dtmHoaDon.addRow(vt);
+        }
+    }
+    
+    private void hienThiDanhSachHoaDonTimKiem(String tk)
+{
+    listHD=new ArrayList<>();
+    listHD=HoaDonBus.timKiemHoaDon(tk);
+    dtmHoaDon=(DefaultTableModel)tbHoaDon.getModel();
+    
+    
+    for(HoaDon hd:listHD)
+    {
+        Vector<Object> vt=new Vector<Object>();
+        vt.add(hd.getMaHoaDon());
+            vt.add(hd.getMaPhong());
+            vt.add(hd.getTenKhachHang());
+            vt.add(hd.getTienPhong());
+            vt.add(hd.getTienDichVu());
+            vt.add(hd.getNgayDen());
+            vt.add(hd.getNgayDi());
+            vt.add(hd.getNgayLap());
+            vt.add(hd.getTenNhanVien());
+            vt.add(hd.getTrangThai());
+            vt.add(hd.getTongTien());
+            dtmHoaDon.addRow(vt);
+        //tbDichVu.setModel(dtmDichVu);
+    }    
+}
+public static void refreshHoaDon()
+{
+    dtmHoaDon.setRowCount(0);
+    hienThiDanhSachHoaDon();
+}
 
+private void refreshHoaDonTimKiem(String tk)
+{
+    dtmHoaDon.setRowCount(0);
+    hienThiDanhSachHoaDonTimKiem(tk);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +143,11 @@ public class InHoaDonJPanel extends javax.swing.JPanel {
 
         jbtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtTimKiem.setText("Tìm kiếm");
+        jbtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtTimKiemMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
         jpnTimKiem.setLayout(jpnTimKiemLayout);
@@ -147,6 +222,11 @@ public class InHoaDonJPanel extends javax.swing.JPanel {
                 "Mã hóa đơn", "Mã phòng", "Tên khách hàng", "Tiền phòng", "Tiền dịch vụ", "Ngày đến", "Ngày đi", "Ngày lập", "Tên nhân viên", "Trạng thái", "Tổng tiền"
             }
         ));
+        tbHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(tbHoaDon);
 
         javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
@@ -178,6 +258,27 @@ public class InHoaDonJPanel extends javax.swing.JPanel {
         add(jpnMain);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tbHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHoaDonMouseClicked
+        // TODO add your handling code here:
+        int selectedRow=tbHoaDon.getSelectedRow();
+        if(selectedRow==-1)
+            return;
+        selectedHD=listHD.get(selectedRow);
+    }//GEN-LAST:event_tbHoaDonMouseClicked
+
+    private void jbtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtTimKiemMouseClicked
+        // TODO add your handling code here:
+        String tk=jtfTimKiem.getText();
+        if(tk.length()==0)
+        {
+            refreshHoaDon();
+        }
+        else
+        {
+            refreshHoaDonTimKiem(tk);
+        }
+    }//GEN-LAST:event_jbtTimKiemMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -191,6 +292,6 @@ public class InHoaDonJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jpnTimKiem;
     private javax.swing.JPanel jpnTitle;
     private javax.swing.JTextField jtfTimKiem;
-    private javax.swing.JTable tbHoaDon;
+    private static javax.swing.JTable tbHoaDon;
     // End of variables declaration//GEN-END:variables
 }
