@@ -43,13 +43,18 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
         if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("K")){
            // HienThiFormThongTinPhong_PhongJPanel phongtrong=new HienThiFormThongTinPhong_PhongJPanel(selectedJPanelPhong);
             jpnContent.add(new HienThiFormThongTinPhong_PhongJPanel(selectedJPanelPhong));
+            this.pack(); //auto Resize
         }
         else if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("C")){
             jpnContent.add(new HienThiFormThongTinPhong_PhongJPanel(selectedJPanelPhong));
             jpnContent.add(new HienThiFormThongTinNhanVien_PhongJPanel(selectedJPanelPhong));
             jpnContent.add(new HienThiFormThongTinKhachHang_PhongJPanel(selectedJPanelPhong));
             jpnContent.add(new HienThiFormThongTinDichVu_PhongJPanel(selectedJPanelPhong));
+            this.pack(); //Auto resize
         }
+        jpnContent.add(new HienThiFormThongTinDatPhong_PhongJPanel(selectedJPanelPhong));
+        this.pack();
+        
         jpnContent.repaint();
         jpnContent.validate();
     }
@@ -68,6 +73,7 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Chi tiết phòng");
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jpnThanhTren.setBackground(new java.awt.Color(204, 204, 255));
@@ -106,7 +112,7 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
         );
         jpnContentLayout.setVerticalGroup(
             jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnMainLayout = new javax.swing.GroupLayout(jpnMain);
@@ -120,22 +126,11 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnMainLayout.createSequentialGroup()
                 .addComponent(jpnThanhTren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jpnMain, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

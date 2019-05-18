@@ -5,11 +5,10 @@
  */
 package gui.miniPop;
 
-import bus.ChiTietDichVuBUS;
-import dto.ChiTietDichVuDTO;
+import bus.PhieuDatPhongBUS;
+import dto.PhieuDatPhongDTO;
 import java.util.ArrayList;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import newClass.JPanelPhong;
 
@@ -17,12 +16,12 @@ import newClass.JPanelPhong;
  *
  * @author Tuan
  */
-public class HienThiFormThongTinDichVu_PhongJPanel extends javax.swing.JPanel {
+public class HienThiFormThongTinDatPhong_PhongJPanel extends javax.swing.JPanel {
 
     JPanelPhong selecJPanelPhong;
-    ArrayList <ChiTietDichVuDTO> listDichVu;
-    DefaultTableModel dtmDichVu;
-    public HienThiFormThongTinDichVu_PhongJPanel(JPanelPhong selectedJPanelPhong) {
+    ArrayList <PhieuDatPhongDTO> listDatPhong;
+    DefaultTableModel dtmPhieuDatPhong;
+    public HienThiFormThongTinDatPhong_PhongJPanel(JPanelPhong selectedJPanelPhong) {
         setVisible(true);
         initComponents();
         this.selecJPanelPhong=selectedJPanelPhong;       
@@ -30,19 +29,20 @@ public class HienThiFormThongTinDichVu_PhongJPanel extends javax.swing.JPanel {
     }
 
     private void chuyenDuLieuLenForm(){
-        dtmDichVu=new DefaultTableModel();
-        listDichVu= new ArrayList<>();
-        listDichVu=ChiTietDichVuBUS.getChiTietDichVuCuaKhachHang(selecJPanelPhong.getMaPhong());
-        //JOptionPane.showMessageDialog(null, selecJPanelPhong.getMaPhong());
-        dtmDichVu=(DefaultTableModel) jtbDichVu.getModel();
-        for (ChiTietDichVuDTO ctdvdto:listDichVu){
+        dtmPhieuDatPhong=new DefaultTableModel();
+        listDatPhong= new ArrayList<>();
+        listDatPhong=PhieuDatPhongBUS.getThongTinDatPhongCuThe1Phong(selecJPanelPhong.getMaPhong());
+        dtmPhieuDatPhong=(DefaultTableModel) jtbPhieuDatPhong.getModel();
+        for (PhieuDatPhongDTO datPhongDTO:listDatPhong){
             Vector<Object> vec=new Vector<Object>();
-            vec.add(ctdvdto.getTenDichVu());
-            vec.add(ctdvdto.getSoLuong());
-            vec.add(ctdvdto.getThanhTien());
-            dtmDichVu.addRow(vec);
+            vec.add(datPhongDTO.getTenKH());
+            vec.add(datPhongDTO.getTenNV());
+            vec.add(datPhongDTO.getNgayDat());
+            vec.add(datPhongDTO.getNgayDen());
+            vec.add(datPhongDTO.getNgayDi());
+            dtmPhieuDatPhong.addRow(vec);
         }
-        jtbDichVu.setModel(dtmDichVu);
+        jtbPhieuDatPhong.setModel(dtmPhieuDatPhong);
     }
     
     /**
@@ -56,25 +56,22 @@ public class HienThiFormThongTinDichVu_PhongJPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbDichVu = new javax.swing.JTable();
+        jtbPhieuDatPhong = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin chi tiết dịch vụ"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin đặt phòng"));
         jPanel1.setToolTipText("");
 
-        jtbDichVu.setModel(new javax.swing.table.DefaultTableModel(
+        jtbPhieuDatPhong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tên dịch vụ", "Số lượng", "Thành tiền"
+                "Tên khách hàng", "Tên nhân viên", "Ngày đặt", "Ngày đến", "Ngày đi"
             }
         ));
-        jtbDichVu.setColumnSelectionAllowed(true);
-        jtbDichVu.setEnabled(false);
-        jtbDichVu.setRowSelectionAllowed(false);
-        jScrollPane1.setViewportView(jtbDichVu);
+        jScrollPane1.setViewportView(jtbPhieuDatPhong);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,6 +97,6 @@ public class HienThiFormThongTinDichVu_PhongJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbDichVu;
+    private javax.swing.JTable jtbPhieuDatPhong;
     // End of variables declaration//GEN-END:variables
 }
