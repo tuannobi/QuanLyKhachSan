@@ -52,6 +52,9 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
             jpnContent.add(new HienThiFormThongTinDichVu_PhongJPanel(selectedJPanelPhong));
             this.pack(); //Auto resize
         }
+        jpnContent.add(new HienThiFormThongTinDatPhong_PhongJPanel(selectedJPanelPhong));
+        this.pack();
+        
         jpnContent.repaint();
         jpnContent.validate();
     }
@@ -109,7 +112,7 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
         );
         jpnContentLayout.setVerticalGroup(
             jpnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 489, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnMainLayout = new javax.swing.GroupLayout(jpnMain);

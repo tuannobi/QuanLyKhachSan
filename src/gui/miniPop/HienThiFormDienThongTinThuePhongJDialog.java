@@ -57,7 +57,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jtfTimKiem = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbtTimKiem = new javax.swing.JButton();
         jbtHuy = new javax.swing.JButton();
         jbtLuu = new javax.swing.JButton();
 
@@ -211,7 +211,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
 
         jtfTimKiem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        jButton1.setText("Tìm kiếm");
+        jbtTimKiem.setText("Tìm kiếm");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -223,7 +223,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
                 .addGap(41, 41, 41)
                 .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton1)
+                .addComponent(jbtTimKiem)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -233,7 +233,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jbtTimKiem))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -309,7 +309,6 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -326,6 +325,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
     private javax.swing.JPanel jPanel5;
     private javax.swing.JButton jbtHuy;
     private javax.swing.JButton jbtLuu;
+    private javax.swing.JButton jbtTimKiem;
     private javax.swing.JComboBox<String> jcbbGioiTinh;
     private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private javax.swing.JTextField jtfCMND;
