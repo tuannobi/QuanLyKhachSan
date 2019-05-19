@@ -21,6 +21,7 @@ public class HienThiFormThongTinDatPhong_PhongJPanel extends javax.swing.JPanel 
     JPanelPhong selecJPanelPhong;
     ArrayList <PhieuDatPhongDTO> listDatPhong;
     DefaultTableModel dtmPhieuDatPhong;
+    
     public HienThiFormThongTinDatPhong_PhongJPanel(JPanelPhong selectedJPanelPhong) {
         setVisible(true);
         initComponents();
@@ -35,6 +36,7 @@ public class HienThiFormThongTinDatPhong_PhongJPanel extends javax.swing.JPanel 
         dtmPhieuDatPhong=(DefaultTableModel) jtbPhieuDatPhong.getModel();
         for (PhieuDatPhongDTO datPhongDTO:listDatPhong){
             Vector<Object> vec=new Vector<Object>();
+            vec.add(datPhongDTO.getMaPhieu());
             vec.add(datPhongDTO.getTenKH());
             vec.add(datPhongDTO.getTenNV());
             vec.add(datPhongDTO.getNgayDat());
@@ -44,6 +46,10 @@ public class HienThiFormThongTinDatPhong_PhongJPanel extends javax.swing.JPanel 
         }
         jtbPhieuDatPhong.setModel(dtmPhieuDatPhong);
     }
+    
+//    private void selectedCell(){
+//        int x=jtbPhieuDatPhong
+//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +74,7 @@ public class HienThiFormThongTinDatPhong_PhongJPanel extends javax.swing.JPanel 
 
             },
             new String [] {
-                "Tên khách hàng", "Tên nhân viên", "Ngày đặt", "Ngày đến", "Ngày đi"
+                "Mã phiếu", "Tên khách hàng", "Tên nhân viên", "Ngày đặt", "Ngày đến", "Ngày đi"
             }
         ));
         jScrollPane1.setViewportView(jtbPhieuDatPhong);

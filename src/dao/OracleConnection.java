@@ -16,31 +16,20 @@ public class OracleConnection {
     public static Connection openConnection(){
     try {
        
+            Class.forName("oracle.jdbc.driver.OracleDriver"); //khai báo driver tương ứng với library 
+            String strConnString="jdbc:oracle:thin:@localhost:1521/orcl";
             Class.forName("oracle.jdbc.driver.OracleDriver");  
 
             String strConnString="jdbc:oracle:thin:@localhost:1521/HHY";
             conn=DriverManager.getConnection(strConnString, "newDataKS","123456");
 //            if (conn!=null){
-//                System.out.println("Ket noi thanh cong");
+//                System.out.println("Kết nối thành công");
 //                conn.close();
-//            }
-//            else{
-//                System.out.println("Ket noi that bai");
 //            }
             return conn;    
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Kết nối thất bại "+e);
         }
     return null;
     }
-
-       public static void main(String[] args) throws SQLException {
-        
-        Connection c=openConnection();
-        System.out.println(c.toString());
-        c.close();
-        
-    }
-
-   
 }

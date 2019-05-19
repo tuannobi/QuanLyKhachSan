@@ -274,7 +274,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Các kết quả được tìm thấy");
             xuLyKetQuaTimKiem();
         }
     }//GEN-LAST:event_jbtTimKiemActionPerformed

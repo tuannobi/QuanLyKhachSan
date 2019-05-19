@@ -32,13 +32,14 @@ public class PhieuDatPhongDAO {
             
             while(rs.next()){
                 PhieuDatPhongDTO phieuDatPhongDTO=new PhieuDatPhongDTO();
-            phieuDatPhongDTO.setMaKH(rs.getInt(1));
-            phieuDatPhongDTO.setTenKH(rs.getString(2));
-            phieuDatPhongDTO.setMaNV(rs.getInt(3));
-            phieuDatPhongDTO.setTenNV(rs.getString(4));
-            phieuDatPhongDTO.setNgayDat(rs.getDate(5));
-            phieuDatPhongDTO.setNgayDen(rs.getDate(6));
-            phieuDatPhongDTO.setNgayDi(rs.getDate(7));
+                phieuDatPhongDTO.setMaPhieu(rs.getInt(1));
+            phieuDatPhongDTO.setMaKH(rs.getInt(2));
+            phieuDatPhongDTO.setTenKH(rs.getString(3));
+            phieuDatPhongDTO.setMaNV(rs.getInt(4));
+            phieuDatPhongDTO.setTenNV(rs.getString(5));
+            phieuDatPhongDTO.setNgayDat(rs.getDate(6));
+            phieuDatPhongDTO.setNgayDen(rs.getDate(7));
+            phieuDatPhongDTO.setNgayDi(rs.getDate(8));
             listDatPhong.add(phieuDatPhongDTO);
             }
         } catch (Exception e) {

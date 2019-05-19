@@ -262,6 +262,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Cập nhật không thành công");
             }
             refreshData();
+            dispose();
     }//GEN-LAST:event_jbtLuuMouseClicked
 
     private void jbtHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtHuyMouseClicked
