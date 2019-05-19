@@ -12,8 +12,8 @@ import java.util.Date;
  * @author Tuan
  */
 public class HoaDon {
-    String maHoaDon;
-    String maPhong;
+    int maHoaDon;
+    int maPhong;
     String tenKhachHang;
     String tenNhanVien;
     long tienPhong;
@@ -22,20 +22,25 @@ public class HoaDon {
     Date ngayDen;
     Date ngayDi;
     Date ngayLap;
+    String  trangThai;
 
-    public String getMaHoaDon() {
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public int getMaHoaDon() {
         return maHoaDon;
     }
 
-    public void setMaHoaDon(String maHoaDon) {
+    public void setMaHoaDon(int maHoaDon) {
         this.maHoaDon = maHoaDon;
     }
 
-    public String getMaPhong() {
+    public int getMaPhong() {
         return maPhong;
     }
 
-    public void setMaPhong(String maPhong) {
+    public void setMaPhong(int maPhong) {
         this.maPhong = maPhong;
     }
 
@@ -101,6 +106,10 @@ public class HoaDon {
 
     public void setNgayLap(Date ngayLap) {
         this.ngayLap = ngayLap;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
     
     
