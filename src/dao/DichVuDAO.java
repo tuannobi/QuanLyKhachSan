@@ -77,29 +77,13 @@ public class DichVuDAO {
         return -1; //sai       
    }
     
-//    public static int xoaDuLieu(int madv){
-//        
-//        try {
-//            Connection conn=OracleConnection.openConnection();
-//            String sql="delete from DichVu where maDichVu=?";
-//            PreparedStatement preparedStatement=conn.prepareStatement(sql);
-//            preparedStatement.setInt(1, madv);
-//            preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
-//            preparedStatement.close();
-//            conn.close();
-//            return 1;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return -1; //Sai
-//    }
     
     public static int themMoiMotDichVu(DichVu dv){
         try {
             Connection conn=OracleConnection.openConnection();
-            String sql ="{CALL PROC_THEMDICHVU(?,?)}";
-            CallableStatement cs =conn.prepareCall(sql);
             try{
+                String sql ="{CALL PROC_THEMDICHVU(?,?)}";
+            CallableStatement cs =conn.prepareCall(sql);
             cs.setString(1, dv.getTenDichVu());
             cs.setFloat(2, dv.getGiaTien());
             cs.execute();

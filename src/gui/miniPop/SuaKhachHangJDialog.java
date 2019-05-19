@@ -381,6 +381,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         }
         else
             JOptionPane.showMessageDialog(null, "Lỗi");
+        dispose();
     }//GEN-LAST:event_jbtLuuActionPerformed
 
     private void jtfTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTrangThaiActionPerformed

@@ -5,8 +5,6 @@
  */
 package dao;
 
-import dto.LoaiPhongDTO;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import dto.PhongDTO;

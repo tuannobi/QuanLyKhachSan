@@ -178,6 +178,7 @@ public class ThemDichVuJDialog extends javax.swing.JDialog {
             }
         refreshData();
         DichVuJPanel.refreshDichVu();
+        dispose();
     }//GEN-LAST:event_jbtLuuMouseClicked
 
     private void jbtHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtHuyMouseClicked

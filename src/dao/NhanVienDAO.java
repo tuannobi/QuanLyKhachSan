@@ -178,25 +178,7 @@ public class NhanVienDAO {
            e.printStackTrace();
        }
    }
-   //   public static void loadComboBoxTenNguoiQuanLy(JComboBox ten)
-//   {
-//       Connection conn;
-//       String sql="SELECT * FROM NHANVIEN";
-//       try{
-//           conn=OracleConnection.openConnection();
-//           PreparedStatement ps=conn.prepareStatement(sql);
-//           ResultSet rs=ps.executeQuery();
-//           while(rs.next())
-//           {
-//               ten.addItem(rs.getString(2));
-//           }
-//           ten.addItem("");
-//       }
-//       catch(Exception e)
-//       {
-//           e.printStackTrace();
-//       }
-//   }
+
    public static int themNhanVien(NhanVien nv)
    {
        
