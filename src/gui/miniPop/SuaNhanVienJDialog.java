@@ -27,15 +27,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
     NhanVien nv; 
     NhanVien newInfoNhanVien; //lưu trữ dữ liệu mới của người dùng nhập vào
     ArrayList<NhanVien> listNV;
-//    public SuaNhanVienJDialog(java.awt.Frame parent, boolean modal) {
-//        super(parent, modal);
-//        initComponents();
-//    }
-//    
-//    public SuaNhanVienJDialog() {
-//        initComponents();
-//    }
-    
+
     public SuaNhanVienJDialog(ArrayList<NhanVien> listNV, DefaultTableModel dtm,JTable jtable,NhanVien nv ) {            
         initComponents();
         jtfMaNhanVien.disable();

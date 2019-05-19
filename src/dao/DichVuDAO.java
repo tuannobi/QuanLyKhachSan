@@ -39,7 +39,7 @@ public class DichVuDAO {
                     DichVu dv=new DichVu();
                     dv.setMaDichVu(rs.getInt(1));
                     dv.setTenDichVu(rs.getString(2));
-                    dv.setGiaTien(rs.getInt(3));
+                    dv.setGiaTien(rs.getLong(3));
                     dv.setTrangThai(rs.getString(4));
                     ds.add(dv);
                 }
@@ -58,7 +58,7 @@ public class DichVuDAO {
             CallableStatement cs=conn.prepareCall(sql);
             try{
             cs.setString(1, dv.getTenDichVu());
-            cs.setFloat(2, dv.getGiaTien());
+            cs.setLong(2, dv.getGiaTien());
             cs.setString(3, dv.getTrangThai());
             cs.setInt(4, dv.getMaDichVu());
             
@@ -101,7 +101,7 @@ public class DichVuDAO {
             CallableStatement cs =conn.prepareCall(sql);
             try{
             cs.setString(1, dv.getTenDichVu());
-            cs.setFloat(2, dv.getGiaTien());
+            cs.setLong(2, dv.getGiaTien());
             cs.execute();
             cs.close();
             conn.close();
@@ -137,7 +137,7 @@ public class DichVuDAO {
                     DichVu dv=new DichVu();
                     dv.setMaDichVu(rs.getInt(1));
                     dv.setTenDichVu(rs.getString(2));
-                    dv.setGiaTien(rs.getInt(3));
+                    dv.setGiaTien(rs.getLong(3));
                     dv.setTrangThai(rs.getString(4));
                     ds.add(dv);
                 }
