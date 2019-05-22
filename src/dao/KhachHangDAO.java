@@ -23,15 +23,10 @@ public class KhachHangDAO {
             ds=new ArrayList<>();
             conn=OracleConnection.openConnection();
             String sql="select * from khachhang";
-<<<<<<< HEAD
             //PreparedStatement preStatement=conn.prepareStatement(sql);
             Statement st=conn.createStatement();
             //ResultSet resultSet=preStatement.executeQuery();   
             ResultSet resultSet=st.executeQuery(sql);   
-=======
-            Statement statement=conn.createStatement();
-            ResultSet resultSet=statement.executeQuery(sql);
->>>>>>> 0b7a456eb916a8499c65aac79ef73b630ee89fc7
             while(resultSet.next()){
                 KhachHangDTO kh=new KhachHangDTO();
                 kh.setMaKH(resultSet.getInt(1));
@@ -89,10 +84,7 @@ public class KhachHangDAO {
         return -1; //Khong thanh cong
     }
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> 0b7a456eb916a8499c65aac79ef73b630ee89fc7
+
     public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
         ArrayList<KhachHangDTO> listKH=null;
         try {
