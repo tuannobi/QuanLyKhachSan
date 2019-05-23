@@ -37,6 +37,11 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
 //    }
     
     public SuaNhanVienJDialog(ArrayList<NhanVienDTO> listNV, DefaultTableModel dtm,JTable jtable,NhanVienDTO nv ) {            
+    NhanVien nv; 
+    NhanVien newInfoNhanVien; //lưu trữ dữ liệu mới của người dùng nhập vào
+    ArrayList<NhanVien> listNV;
+
+    public SuaNhanVienJDialog(ArrayList<NhanVien> listNV, DefaultTableModel dtm,JTable jtable,NhanVien nv ) {            
         initComponents();
         jtfMaNhanVien.disable();
         this.dtm=dtm;
@@ -337,7 +342,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void jbtLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLuuMouseClicked
         // TODO add your handling code here:

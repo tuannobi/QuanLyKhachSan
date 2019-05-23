@@ -59,7 +59,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
     private void chuyenDuLieu(){
         jtfMaDichVu.setText(Integer.toString(dv.getMaDichVu())); //chuyển số về chuỗi
         jtfTenDichVu.setText(dv.getTenDichVu());
-        jtfGiaTien.setText(Float.toString(dv.getGiaTien()));
+        jtfGiaTien.setText(Long.toString(dv.getGiaTien()));
         jccbTrangThai.setSelectedItem(dv.getTrangThai());
     }
     

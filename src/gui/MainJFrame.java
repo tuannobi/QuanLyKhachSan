@@ -209,6 +209,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jlbThongKeDoanhSo.setForeground(new java.awt.Color(255, 255, 255));
         jlbThongKeDoanhSo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_thongke.png"))); // NOI18N
         jlbThongKeDoanhSo.setText("Thống kê doanh số");
+        jlbThongKeDoanhSo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbThongKeDoanhSoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnThongKeDoanhSoLayout = new javax.swing.GroupLayout(jpnThongKeDoanhSo);
         jpnThongKeDoanhSo.setLayout(jpnThongKeDoanhSoLayout);
@@ -284,7 +289,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jpnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnThongKeDoanhSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
@@ -295,7 +300,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 728, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
@@ -311,8 +316,8 @@ public class MainJFrame extends javax.swing.JFrame {
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpnRootLayout.createSequentialGroup()
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -384,6 +389,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jpnView.repaint();
         jpnView.validate();
     }//GEN-LAST:event_jlbInHoaDonMouseClicked
+
+    private void jlbThongKeDoanhSoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbThongKeDoanhSoMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jlbThongKeDoanhSoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
