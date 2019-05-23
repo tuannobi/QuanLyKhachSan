@@ -6,10 +6,13 @@
 package bus;
 
 import dao.PhongDAO;
+import dto.KhachHangDTO;
 import dto.LoaiPhongDTO;
+import dto.NhanVienDTO;
 import dto.PhongDTO;
 import java.util.ArrayList;
 import java.util.Date;
+import newClass.JPanelPhong;
 import sun.net.www.content.audio.x_aiff;
 
 /**
@@ -26,9 +29,17 @@ public class PhongBUS {
    public static ArrayList<Integer> getCacPhongDuocThue(Date y, int maPhong){
        return PhongDAO.getCacPhongDuocThue( y, maPhong);
    }
-    
-//   public static ArrayList<Integer> getCacPhongCoTheDat(Date x, Date y, int maPhong){
-//       return PhongDAO.getCacPhongCoTheDat(x,y,maPhong);
-//   }
+   
+   public static boolean luuThongTinThuePhong(PhongDTO phongDTO,LoaiPhongDTO loaiPhongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
+       return PhongDAO.luuThongTinThuePhong(phongDTO,loaiPhongDTO, khachHangDTO, nhanVienDTO);
+   }
+
+   public static ArrayList<Integer> getCacPhongDuocDat(Date x, Date y, int loaiPhong){
+       return PhongDAO.getCacPhongDuocDat(x, y, loaiPhong);
+   }
+   
+   public static boolean luuThongTinDatPhong(PhongDTO phongDTO,LoaiPhongDTO loaiPhongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
+       return PhongDAO.luuThongTinDatPhong(phongDTO,loaiPhongDTO, khachHangDTO, nhanVienDTO);
+   }
 
 }

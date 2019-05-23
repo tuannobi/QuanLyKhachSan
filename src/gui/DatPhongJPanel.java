@@ -9,6 +9,8 @@ import bus.LoaiPhongBUS;
 import bus.PhongBUS;
 import dto.LoaiPhongDTO;
 import dto.PhongDTO;
+import gui.miniPop.HienThiDanhSachChiTietDatPhongTruocJDialog;
+import gui.miniPop.HienThiFormDienThongTinDatPhongJDialog;
 import gui.miniPop.HienThiThongTinPhong;
 import java.awt.Color;
 import java.awt.Component;
@@ -38,12 +40,12 @@ public class DatPhongJPanel extends javax.swing.JPanel {
     public DatPhongJPanel() {
         initComponents();
         loadLoaiPhong();
+        loadData();
     }
 
     private ArrayList<JPanelPhong> listPhongJPanels;
     private ArrayList<PhongDTO> listPhongDTOs;
     private ArrayList<Integer> listPhongDuocDat;
-    private JPanelPhong selectedJPanelPhong;
 
     
     private void loadData(){
@@ -102,34 +104,17 @@ public class DatPhongJPanel extends javax.swing.JPanel {
             listPhongJPanels.add(tempJPanel); //them jpanel vao list
         }
         
-    }
-    
-    private void hienThiListPhong(){
-        loadData();
-        jpnHienThi.removeAll();
-        jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
-        //jpnHienThi.setLayout(new GridLayout());
-        int soPhong=listPhongJPanels.size();
-        for (int i=0;i<soPhong;i++){
-            jpnHienThi.add(listPhongJPanels.get(i));
-        }
-        jpnHienThi.repaint();
-        jpnHienThi.validate();
-        addEventEveryRoom();
-    }
-    
+    }    
     
     private void addEventEveryRoom(){
         Component[] coms=jpnHienThi.getComponents(); //lấy tất cả componet trên màn hình hiển thị
         for (Component com:coms){
             if (com instanceof JPanelPhong){
-                selectedJPanelPhong = (JPanelPhong) com;
+                JPanelPhong selectedJPanelPhong = (JPanelPhong) com;
                 selectedJPanelPhong.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("K")){
-                           // HienThiThongTinPhong phongTrongJpn =new HienThiThongTinPhong();
-                        }
+                        HienThiFormDienThongTinDatPhongJDialog formDienThongTinDatPhongJDialog =new HienThiFormDienThongTinDatPhongJDialog(selectedJPanelPhong,(LoaiPhongDTO)jcbbLoaiPhong.getSelectedItem());
                       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
 
@@ -158,45 +143,34 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         
     }
     
-//    public void xuLyHienThiListPhongCoTheDat(){
-//        loadData();
-//        jpnHienThi.removeAll();
-//        listPhongDuocDat=new ArrayList<>();
-//        
-//        //Chuyển String sang int
-//        ArrayList<LoaiPhongDTO> listLoaiPhongDTOs=new ArrayList<>();
-//        listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
-//        int maLoaiPhong = 0;
-//        for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-//            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.getSelectedItem()))){
-//                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();             
-//        }
-//        }
-//        JOptionPane.showMessageDialog(null, maLoaiPhong);
-//        //
-//        
-//        listPhongDuocDat=PhongBUS.getCacPhongCoTheDat(jcTuNgay.getDate(), jcDenNgay.getDate(),maLoaiPhong );
-//        JOptionPane.showMessageDialog(null, listPhongDuocDat.get(0).toString());
-//        jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
-//        for (int maPhong:listPhongDuocDat){
-//            for (JPanelPhong phong:listPhongJPanels){
-//                if (maPhong==phong.getMaPhong())
-//                {
-//                    jpnHienThi.add(phong);
-//                }
-//            }
-//        }
-//        jpnHienThi.repaint();
-//        jpnHienThi.validate();
-//    }
-    
-    private void loadLoaiPhong(){
-        ArrayList<LoaiPhongDTO> listLoaiPhongDTOs =new ArrayList<>();
-        listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
-        for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-            jcbbLoaiPhong.addItem(loaiPhongDTO.getTenLoaiPhong());
+public void xuLyHienThiListPhongDuocDat(){
+        loadData();
+        jpnHienThi.removeAll();
+        listPhongDuocDat=new ArrayList<>();
+        
+        listPhongDuocDat=PhongBUS.getCacPhongDuocDat(jcTuNgay.getDate(),jcDenNgay.getDate(),((LoaiPhongDTO)jcbbLoaiPhong.getSelectedItem()).getMaLoaiPhong());
+        jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
+        for (int maPhong:listPhongDuocDat){
+            for (JPanelPhong phong:listPhongJPanels){
+                if (maPhong==phong.getMaPhong())
+                {
+                    jpnHienThi.add(phong);
+                }
+            }
         }
+        jpnHienThi.repaint();
+        jpnHienThi.validate();
     }
+    
+
+    
+        private void loadLoaiPhong(){
+            ArrayList<LoaiPhongDTO> listLoaiPhongDTOs= new ArrayList<>();
+            listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
+            for(LoaiPhongDTO phong:listLoaiPhongDTOs){
+                jcbbLoaiPhong.addItem(phong);
+            }
+        }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -217,6 +191,7 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         jcTuNgay = new com.toedter.calendar.JDateChooser();
         jlbLoaiPhong = new javax.swing.JLabel();
         jcbbLoaiPhong = new javax.swing.JComboBox<>();
+        jbtDanhSachDatPhong = new javax.swing.JButton();
         jspHienThi = new javax.swing.JScrollPane();
         jpnHienThi = new javax.swing.JPanel();
 
@@ -243,6 +218,13 @@ public class DatPhongJPanel extends javax.swing.JPanel {
             }
         });
 
+        jbtDanhSachDatPhong.setText("Danh sách đặt phòng");
+        jbtDanhSachDatPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtDanhSachDatPhongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnThanhTrenLayout = new javax.swing.GroupLayout(jpnThanhTren);
         jpnThanhTren.setLayout(jpnThanhTrenLayout);
         jpnThanhTrenLayout.setHorizontalGroup(
@@ -252,17 +234,19 @@ public class DatPhongJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jlbLoaiPhong)
                 .addGap(18, 18, 18)
+                .addComponent(jlbLoaiPhong)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcbbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtTimKiem)
-                .addGap(129, 129, 129))
+                .addGap(18, 18, 18)
+                .addComponent(jbtDanhSachDatPhong)
+                .addGap(25, 25, 25))
         );
         jpnThanhTrenLayout.setVerticalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +264,8 @@ public class DatPhongJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addComponent(jbtTimKiem)
                                 .addComponent(jlbLoaiPhong)
-                                .addComponent(jcbbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jcbbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbtDanhSachDatPhong)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -288,7 +273,7 @@ public class DatPhongJPanel extends javax.swing.JPanel {
         jpnHienThi.setLayout(jpnHienThiLayout);
         jpnHienThiLayout.setHorizontalGroup(
             jpnHienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 968, Short.MAX_VALUE)
+            .addGap(0, 1030, Short.MAX_VALUE)
         );
         jpnHienThiLayout.setVerticalGroup(
             jpnHienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,9 +309,14 @@ public class DatPhongJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbbLoaiPhongActionPerformed
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
-       // xuLyHienThiListPhongCoTheDat();
+        xuLyHienThiListPhongDuocDat();
+        addEventEveryRoom();
         
     }//GEN-LAST:event_jbtTimKiemActionPerformed
+
+    private void jbtDanhSachDatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDanhSachDatPhongActionPerformed
+        new HienThiDanhSachChiTietDatPhongTruocJDialog();
+    }//GEN-LAST:event_jbtDanhSachDatPhongActionPerformed
 
     
 
@@ -334,10 +324,11 @@ public class DatPhongJPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbtDanhSachDatPhong;
     private javax.swing.JButton jbtTimKiem;
     private com.toedter.calendar.JDateChooser jcDenNgay;
     private com.toedter.calendar.JDateChooser jcTuNgay;
-    private javax.swing.JComboBox<String> jcbbLoaiPhong;
+    private javax.swing.JComboBox<LoaiPhongDTO> jcbbLoaiPhong;
     private javax.swing.JLabel jlbLoaiPhong;
     private static javax.swing.JPanel jpnHienThi;
     private javax.swing.JPanel jpnMain;

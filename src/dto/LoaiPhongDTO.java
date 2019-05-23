@@ -38,5 +38,7 @@ public class LoaiPhongDTO {
         this.giaPhong = giaPhong;
     }
     
-    
+    public String toString(){
+        return this.tenLoaiPhong;
+    }
 }

@@ -6,7 +6,7 @@
 package bus;
 
 import dao.NhanVienDAO;
-import dto.NhanVien;
+import dto.NhanVienDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -17,7 +17,7 @@ import javax.swing.JComboBox;
  */
 public class NhanVienBus {
     
-    public static ArrayList<NhanVien>getDuLieuNhanVien() throws SQLException
+    public static ArrayList<NhanVienDTO>getDuLieuNhanVien() throws SQLException
     {
         return NhanVienDAO.getDuLieuNhanVien();
     }
@@ -27,7 +27,7 @@ public class NhanVienBus {
         return NhanVienDAO.xoaDuLieu(manv);
     }
     
-    public static int suaNhanVien(NhanVien nv)
+    public static int suaNhanVien(NhanVienDTO nv)
     {
         return NhanVienDAO.capNhatDuLieu(nv);
     }
@@ -37,12 +37,12 @@ public class NhanVienBus {
         NhanVienDAO.loadComboBoxTenNguoiQuanLy(ten);
     }
     
-    public static int themNhanVien(NhanVien nv)
+    public static int themNhanVien(NhanVienDTO nv)
     {
         return NhanVienDAO.themNhanVien(nv);
     }
     
-    public static ArrayList<NhanVien> timKiemNhanVien(String tk)
+    public static ArrayList<NhanVienDTO> timKiemNhanVien(String tk)
     {
         return NhanVienDAO.timKiemNhanVien(tk);
     }

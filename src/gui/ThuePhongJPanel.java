@@ -41,6 +41,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
     public ThuePhongJPanel() {
         initComponents();
         loadLoaiPhong();
+        loadData();
     }
 
     private ArrayList<JPanelPhong> listPhongJPanels;
@@ -124,7 +125,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
                 selectedJPanelPhong.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                            HienThiFormDienThongTinThuePhongJDialog formThuePhongJDialog=new HienThiFormDienThongTinThuePhongJDialog();
+                            HienThiFormDienThongTinThuePhongJDialog formThuePhongJDialog=new HienThiFormDienThongTinThuePhongJDialog(selectedJPanelPhong,(LoaiPhongDTO)jcbbLoaiPhong.getSelectedItem());
                         
                       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
@@ -159,17 +160,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
         jpnHienThi.removeAll();
         listPhongDuocThue=new ArrayList<>();
         
-        //Chuyển String sang int
-        ArrayList<LoaiPhongDTO> listLoaiPhongDTOs=new ArrayList<>();
-        listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
-        int maLoaiPhong = 0;
-        for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-            if (loaiPhongDTO.getTenLoaiPhong().equals((jcbbLoaiPhong.getSelectedItem()))){
-                maLoaiPhong=loaiPhongDTO.getMaLoaiPhong();             
-        }
-        }
-        
-        listPhongDuocThue=PhongBUS.getCacPhongDuocThue( jcDenNgay.getDate(),maLoaiPhong );
+        listPhongDuocThue=PhongBUS.getCacPhongDuocThue( jcDenNgay.getDate(),((LoaiPhongDTO)jcbbLoaiPhong.getSelectedItem()).getMaLoaiPhong());
         jpnHienThi.setLayout(new FlowLayout(FlowLayout.LEFT));
         for (int maPhong:listPhongDuocThue){
             for (JPanelPhong phong:listPhongJPanels){
@@ -183,13 +174,15 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
         jpnHienThi.validate();
     }
     
-    private void loadLoaiPhong(){
-        ArrayList<LoaiPhongDTO> listLoaiPhongDTOs =new ArrayList<>();
-        listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
-        for (LoaiPhongDTO loaiPhongDTO:listLoaiPhongDTOs){
-            jcbbLoaiPhong.addItem(loaiPhongDTO.getTenLoaiPhong());
+
+    
+        private void loadLoaiPhong(){
+            ArrayList<LoaiPhongDTO> listLoaiPhongDTOs= new ArrayList<>();
+            listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
+            for(LoaiPhongDTO phong:listLoaiPhongDTOs){
+                jcbbLoaiPhong.addItem(phong);
+            }
         }
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -316,7 +309,7 @@ public class ThuePhongJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbtTimKiem;
     private com.toedter.calendar.JDateChooser jcDenNgay;
-    private javax.swing.JComboBox<String> jcbbLoaiPhong;
+    private javax.swing.JComboBox<LoaiPhongDTO> jcbbLoaiPhong;
     private javax.swing.JLabel jlbLoaiPhong;
     private static javax.swing.JPanel jpnHienThi;
     private javax.swing.JPanel jpnMain;

@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Tuan
  */
-public class NhanVien {
+public class NhanVienDTO {
     private int maNhanVien;
     private String hoTen;
     private Date ngaySinh;
@@ -24,6 +24,11 @@ public class NhanVien {
     private String diaChi;
     private String trangThai;
 
+    public NhanVienDTO() {
+    }
+
+    
+    
     public String getTrangThai() {
         return trangThai;
     }
@@ -112,7 +117,7 @@ public class NhanVien {
         this.diaChi = diaChi;
     }
 
-    public NhanVien(String tenNguoiQL) {
+    public NhanVienDTO(String tenNguoiQL) {
         this.tenNguoiQL = tenNguoiQL;
     }
     

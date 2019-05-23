@@ -20,7 +20,7 @@ public class OracleConnection {
             String strConnString="jdbc:oracle:thin:@localhost:1521/orcl";
             Class.forName("oracle.jdbc.driver.OracleDriver");  
 
-            String strConnString="jdbc:oracle:thin:@localhost:1521/HHY";
+           // String strConnString="jdbc:oracle:thin:@localhost:1521/HHY";
             conn=DriverManager.getConnection(strConnString, "newDataKS","123456");
 //            if (conn!=null){
 //                System.out.println("Kết nối thành công");

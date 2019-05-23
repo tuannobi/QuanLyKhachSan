@@ -6,7 +6,7 @@
 package gui.miniPop;
 
 import bus.NhanVienBus;
-import dto.NhanVien;
+import dto.NhanVienDTO;
 import gui.QuanLyNhanVienJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,15 +23,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThemNhanVienJDialog extends javax.swing.JDialog {
 
-    NhanVien newInfoNhanVien;
+    NhanVienDTO newInfoNhanVien;
     DefaultTableModel dtm;
     JTable jtable;
-    ArrayList<NhanVien> listNV;
+    ArrayList<NhanVienDTO> listNV;
     /**
      * Creates new form ThemNhanVien
      */
 
-    public ThemNhanVienJDialog(ArrayList<NhanVien> listNV, DefaultTableModel dtm,JTable jtable) {
+    public ThemNhanVienJDialog(ArrayList<NhanVienDTO> listNV, DefaultTableModel dtm,JTable jtable) {
         
         initComponents();
         this.listNV=listNV;
@@ -43,7 +43,7 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
     
     public void layDuLieuTuForm()
     {
-        newInfoNhanVien=new NhanVien("");
+        newInfoNhanVien=new NhanVienDTO("");
         newInfoNhanVien.setHoTen(jtfHoVaten.getText());
         try{
         newInfoNhanVien.setCMND(Integer.parseInt(jtfCMND.getText()));
@@ -65,7 +65,7 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
     private void refreshData() throws SQLException{
         dtm.setRowCount(0);
         listNV=NhanVienBus.getDuLieuNhanVien();
-        for (NhanVien nv:listNV){
+        for (NhanVienDTO nv:listNV){
             Vector<Object> vec=new Vector<Object>();
             vec.add(nv.getMaNhanVien());
             vec.add(nv.getHoTen());
