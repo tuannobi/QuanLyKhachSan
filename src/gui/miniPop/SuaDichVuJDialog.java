@@ -8,6 +8,7 @@ package gui.miniPop;
 import bus.DichVuBus;
 import dto.DichVu;
 import gui.DichVuJPanel;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -124,6 +125,10 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         jccbTrangThai = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Dịch vụ");
+
+        jpnMain.setBackground(new java.awt.Color(204, 204, 255));
+        jpnMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Mã dịch vụ");
@@ -141,6 +146,10 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
 
         jtfGiaTien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jpnButton.setBackground(new java.awt.Color(204, 204, 255));
+
+        jbtLuu.setBackground(new java.awt.Color(255, 51, 51));
+        jbtLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/save-button.png"))); // NOI18N
         jbtLuu.setText("Lưu");
         jbtLuu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,6 +157,7 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
             }
         });
 
+        jbtHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cancel.png"))); // NOI18N
         jbtHuy.setText("Hủy");
         jbtHuy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,11 +170,11 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
         jpnButtonLayout.setHorizontalGroup(
             jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnButtonLayout.createSequentialGroup()
-                .addContainerGap(196, Short.MAX_VALUE)
-                .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addComponent(jbtHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         jpnButtonLayout.setVerticalGroup(
             jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

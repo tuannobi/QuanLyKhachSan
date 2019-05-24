@@ -38,6 +38,7 @@ public class KhachHangDAO {
                 kh.setEmail(resultSet.getString(7));
                 kh.setSDT(resultSet.getString(8));
                 kh.setTrangThai(resultSet.getString(9));
+                kh.setLoaiKH(resultSet.getString(10));
                 ds.add(kh);
             }
             

@@ -49,6 +49,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             vec.add(khachHangDTO.getEmail());
             vec.add(khachHangDTO.getSDT());
             vec.add(khachHangDTO.getTrangThai());
+            vec.add(khachHangDTO.getLoaiKH());
             dtmKH.addRow(vec);
     }
         tbKhachHang.setModel(dtmKH);
@@ -181,7 +182,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã khách hàng", "Họ và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
+                "Mã khách hàng", "Họ và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái", "Loại khách hàng"
             }
         ));
         tbKhachHang.getTableHeader().setReorderingAllowed(false);
@@ -300,6 +301,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             vec.add(khachHangDTO.getEmail());
             vec.add(khachHangDTO.getSDT());
             vec.add(khachHangDTO.getTrangThai());
+            vec.add(khachHangDTO.getLoaiKH());
             dtmKH.addRow(vec);
     }
     }

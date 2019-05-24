@@ -27,19 +27,27 @@ public class NhanVienBus {
         return NhanVienDAO.xoaDuLieu(manv);
     }
     
+<<<<<<< HEAD
+    public static int suaNhanVien(NhanVien nv,JComboBox ten)
+=======
     public static int suaNhanVien(NhanVienDTO nv)
+>>>>>>> fc9620a1cd450e35e4edf0b6c395b161c0f6ac97
     {
-        return NhanVienDAO.capNhatDuLieu(nv);
+        return NhanVienDAO.capNhatDuLieu(nv,ten);
     }
     
-    public static void loadComboBoxTenNguoiQuanLy(JComboBox ten)
+    public static ArrayList<NhanVien> loadComboBoxTenNguoiQuanLy(JComboBox ten)
     {
-        NhanVienDAO.loadComboBoxTenNguoiQuanLy(ten);
+        return NhanVienDAO.loadComboBoxTenNguoiQuanLy(ten);
     }
     
+<<<<<<< HEAD
+    public static int themNhanVien(NhanVien nv,JComboBox ten)
+=======
     public static int themNhanVien(NhanVienDTO nv)
+>>>>>>> fc9620a1cd450e35e4edf0b6c395b161c0f6ac97
     {
-        return NhanVienDAO.themNhanVien(nv);
+        return NhanVienDAO.themNhanVien(nv,ten);
     }
     
     public static ArrayList<NhanVienDTO> timKiemNhanVien(String tk)

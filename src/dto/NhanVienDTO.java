@@ -122,5 +122,8 @@ public class NhanVienDTO {
         this.tenNguoiQL = tenNguoiQL;
     }
     
-    
+    public void toString(String hoten)
+    {
+        
+    }
 }

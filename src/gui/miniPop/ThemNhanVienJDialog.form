@@ -292,7 +292,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
                 <StringItem index="0" value="&#x110;ang l&#xe0;m"/>
-                <StringItem index="1" value="Ngh&#x1ec9; l&#xe0;m"/>
+                <StringItem index="1" value="&#x110;&#xe3; ngh&#x1ec9;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -324,6 +324,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbbNguoiQuanLyActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
