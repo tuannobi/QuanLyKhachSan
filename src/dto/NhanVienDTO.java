@@ -25,7 +25,8 @@ public class NhanVienDTO {
     private String trangThai;
 
     public NhanVienDTO() {
-    }
+        }
+
 
     
     

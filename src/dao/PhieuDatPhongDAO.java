@@ -5,6 +5,7 @@
  */
 package dao;
 
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import dto.PhieuDatPhongDTO;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -46,5 +47,33 @@ public class PhieuDatPhongDAO {
             e.printStackTrace();
         }
         return listDatPhong;
+    }
+    
+    public static ArrayList<PhieuDatPhongDTO> getTatCaThongTinDatPhong(){
+        ArrayList<PhieuDatPhongDTO> phieuDatPhongDTOs=null;
+        Connection conn=OracleConnection.openConnection();
+        try {
+            phieuDatPhongDTOs=new ArrayList<>();
+            String sql="{CALL PRO_LOADPHIEUDATPHONG(?)}";
+            CallableStatement callableStatement=conn.prepareCall(sql);
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.execute();
+            ResultSet rs=(ResultSet)callableStatement.getObject(1);
+            while (rs.next()){
+                PhieuDatPhongDTO phieuDatPhong =new PhieuDatPhongDTO();
+                phieuDatPhong.setMaPhieu(rs.getInt(1));
+                phieuDatPhong.setMaKH(rs.getInt(2));
+                phieuDatPhong.setTenKH(rs.getString(3));
+                phieuDatPhong.setMaNV(rs.getInt(4));
+                phieuDatPhong.setTenNV(rs.getString(5));
+                phieuDatPhong.setNgayDat(rs.getDate(6));
+                phieuDatPhong.setNgayDen(rs.getDate(7));
+                phieuDatPhong.setNgayDi(rs.getDate(8));   
+                phieuDatPhongDTOs.add(phieuDatPhong);
+            }
+        } catch (Exception e) {
+            printStackTrace();
+        }
+        return phieuDatPhongDTOs;
     }
 }

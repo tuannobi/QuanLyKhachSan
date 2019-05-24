@@ -17,4 +17,8 @@ public class PhieuDatPhongBUS {
     public static ArrayList<PhieuDatPhongDTO> getThongTinDatPhongCuThe1Phong(int maPhong){
         return PhieuDatPhongDAO.getThongTinDatPhongCuThe1Phong(maPhong);
     }
+    
+    public static ArrayList<PhieuDatPhongDTO> getTatCaThongTinDatPhong(){
+        return PhieuDatPhongDAO.getTatCaThongTinDatPhong();
+    }
 }
