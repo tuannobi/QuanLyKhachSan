@@ -65,17 +65,19 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jcTuNgay" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jcDenNgay" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="jlbLoaiPhong" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jlbLoaiPhong" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jcbbLoaiPhong" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jbtTimKiem" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jbtDanhSachDatPhong" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -97,6 +99,7 @@
                                       <Component id="jbtTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jlbLoaiPhong" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jcbbLoaiPhong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jbtDanhSachDatPhong" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -144,8 +147,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbbLoaiPhongActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;LoaiPhongDTO&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbtDanhSachDatPhong">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch &#x111;&#x1eb7;t ph&#xf2;ng"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtDanhSachDatPhongActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -161,7 +172,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="968" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1030" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">

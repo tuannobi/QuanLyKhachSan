@@ -5,7 +5,7 @@
  */
 package dao;
 
-import dto.NhanVien;
+import dto.NhanVienDTO;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -26,9 +26,9 @@ import oracle.jdbc.OracleTypes;
  */
 
 public class NhanVienDAO {
-    public static ArrayList<NhanVien> getDuLieuNhanVien() throws SQLException
+    public static ArrayList<NhanVienDTO> getDuLieuNhanVien() throws SQLException
     {
-        ArrayList<NhanVien> ds=new ArrayList<>();
+        ArrayList<NhanVienDTO> ds=new ArrayList<>();
         String sql="{CALL PROC_XEMNHANVIEN(?)}";
         try{
         Connection conn = OracleConnection.openConnection();
@@ -39,7 +39,7 @@ public class NhanVienDAO {
  
             while(rs.next())
             {
-                NhanVien nv=new NhanVien("");
+                NhanVienDTO nv=new NhanVienDTO("");
                 nv.setMaNhanVien(rs.getInt(1));
                 nv.setHoTen(rs.getString(2));
                 nv.setNgaySinh(rs.getDate(3));
@@ -86,9 +86,13 @@ public class NhanVienDAO {
         return -1; //Sai
     }
     
+<<<<<<< HEAD
      public static int capNhatDuLieu(NhanVien nv,JComboBox ten){
+=======
+     public static int capNhatDuLieu(NhanVienDTO nv){
+>>>>>>> fc9620a1cd450e35e4edf0b6c395b161c0f6ac97
         try {
-            //String sql="update NhanVien set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
+            //String sql="update NhanVienDTO set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
             String sql="{CALL PROC_SUANHANVIEN(?,?,?,?,?,?,?,?,?,?,?)}";
             Connection conn=OracleConnection.openConnection();
             //PreparedStatement preStatement =conn.prepareStatement(sql);
@@ -196,7 +200,11 @@ public class NhanVienDAO {
        return nv;
    }
 
+<<<<<<< HEAD
    public static int themNhanVien(NhanVien nv,JComboBox ten)
+=======
+   public static int themNhanVien(NhanVienDTO nv)
+>>>>>>> fc9620a1cd450e35e4edf0b6c395b161c0f6ac97
    {
        
        String sql="{CALL PROC_THEMNHANVIEN(?,?,?,?,?,?,?,?,?,?)}";
@@ -247,9 +255,9 @@ public class NhanVienDAO {
        return -1;
    }
    
-   public static ArrayList<NhanVien> timKiemNhanVien(String tk){
+   public static ArrayList<NhanVienDTO> timKiemNhanVien(String tk){
     
-        ArrayList<NhanVien> ds=null;
+        ArrayList<NhanVienDTO> ds=null;
             try {
                 ds=new ArrayList<>();
                 Connection conn=OracleConnection.openConnection();
@@ -268,7 +276,7 @@ public class NhanVienDAO {
                 ResultSet rs=(ResultSet) cs.getObject(8);
                 while(rs.next())
                 {
-                    NhanVien nv=new NhanVien("");
+                    NhanVienDTO nv=new NhanVienDTO("");
              
                     nv.setMaNhanVien(rs.getInt(1));
                     nv.setHoTen(rs.getString(2));

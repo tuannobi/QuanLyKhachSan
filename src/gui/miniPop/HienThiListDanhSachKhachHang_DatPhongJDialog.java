@@ -17,22 +17,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Tuan
  */
-public class HienThiListDanhSachKhachHangJDialog extends javax.swing.JDialog {
+public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form HienThiListDanhSachKhachHangJDialog
+     * Creates new form HienThiListDanhSachKhachHang_ThuePhongJDialog
      */
     ArrayList<KhachHangDTO> listKH;
     DefaultTableModel dtmKH;
     static KhachHangDTO selectedKhachHang;
-    public HienThiListDanhSachKhachHangJDialog(java.awt.Frame parent, boolean modal) {
+    public HienThiListDanhSachKhachHang_DatPhongJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
     private JTextField jtfTimKiem;
     
-    public HienThiListDanhSachKhachHangJDialog(JTextField jtfTimKiem){
+    public HienThiListDanhSachKhachHang_DatPhongJDialog(JTextField jtfTimKiem){
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -177,7 +177,7 @@ public class HienThiListDanhSachKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtHuyActionPerformed
 
     private void jbtChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtChonActionPerformed
-        HienThiFormDienThongTinThuePhongJDialog.layThongTinTuKhachHangDaChon();
+        HienThiFormDienThongTinDatPhongJDialog.layThongTinTuKhachHangDaChon();
         dispose();
     }//GEN-LAST:event_jbtChonActionPerformed
 

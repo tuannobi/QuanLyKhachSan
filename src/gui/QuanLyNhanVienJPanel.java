@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import dto.DichVu;
-import dto.NhanVien;
+import dto.NhanVienDTO;
 import gui.miniPop.SuaNhanVienJDialog;
 import gui.miniPop.ThemNhanVienJDialog;
 import java.sql.SQLException;
@@ -29,8 +29,8 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
      * Creates new form QuanLyNhanVienJPanel
      */
     public static DefaultTableModel dtmNhanVien=new DefaultTableModel();
-    public static ArrayList<NhanVien>listNV=null;
-    public static NhanVien selectedNV;
+    public static ArrayList<NhanVienDTO>listNV=null;
+    public static NhanVienDTO selectedNV;
     
     public QuanLyNhanVienJPanel() throws SQLException {
         initComponents();
@@ -44,7 +44,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     dtmNhanVien=(DefaultTableModel)tbNhanVien.getModel();
     
     
-    for(NhanVien nv:listNV)
+    for(NhanVienDTO nv:listNV)
     {
         Vector<Object> vt=new Vector<Object>();
         vt.add(nv.getMaNhanVien());
@@ -76,7 +76,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     dtmNhanVien=(DefaultTableModel)tbNhanVien.getModel();
     
     
-    for(NhanVien nv:listNV)
+    for(NhanVienDTO nv:listNV)
     {
         Vector<Object> vt=new Vector<Object>();
         vt.add(nv.getMaNhanVien());

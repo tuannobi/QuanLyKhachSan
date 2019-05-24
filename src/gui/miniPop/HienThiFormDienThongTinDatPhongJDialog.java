@@ -21,22 +21,21 @@ import newClass.JPanelPhong;
  *
  * @author Tuan
  */
-public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog {
+public class HienThiFormDienThongTinDatPhongJDialog extends javax.swing.JDialog {
 
     JPanelPhong selectedJPanelPhong;
     LoaiPhongDTO selectedLoaiPhongDTO;
-    public HienThiFormDienThongTinThuePhongJDialog(java.awt.Frame parent, boolean modal) {
+    public HienThiFormDienThongTinDatPhongJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public HienThiFormDienThongTinThuePhongJDialog(JPanelPhong selectedJPanelPhong,LoaiPhongDTO selectedLoaiPhongDTO){
+    public HienThiFormDienThongTinDatPhongJDialog(JPanelPhong selectedJPanelPhong,LoaiPhongDTO selectedLoaiPhongDTO){
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
       //  setAlwaysOnTop(true);
         this.selectedJPanelPhong=selectedJPanelPhong;
-        this.selectedLoaiPhongDTO=selectedLoaiPhongDTO;
         layThongTinPhongDaChon();
     }
 
@@ -404,7 +403,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
                 .addGap(7, 7, 7)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
@@ -447,7 +446,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
     }//GEN-LAST:event_jtfDiaChiActionPerformed
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
-        new HienThiListDanhSachKhachHang_ThuePhongJDialog(jtfTimKiem);
+        new HienThiListDanhSachKhachHang_DatPhongJDialog(jtfTimKiem);
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
     private void jtfMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaKHActionPerformed
@@ -487,7 +486,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
         phongDTO.setMaPhong(Integer.parseInt(jtfMaPhong.getText()));
         phongDTO.setNgayDen(jdcNgayDen.getDate());
         phongDTO.setNgayDi(jdcNgayDi.getDate());
-        boolean check=PhongBUS.luuThongTinThuePhong(phongDTO,selectedLoaiPhongDTO, khachHangDTO, nhanVienDTO);
+        boolean check=PhongBUS.luuThongTinDatPhong(phongDTO,selectedLoaiPhongDTO, khachHangDTO, nhanVienDTO);
         if (check){
             JOptionPane.showMessageDialog(null, "Đặt phòng thành công");
             dispose();
@@ -501,14 +500,14 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
 
 
     public static void layThongTinTuKhachHangDaChon(){
-        jtfMaKH.setText(String.valueOf(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getMaKH()));
-        jtfHoTen.setText(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getHoTen());
-        jtfCMND.setText(String.valueOf(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getCMND()));
-        jtfDiaChi.setText(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getDiaChi());
-        jtfEmail.setText(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getEmail());
-        jtfSoDienThoai.setText(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getSDT());
-        jcbbGioiTinh.setSelectedItem(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getGioiTinh());
-        jdcNgaySinh.setDate(HienThiListDanhSachKhachHang_ThuePhongJDialog.getSelectedKhachHang().getNgaySinh());
+        jtfMaKH.setText(String.valueOf(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getMaKH()));
+        jtfHoTen.setText(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getHoTen());
+        jtfCMND.setText(String.valueOf(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getCMND()));
+        jtfDiaChi.setText(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getDiaChi());
+        jtfEmail.setText(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getEmail());
+        jtfSoDienThoai.setText(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getSDT());
+        jcbbGioiTinh.setSelectedItem(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getGioiTinh());
+        jdcNgaySinh.setDate(HienThiListDanhSachKhachHang_DatPhongJDialog.getSelectedKhachHang().getNgaySinh());
     }
     
     public void layThongTinPhongDaChon(){

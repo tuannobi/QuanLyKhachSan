@@ -6,7 +6,7 @@
 package gui.miniPop;
 
 import bus.NhanVienBus;
-import dto.NhanVien;
+import dto.NhanVienDTO;
 import gui.QuanLyNhanVienJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,6 +24,19 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
    
     DefaultTableModel dtm;
     JTable jtable;
+    NhanVienDTO nv; 
+    NhanVienDTO newInfoNhanVien; //lưu trữ dữ liệu mới của người dùng nhập vào
+    ArrayList<NhanVienDTO> listNV;
+//    public SuaNhanVienJDialog(java.awt.Frame parent, boolean modal) {
+//        super(parent, modal);
+//        initComponents();
+//    }
+//    
+//    public SuaNhanVienJDialog() {
+//        initComponents();
+//    }
+    
+    public SuaNhanVienJDialog(ArrayList<NhanVienDTO> listNV, DefaultTableModel dtm,JTable jtable,NhanVienDTO nv ) {            
     NhanVien nv; 
     NhanVien newInfoNhanVien; //lưu trữ dữ liệu mới của người dùng nhập vào
     ArrayList<NhanVien> listNV;
@@ -56,7 +69,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
     }
     
     private void layDuLieuTuForm() {
-        newInfoNhanVien=new NhanVien("");
+        newInfoNhanVien=new NhanVienDTO("");
         try{
         newInfoNhanVien.setCMND(Integer.parseInt(jtfCMND.getText()));
         }
@@ -107,7 +120,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
      private void refreshData() throws SQLException{
 //        dtm.setRowCount(0);
 //        listNV=NhanVienBus.getDuLieuNhanVien();
-//        for (NhanVien nv:listNV){
+//        for (NhanVienDTO nv:listNV){
 //            Vector<Object> vec=new Vector<Object>();
 //            vec.add(nv.getMaNhanVien());
 //            vec.add(nv.getHoTen());
@@ -347,7 +360,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void jbtLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLuuMouseClicked
         // TODO add your handling code here:
