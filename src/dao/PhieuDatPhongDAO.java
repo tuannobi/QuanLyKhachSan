@@ -66,13 +66,14 @@ public class PhieuDatPhongDAO {
                 phieuDatPhong.setTenKH(rs.getString(3));
                 phieuDatPhong.setMaNV(rs.getInt(4));
                 phieuDatPhong.setTenNV(rs.getString(5));
-                phieuDatPhong.setNgayDat(rs.getDate(6));
-                phieuDatPhong.setNgayDen(rs.getDate(7));
-                phieuDatPhong.setNgayDi(rs.getDate(8));   
+                phieuDatPhong.setMaPhong(rs.getInt(6));
+                phieuDatPhong.setNgayDat(rs.getDate(7));
+                phieuDatPhong.setNgayDen(rs.getDate(8));
+                phieuDatPhong.setNgayDi(rs.getDate(9));   
                 phieuDatPhongDTOs.add(phieuDatPhong);
             }
         } catch (Exception e) {
-            printStackTrace();
+            System.err.println(e);
         }
         return phieuDatPhongDTOs;
     }
