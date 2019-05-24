@@ -75,11 +75,22 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         newInfoNhanVien.setTrangThai(jcbbTrangThai.getSelectedItem().toString());
         newInfoNhanVien.setEmail(jtfEmail.getText());
        try{
-        if(jcbbNguoiQuanLy.getSelectedItem().toString().equals(""))
-            newInfoNhanVien.setTenNguoiQL(null);
-        else
+           
+//        if(jcbbNguoiQuanLy.getSelectedItem().toString().equals(""))
+//            newInfoNhanVien.setTenNguoiQL(null);
+//        else
+//        {
+//            newInfoNhanVien.setTenNguoiQL(jcbbNguoiQuanLy.getSelectedItem().toString());
+//        }
+        int a=jcbbNguoiQuanLy.getSelectedIndex()-1;
+        if(a==-1)
         {
-            newInfoNhanVien.setTenNguoiQL(jcbbNguoiQuanLy.getSelectedItem().toString());
+             newInfoNhanVien.setTenNguoiQL("");
+        }
+        //System.out.println(NhanVienBus.loadComboBoxTenNguoiQuanLy(jcbbNguoiQuanLy).get(a).getHoTen());
+        else
+        {  
+            newInfoNhanVien.setTenNguoiQL(NhanVienBus.loadComboBoxTenNguoiQuanLy(jcbbNguoiQuanLy).get(a).getHoTen());
         }
        }
        catch(NullPointerException ne)
@@ -198,7 +209,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         jLabel10.setText("Trạng thái");
 
         jcbbTrangThai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang làm", "Nghỉ việc" }));
+        jcbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang làm", "Đã nghỉ" }));
 
         jbtLuu.setText("Lưu");
         jbtLuu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,6 +229,13 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         jLabel11.setText("Người quản lý");
 
         jcbbNguoiQuanLy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jcbbNguoiQuanLy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        jcbbNguoiQuanLy.setToolTipText("");
+        jcbbNguoiQuanLy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbbNguoiQuanLyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -338,7 +356,7 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         try
         {
             if(newInfoNhanVien!=null){
-                if(NhanVienBus.suaNhanVien(newInfoNhanVien)==1)
+                if(NhanVienBus.suaNhanVien(newInfoNhanVien,jcbbNguoiQuanLy)==1)
                 {
                     JOptionPane.showMessageDialog(null, "Cập nhật xong");
                  }
@@ -360,6 +378,11 @@ public class SuaNhanVienJDialog extends javax.swing.JDialog {
         this.dispose();
         
     }//GEN-LAST:event_jbtHuyMouseClicked
+
+    private void jcbbNguoiQuanLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbNguoiQuanLyActionPerformed
+        // TODO add your handling code here:
+        System.out.println(jcbbNguoiQuanLy.getSelectedIndex());
+    }//GEN-LAST:event_jcbbNguoiQuanLyActionPerformed
 
     
 

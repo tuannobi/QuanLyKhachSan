@@ -116,5 +116,8 @@ public class NhanVien {
         this.tenNguoiQL = tenNguoiQL;
     }
     
-    
+    public void toString(String hoten)
+    {
+        
+    }
 }

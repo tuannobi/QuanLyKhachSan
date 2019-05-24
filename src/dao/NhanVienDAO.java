@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
@@ -85,7 +86,7 @@ public class NhanVienDAO {
         return -1; //Sai
     }
     
-     public static int capNhatDuLieu(NhanVien nv){
+     public static int capNhatDuLieu(NhanVien nv,JComboBox ten){
         try {
             //String sql="update NhanVien set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
             String sql="{CALL PROC_SUANHANVIEN(?,?,?,?,?,?,?,?,?,?,?)}";
@@ -98,12 +99,17 @@ public class NhanVienDAO {
             cs.setDate(3, new java.sql.Date(nv.getNgayVaoLam().getTime()));
             cs.setInt(4, nv.getCMND());
             cs.setString(5, nv.getSoDT());
-            if(maNhanVien(nv.getTenNguoiQL())!=0)
-            {cs.setInt(6, maNhanVien(nv.getTenNguoiQL()));}
+//            if(maNhanVien(nv.getTenNguoiQL())!=0)
+//            {cs.setInt(6, maNhanVien(nv.getTenNguoiQL()));}
+//            else
+//            {
+//                cs.setString(6, "");
+//            }
+            int a=ten.getSelectedIndex()-1;
+            if(a==-1)
+                cs.setString(6, null);
             else
-            {
-                cs.setString(6, "");
-            }
+                cs.setInt(6,loadComboBoxTenNguoiQuanLy(ten).get(a).getMaNhanVien());
             cs.setString(7, nv.getGioiTinh());
             cs.setString(8, nv.getEmail());
             cs.setInt(11, nv.getMaNhanVien());
@@ -133,33 +139,35 @@ public class NhanVienDAO {
         return -1; //sai       
    }
      
-   public static int maNhanVien(String tennv)
-   {
-       Connection conn;
-       String sql="{CALL PROC_MANHANVIEN(?,?)}";
-       try{
-           conn=OracleConnection.openConnection();
-           CallableStatement cs =conn.prepareCall(sql);
-           cs.setString(1, tennv);
-           cs.registerOutParameter(2, OracleTypes.CURSOR);
-           cs.execute();
-           ResultSet rs=(ResultSet) cs.getObject(2);
-           int manv=0;
-           while(rs.next())
-           {
-               manv=rs.getInt(1);
-           }
-           return manv;
-       }
-       catch(Exception e){
-           e.printStackTrace();
-       }
-       return 0;
-   }
+//   public static int maNhanVien(String tennv)
+//   {
+//       Connection conn;
+//       String sql="{CALL PROC_MANHANVIEN(?,?)}";
+//       try{
+//           conn=OracleConnection.openConnection();
+//           CallableStatement cs =conn.prepareCall(sql);
+//           cs.setString(1, tennv);
+//           cs.registerOutParameter(2, OracleTypes.CURSOR);
+//           cs.execute();
+//           ResultSet rs=(ResultSet) cs.getObject(2);
+//           int manv=0;
+//           while(rs.next())
+//           {
+//               manv=rs.getInt(1);
+//           }
+//           return manv;
+//       }
+//       catch(Exception e){
+//           e.printStackTrace();
+//       }
+//       return 0;
+//   }
    
-   public static void loadComboBoxTenNguoiQuanLy(JComboBox ten)
+   public static ArrayList<NhanVien> loadComboBoxTenNguoiQuanLy(JComboBox ten)
    {
        Connection conn;
+       ArrayList<NhanVien> nv=new ArrayList<>();
+       //ArrayList<Integer> maNhanVien=null;
        String sql="{CALL PROC_XEMNHANVIEN(?)}";
        try{
            conn=OracleConnection.openConnection();
@@ -169,17 +177,26 @@ public class NhanVienDAO {
            ResultSet rs=(ResultSet) cs.getObject(1);
            while(rs.next())
            {
-               ten.addItem(rs.getString(2));
+               NhanVien x=new NhanVien("");
+               x.setMaNhanVien(rs.getInt(1));
+               x.setHoTen(rs.getString(2));
+               nv.add(x);
+               //ten.addItem(rs.getString(2));
+               //ten.addItem(x.getHoTen());
            }
-           ten.addItem("");
+           for(NhanVien a : nv)
+           {
+               ten.addItem(a.getHoTen());
+           }
        }
        catch(Exception e)
        {
            e.printStackTrace();
        }
+       return nv;
    }
 
-   public static int themNhanVien(NhanVien nv)
+   public static int themNhanVien(NhanVien nv,JComboBox ten)
    {
        
        String sql="{CALL PROC_THEMNHANVIEN(?,?,?,?,?,?,?,?,?,?)}";
@@ -197,12 +214,17 @@ public class NhanVienDAO {
             cs.setString(7, nv.getEmail());
             cs.setString(8, nv.getDiaChi());
             cs.setString(9, nv.getTrangThai());
-            if(maNhanVien(nv.getTenNguoiQL())!=0)
-            {cs.setInt(10, maNhanVien(nv.getTenNguoiQL()));}
+//            if(maNhanVien(nv.getTenNguoiQL())!=0)
+//            {cs.setInt(10, maNhanVien(nv.getTenNguoiQL()));}
+//            else
+//            {
+//                cs.setString(10, "");
+//            }
+            int a=ten.getSelectedIndex()-1;
+            if(a==-1)
+                cs.setString(10, null);
             else
-            {
-                cs.setString(10, "");
-            }
+                cs.setInt(10,loadComboBoxTenNguoiQuanLy(ten).get(a).getMaNhanVien());
             cs.execute();
             
             cs.close();

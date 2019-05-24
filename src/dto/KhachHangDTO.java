@@ -18,13 +18,12 @@ public class KhachHangDTO {
     String email;
     String SDT;
     String trangThai;
-    
+    String loaiKH;
 
+    public String getLoaiKH() {
+        return loaiKH;
+    }
     
-   // public String toString(){
-     //   return this.hoTen;
-  //  }
-
     public int getMaKH() {
         return maKH;
     }
@@ -95,6 +94,10 @@ public class KhachHangDTO {
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public void setLoaiKH(String loaiKH) {
+        this.loaiKH = loaiKH;
     }
     
 }

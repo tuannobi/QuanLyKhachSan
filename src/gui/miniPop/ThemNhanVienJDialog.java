@@ -59,7 +59,17 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
         newInfoNhanVien.setSoDT(jtfSoDT.getText());
         newInfoNhanVien.setTrangThai(jcbbTrangThai.getSelectedItem().toString());
         newInfoNhanVien.setEmail(jtfEmail.getText());
-        newInfoNhanVien.setTenNguoiQL(jcbbNguoiQuanLy.getSelectedItem().toString()!=null?jcbbNguoiQuanLy.getSelectedItem().toString():null );
+        //newInfoNhanVien.setTenNguoiQL(jcbbNguoiQuanLy.getSelectedItem().toString()!=null?jcbbNguoiQuanLy.getSelectedItem().toString():null );
+        int a=jcbbNguoiQuanLy.getSelectedIndex()-1;
+        if(a==-1)
+        {
+             newInfoNhanVien.setTenNguoiQL("");
+        }
+        //System.out.println(NhanVienBus.loadComboBoxTenNguoiQuanLy(jcbbNguoiQuanLy).get(a).getHoTen());
+        else
+        {  
+            newInfoNhanVien.setTenNguoiQL(NhanVienBus.loadComboBoxTenNguoiQuanLy(jcbbNguoiQuanLy).get(a).getHoTen());
+        }
     }
     
     private void refreshData() throws SQLException{
@@ -166,7 +176,7 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
         jLabel10.setText("Trạng thái");
 
         jcbbTrangThai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang làm", "Nghỉ làm" }));
+        jcbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang làm", "Đã nghỉ" }));
 
         jbtLuu.setText("Lưu");
         jbtLuu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,6 +194,11 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
 
         jcbbNguoiQuanLy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jcbbNguoiQuanLy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        jcbbNguoiQuanLy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbbNguoiQuanLyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -293,7 +308,7 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
     private void jbtLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLuuMouseClicked
         // TODO add your handling code here:
         layDuLieuTuForm();
-        int  check=NhanVienBus.themNhanVien(newInfoNhanVien);
+        int  check=NhanVienBus.themNhanVien(newInfoNhanVien,jcbbNguoiQuanLy);
         try{
         if(check==1)
             JOptionPane.showMessageDialog(null, "Thêm thành công");
@@ -315,6 +330,11 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jbtLuuMouseClicked
+
+    private void jcbbNguoiQuanLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbNguoiQuanLyActionPerformed
+        // TODO add your handling code here:
+        System.out.println(jcbbNguoiQuanLy.getSelectedIndex());
+    }//GEN-LAST:event_jcbbNguoiQuanLyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

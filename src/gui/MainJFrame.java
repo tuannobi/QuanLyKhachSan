@@ -392,7 +392,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jlbThongKeDoanhSoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbThongKeDoanhSoMouseClicked
         // TODO add your handling code here:
-        
+        ThongKeJPanel tk=new ThongKeJPanel();
+        jpnView.removeAll();
+        jpnView.setLayout(new BorderLayout());
+        jpnView.add(tk);
+        jpnView.repaint();
+        jpnView.validate();
     }//GEN-LAST:event_jlbThongKeDoanhSoMouseClicked
 
 
