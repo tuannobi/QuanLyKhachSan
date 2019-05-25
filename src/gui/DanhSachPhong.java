@@ -103,6 +103,7 @@ public class DanhSachPhong extends javax.swing.JPanel {
             //setback ground
             if (tempJPanel.getTrangThai().equalsIgnoreCase("C")){
                 tempMaPhongJPanel.setBackground(Color.blue);
+                tempMaPhong.setForeground(Color.white);
 //                tempTenLoaiPhongJPanel.setBackground(Color.blue);
 //                tempGiaTienJPanel.setBackground(Color.blue);
             }

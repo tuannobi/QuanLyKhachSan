@@ -86,8 +86,8 @@ public class NhanVienDAO {
         return -1; //Sai
     }
     
-     public static int capNhatDuLieu(NhanVien nv,JComboBox ten){
-     public static int capNhatDuLieu(NhanVienDTO nv){
+     public static int capNhatDuLieu(NhanVienDTO nv,JComboBox ten){
+    // public static int capNhatDuLieu(NhanVienDTO nv){
         try {
             //String sql="update NhanVienDTO set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
             String sql="{CALL PROC_SUANHANVIEN(?,?,?,?,?,?,?,?,?,?,?)}";
@@ -164,10 +164,10 @@ public class NhanVienDAO {
 //       return 0;
 //   }
    
-   public static ArrayList<NhanVien> loadComboBoxTenNguoiQuanLy(JComboBox ten)
+   public static ArrayList<NhanVienDTO> loadComboBoxTenNguoiQuanLy(JComboBox ten)
    {
        Connection conn;
-       ArrayList<NhanVien> nv=new ArrayList<>();
+       ArrayList<NhanVienDTO> nv=new ArrayList<>();
        //ArrayList<Integer> maNhanVien=null;
        String sql="{CALL PROC_XEMNHANVIEN(?)}";
        try{
@@ -178,14 +178,14 @@ public class NhanVienDAO {
            ResultSet rs=(ResultSet) cs.getObject(1);
            while(rs.next())
            {
-               NhanVien x=new NhanVien("");
+               NhanVienDTO x=new NhanVienDTO("");
                x.setMaNhanVien(rs.getInt(1));
                x.setHoTen(rs.getString(2));
                nv.add(x);
                //ten.addItem(rs.getString(2));
                //ten.addItem(x.getHoTen());
            }
-           for(NhanVien a : nv)
+           for(NhanVienDTO a : nv)
            {
                ten.addItem(a.getHoTen());
            }
@@ -197,8 +197,8 @@ public class NhanVienDAO {
        return nv;
    }
 
-   public static int themNhanVien(NhanVien nv,JComboBox ten)
-   public static int themNhanVien(NhanVienDTO nv)
+   public static int themNhanVien(NhanVienDTO nv,JComboBox ten)
+ //  public static int themNhanVien(NhanVienDTO nv)
    {
        
        String sql="{CALL PROC_THEMNHANVIEN(?,?,?,?,?,?,?,?,?,?)}";
