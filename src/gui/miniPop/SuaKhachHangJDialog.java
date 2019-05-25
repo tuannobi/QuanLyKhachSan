@@ -113,6 +113,7 @@ public class SuaKhachHangJDialog extends javax.swing.JDialog {
         jLabel10.setText("Trạng thái");
 
         jtfMaKhachHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfMaKhachHang.setEnabled(false);
 
         jtfCMND.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 

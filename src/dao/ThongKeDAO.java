@@ -102,4 +102,26 @@ public class ThongKeDAO {
         }
         return ds;
     }
+    
+    public static long getTongDoanhThu(Date bd,Date kt)
+    {
+        long tongTien = 0;
+        Connection conn;
+        String sql="{CALL PROC_THONGKETONGDOANHTHU(?,?,?)}";
+        try{
+            conn=OracleConnection.openConnection();
+            CallableStatement cs=conn.prepareCall(sql);
+            cs.setDate(1, new java.sql.Date(bd.getTime()));
+            cs.setDate(2, new java.sql.Date(kt.getTime()));
+            cs.registerOutParameter(3, OracleTypes.NUMBER);
+            cs.execute();
+            
+            tongTien=cs.getLong(3);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return tongTien;
+    }
 }

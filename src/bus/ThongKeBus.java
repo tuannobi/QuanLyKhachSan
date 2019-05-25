@@ -29,4 +29,9 @@ public class ThongKeBus {
     {
         return ThongKeDAO.getThongKeNam(bd,kt);
     }
+    
+    public static long getTongDoanhThu(Date bd,Date kt)
+    {
+        return ThongKeDAO.getTongDoanhThu(bd,kt);
+    }
 }

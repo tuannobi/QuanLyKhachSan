@@ -35,6 +35,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     public QuanLyNhanVienJPanel() throws SQLException {
         initComponents();
         hienThiDanhSachNhanVien();
+        
     }
     
    public static void hienThiDanhSachNhanVien() throws SQLException
@@ -110,6 +111,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
         jpnMain = new javax.swing.JPanel();
         jpnThanhTren = new javax.swing.JPanel();
         jpnTitle = new javax.swing.JPanel();
@@ -124,6 +126,8 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
         jpnTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbNhanVien = new javax.swing.JTable();
+
+        jRadioButton1.setText("jRadioButton1");
 
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
@@ -265,6 +269,8 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
             .addComponent(jpnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jpnTable.setBackground(new java.awt.Color(255, 255, 255));
+
         tbNhanVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         tbNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -400,6 +406,7 @@ public class QuanLyNhanVienJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtThem;

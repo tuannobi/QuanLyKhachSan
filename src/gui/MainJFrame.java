@@ -66,7 +66,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jpnRoot.setBackground(new java.awt.Color(153, 153, 255));
 
-        jpnMenu.setBackground(new java.awt.Color(153, 153, 255));
+        jpnMenu.setBackground(new java.awt.Color(0, 102, 51));
 
         jPanel2.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -92,7 +92,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpnQuanLyKhachHang.setBackground(new java.awt.Color(0, 204, 102));
+        jpnQuanLyKhachHang.setBackground(new java.awt.Color(0, 153, 51));
         jpnQuanLyKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpnQuanLyKhachHangMouseClicked(evt);
@@ -122,7 +122,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpnQuanLyNhanVien.setBackground(new java.awt.Color(0, 204, 102));
+        jpnQuanLyNhanVien.setBackground(new java.awt.Color(0, 153, 51));
         jpnQuanLyNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpnQuanLyNhanVienMouseClicked(evt);
@@ -152,7 +152,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpnThuePhong.setBackground(new java.awt.Color(0, 204, 102));
+        jpnThuePhong.setBackground(new java.awt.Color(0, 153, 51));
         jpnThuePhong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpnThuePhongMouseClicked(evt);
@@ -181,7 +181,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpnDichVu.setBackground(new java.awt.Color(0, 204, 102));
+        jpnDichVu.setBackground(new java.awt.Color(0, 153, 51));
         jpnDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpnDichVuMouseClicked(evt);
@@ -211,7 +211,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpnHoaDon.setBackground(new java.awt.Color(0, 204, 102));
+        jpnHoaDon.setBackground(new java.awt.Color(0, 153, 51));
         jpnHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpnHoaDonMouseClicked(evt);
@@ -241,7 +241,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpnThongKeDoanhThu.setBackground(new java.awt.Color(0, 204, 102));
+        jpnThongKeDoanhThu.setBackground(new java.awt.Color(0, 153, 51));
         jpnThongKeDoanhThu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpnThongKeDoanhThuMouseClicked(evt);
