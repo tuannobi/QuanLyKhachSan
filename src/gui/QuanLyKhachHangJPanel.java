@@ -67,10 +67,9 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jpnThanhTren = new javax.swing.JPanel();
         jpnTitle = new javax.swing.JPanel();
         jlbTitle = new javax.swing.JLabel();
-        jpnTimKiem = new javax.swing.JPanel();
-        jtfTimKiem = new javax.swing.JTextField();
         jbtTimKiem = new javax.swing.JButton();
-        jpnButton = new javax.swing.JPanel();
+        jtfTimKiem = new javax.swing.JTextField();
+        jpnTimKiem = new javax.swing.JPanel();
         jbtCapNhat = new javax.swing.JButton();
         jbtXoa = new javax.swing.JButton();
         jpnTable = new javax.swing.JPanel();
@@ -94,20 +93,13 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jlbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbTitle.setText("Danh sách khách hàng");
 
-        javax.swing.GroupLayout jpnTitleLayout = new javax.swing.GroupLayout(jpnTitle);
-        jpnTitle.setLayout(jpnTitleLayout);
-        jpnTitleLayout.setHorizontalGroup(
-            jpnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTitleLayout.createSequentialGroup()
-                .addComponent(jlbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jpnTitleLayout.setVerticalGroup(
-            jpnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-        );
-
-        jpnTimKiem.setBackground(new java.awt.Color(255, 255, 255));
+        jbtTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jbtTimKiem.setText("Tìm kiếm");
+        jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtTimKiemActionPerformed(evt);
+            }
+        });
 
         jtfTimKiem.setBackground(new java.awt.Color(234, 234, 242));
         jtfTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -122,35 +114,27 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             }
         });
 
-        jbtTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jbtTimKiem.setText("Tìm kiếm");
-        jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtTimKiemActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
-        jpnTimKiem.setLayout(jpnTimKiemLayout);
-        jpnTimKiemLayout.setHorizontalGroup(
-            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTimKiemLayout.createSequentialGroup()
-                .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpnTitleLayout = new javax.swing.GroupLayout(jpnTitle);
+        jpnTitle.setLayout(jpnTitleLayout);
+        jpnTitleLayout.setHorizontalGroup(
+            jpnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnTitleLayout.createSequentialGroup()
+                .addComponent(jlbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jpnTimKiemLayout.setVerticalGroup(
-            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTimKiemLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+        jpnTitleLayout.setVerticalGroup(
+            jpnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jlbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtTimKiem)
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpnButton.setBackground(new java.awt.Color(255, 255, 255));
+        jpnTimKiem.setBackground(new java.awt.Color(255, 255, 255));
 
         jbtCapNhat.setBackground(new java.awt.Color(255, 51, 51));
         jbtCapNhat.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -174,25 +158,24 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jpnButtonLayout = new javax.swing.GroupLayout(jpnButton);
-        jpnButton.setLayout(jpnButtonLayout);
-        jpnButtonLayout.setHorizontalGroup(
-            jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnButtonLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
+        jpnTimKiem.setLayout(jpnTimKiemLayout);
+        jpnTimKiemLayout.setHorizontalGroup(
+            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnTimKiemLayout.createSequentialGroup()
                 .addComponent(jbtCapNhat)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-        jpnButtonLayout.setVerticalGroup(
-            jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnButtonLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jpnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jpnTimKiemLayout.setVerticalGroup(
+            jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTimKiemLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout jpnThanhTrenLayout = new javax.swing.GroupLayout(jpnThanhTren);
@@ -200,19 +183,16 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jpnThanhTrenLayout.setHorizontalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnThanhTrenLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpnTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         jpnThanhTrenLayout.setVerticalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpnTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jpnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jpnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jpnTable.setBackground(new java.awt.Color(153, 153, 255));
@@ -251,18 +231,20 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jpnTable.setLayout(jpnTableLayout);
         jpnTableLayout.setHorizontalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jspTable)
+            .addGroup(jpnTableLayout.createSequentialGroup()
+                .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1062, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpnTableLayout.setVerticalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jspTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jspTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnMainLayout = new javax.swing.GroupLayout(jpnMain);
         jpnMain.setLayout(jpnMainLayout);
         jpnMainLayout.setHorizontalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnMainLayout.createSequentialGroup()
+            .addGroup(jpnMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -372,7 +354,6 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jbtTimKiem;
     private javax.swing.JButton jbtXoa;
     private javax.swing.JLabel jlbTitle;
-    private javax.swing.JPanel jpnButton;
     private javax.swing.JPanel jpnMain;
     private javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnThanhTren;
