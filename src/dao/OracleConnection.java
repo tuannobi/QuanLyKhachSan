@@ -17,9 +17,9 @@ public class OracleConnection {
     try {
        
             Class.forName("oracle.jdbc.driver.OracleDriver"); //khai báo driver tương ứng với library 
-            String strConnString="jdbc:oracle:thin:@localhost:1521/orcl";
+//            String strConnString="jdbc:oracle:thin:@localhost:1521/orcl";
 
-        //   String strConnString="jdbc:oracle:thin:@localhost:1521/HHY";
+           String strConnString="jdbc:oracle:thin:@localhost:1521/HHY";
             conn=DriverManager.getConnection(strConnString, "newDataKS","123456");
 //            if (conn!=null){
 //                System.out.println("Kết nối thành công");
