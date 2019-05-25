@@ -21,9 +21,10 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     /**
      * Creates new form HienThiDanhSachChiTietDatPhongTruocJDialog
      */
-    ArrayList<PhieuDatPhongDTO> listPhieuDatPhong;
-    DefaultTableModel dtmPhieuDatPhong;
-    PhieuDatPhongDTO selectedPhieuDatPhongDTO;
+    static ArrayList<PhieuDatPhongDTO> listPhieuDatPhong;
+    static DefaultTableModel dtmPhieuDatPhong;
+    static PhieuDatPhongDTO selectedPhieuDatPhongDTO;
+    PhieuDatPhongDTO newPhieuDatPhongDTO;
     public HienThiDanhSachChiTietDatPhongTruocJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -37,7 +38,7 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         chuyenDuLieuVaoTable();
     }
     
-    private void  loadThongTinDatPhong(){
+     private static void  loadThongTinDatPhong(){
         listPhieuDatPhong=new ArrayList<>();
         listPhieuDatPhong=PhieuDatPhongBUS.getTatCaThongTinDatPhong();
     }
@@ -46,7 +47,7 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         listPhieuDatPhong=PhieuDatPhongBUS.timKiemPhieuDatPhong(tuKhoa);
     }
     
-    private void chuyenDuLieuVaoTable(){
+    private static void chuyenDuLieuVaoTable(){
         dtmPhieuDatPhong=(DefaultTableModel) jTable1.getModel();
         dtmPhieuDatPhong.setRowCount(0);
         for (PhieuDatPhongDTO phieuDatPhongDTO:listPhieuDatPhong){
@@ -61,6 +62,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
             dtmPhieuDatPhong.addRow(vec);
         }
         jTable1.setModel(dtmPhieuDatPhong);
+    }
+    
+    public static void refreshData(){
+        loadThongTinDatPhong();
+        chuyenDuLieuVaoTable();
     }
     
     /**
@@ -96,6 +102,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         jLabel2.setText("Tìm kiếm");
 
         jbtNhanPhong.setText("Nhận phòng");
+        jbtNhanPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtNhanPhongActionPerformed(evt);
+            }
+        });
 
         jbtHuyDatPhong.setText("Hủy đặt phòng");
         jbtHuyDatPhong.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +116,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         });
 
         jbtCapNhat.setText("Cập nhật");
+        jbtCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCapNhatActionPerformed(evt);
+            }
+        });
 
         jbtTimKiem.setText("Tìm kiếm");
         jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +253,26 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
             selectedPhieuDatPhongDTO=listPhieuDatPhong.get(selectedRow);
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jbtCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCapNhatActionPerformed
+       if (selectedPhieuDatPhongDTO==null){
+           JOptionPane.showMessageDialog(null, "Vui lòng chọn phiếu đặt phòng cần chỉnh sửa");
+       }
+       else
+        new HienThiFormSuaThongTinDatPhongJDialog(selectedPhieuDatPhongDTO.getMaPhieu());
+    }//GEN-LAST:event_jbtCapNhatActionPerformed
+
+    private void jbtNhanPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNhanPhongActionPerformed
+        if (selectedPhieuDatPhongDTO==null)
+            JOptionPane.showMessageDialog(null, "Chọn phiếu đặt phòng muốn nhận phòng");
+        else{
+        boolean check=PhieuDatPhongBUS.nhanPhongDaDat(selectedPhieuDatPhongDTO);
+        if (check)
+            JOptionPane.showMessageDialog(null, "Nhận phòng thành công");
+        else
+            JOptionPane.showMessageDialog(null, "Nhận phòng thất bại");
+            }
+    }//GEN-LAST:event_jbtNhanPhongActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,7 +284,7 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtHuyDatPhong;
     private javax.swing.JButton jbtNhanPhong;

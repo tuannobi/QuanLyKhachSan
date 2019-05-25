@@ -25,18 +25,23 @@ public class HienThiFormDienThongTinDatPhongJDialog extends javax.swing.JDialog 
 
     JPanelPhong selectedJPanelPhong;
     LoaiPhongDTO selectedLoaiPhongDTO;
+    JDateChooser jcTuNgay;
+    JDateChooser jcDenNgay;
     public HienThiFormDienThongTinDatPhongJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public HienThiFormDienThongTinDatPhongJDialog(JPanelPhong selectedJPanelPhong,LoaiPhongDTO selectedLoaiPhongDTO){
+    public HienThiFormDienThongTinDatPhongJDialog(JPanelPhong selectedJPanelPhong,LoaiPhongDTO selectedLoaiPhongDTO,JDateChooser jcTuNgay, JDateChooser jcDenNgay){
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
       //  setAlwaysOnTop(true);
         this.selectedJPanelPhong=selectedJPanelPhong;
+        this.jcTuNgay=jcTuNgay;
+        this.jcDenNgay=jcDenNgay;
         layThongTinPhongDaChon();
+        layThongTinThoiGian();
     }
 
     /**
@@ -515,6 +520,11 @@ public class HienThiFormDienThongTinDatPhongJDialog extends javax.swing.JDialog 
         jtfLoaiPhong.setText(selectedJPanelPhong.getTenLoaiPhong());
         jdcNgayDen.setDate(selectedJPanelPhong.getNgayDen());
         jdcNgayDi.setDate(selectedJPanelPhong.getNgayDi());
+    }
+    
+    public void layThongTinThoiGian(){
+        jdcNgayDen.setDate(jcTuNgay.getDate());
+        jdcNgayDi.setDate(jcDenNgay.getDate());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

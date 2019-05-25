@@ -126,4 +126,40 @@ public class PhieuDatPhongDAO {
         }
         return false;
     }
+    
+    public static boolean capNhatThongTinDatPhong(PhieuDatPhongDTO phieuDatPhongDTO){
+        try {
+            Connection conn=OracleConnection.openConnection();
+            String sql="{CALL PRO_UPDATE_PHIEUDATPHONG(?,?,?,?)}";
+            CallableStatement callableStatement=conn.prepareCall(sql);
+            callableStatement.setInt(1, phieuDatPhongDTO.getMaPhong());
+            callableStatement.setDate(2,new java.sql.Date(phieuDatPhongDTO.getNgayDen().getTime()));
+            callableStatement.setDate(3, new java.sql.Date(phieuDatPhongDTO.getNgayDi().getTime()));
+            callableStatement.setInt(4, phieuDatPhongDTO.getMaPhieu());
+             callableStatement.execute();
+             return true;
+                    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public static boolean nhanPhongDaDat(PhieuDatPhongDTO phieuDatPhongDTO){
+        try {
+            Connection conn=OracleConnection.openConnection();
+            String sql="{CALL PRO_NHANPHONG_PHIEUDATPHONG(?,?,?,?,?)}";
+            CallableStatement callableStatement=conn.prepareCall(sql);
+            callableStatement.setInt(1, phieuDatPhongDTO.getMaPhong());
+            callableStatement.setInt(2, phieuDatPhongDTO.getMaKH());
+            callableStatement.setInt(3, phieuDatPhongDTO.getMaNV());
+            callableStatement.setDate(4, new java.sql.Date(phieuDatPhongDTO.getNgayDen().getTime()));
+            callableStatement.setDate(5, new java.sql.Date(phieuDatPhongDTO.getNgayDi().getTime()));
+            callableStatement.execute();
+            return true;
+        } catch (Exception e) {
+            printStackTrace();
+        }
+        return false;
+    }
 }

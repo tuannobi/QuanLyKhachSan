@@ -118,6 +118,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;n ph&#xf2;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtNhanPhongActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbtHuyDatPhong">
               <Properties>
@@ -131,6 +134,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtCapNhatActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbtTimKiem">
               <Properties>
@@ -224,6 +230,9 @@
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

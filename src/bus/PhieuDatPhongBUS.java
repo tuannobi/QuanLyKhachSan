@@ -29,4 +29,12 @@ public class PhieuDatPhongBUS {
     public static boolean xoaDatPhong(int maPhieu){
         return PhieuDatPhongDAO.xoaDatPhong(maPhieu);
     }
+    
+    public static boolean capNhatThongTinDatPhong(PhieuDatPhongDTO phieuDatPhongDTO){
+        return PhieuDatPhongDAO.capNhatThongTinDatPhong(phieuDatPhongDTO);
+    }
+    
+    public static boolean nhanPhongDaDat(PhieuDatPhongDTO phieuDatPhongDTO){
+        return PhieuDatPhongDAO.nhanPhongDaDat(phieuDatPhongDTO);
+    }
 }

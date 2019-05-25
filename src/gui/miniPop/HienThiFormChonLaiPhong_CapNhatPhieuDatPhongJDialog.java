@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.miniPop;
 
 import bus.LoaiPhongBUS;
 import bus.PhongBUS;
+import com.toedter.calendar.JDateChooser;
 import dto.LoaiPhongDTO;
 import dto.PhongDTO;
-import gui.miniPop.HienThiDanhSachChiTietDatPhongTruocJDialog;
-import gui.miniPop.HienThiFormDienThongTinDatPhongJDialog;
-import gui.miniPop.HienThiThongTinPhong;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -25,6 +23,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 import newClass.JPanelPhong;
 
@@ -32,21 +31,36 @@ import newClass.JPanelPhong;
  *
  * @author Tuan
  */
-public class DatPhongJPanel extends javax.swing.JPanel {
+public class HienThiFormChonLaiPhong_CapNhatPhieuDatPhongJDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form QuanLyPhongJPanel
+     * Creates new form HienThiFormChonLaiPhong_CapNhatPhieuDatPhongJDialog
      */
-    public DatPhongJPanel() {
-        initComponents();
-        loadLoaiPhong();
-        loadData();
-    }
-
     private ArrayList<JPanelPhong> listPhongJPanels;
     private ArrayList<PhongDTO> listPhongDTOs;
     private ArrayList<Integer> listPhongDuocDat;
+    JTextField jtfMaPhong;
+    JDateChooser jdcNgayDen;
+    JDateChooser jdcNgayDi;
+    public HienThiFormChonLaiPhong_CapNhatPhieuDatPhongJDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+    }
 
+    
+    
+    public HienThiFormChonLaiPhong_CapNhatPhieuDatPhongJDialog(JTextField jtfMaPhong,
+    JDateChooser jdcNgayDen,
+    JDateChooser jdcNgayDi){
+        initComponents();
+        loadLoaiPhong();
+        loadData();
+        this.jtfMaPhong=jtfMaPhong;
+        this.jdcNgayDen=jdcNgayDen;
+        this.jdcNgayDi=jdcNgayDi;
+        setVisible(true);
+        setLocationRelativeTo(null);
+    }
     
     private void loadData(){
         listPhongJPanels=new ArrayList<JPanelPhong>();
@@ -115,7 +129,19 @@ public class DatPhongJPanel extends javax.swing.JPanel {
                 selectedJPanelPhong.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        HienThiFormDienThongTinDatPhongJDialog formDienThongTinDatPhongJDialog =new HienThiFormDienThongTinDatPhongJDialog(selectedJPanelPhong,(LoaiPhongDTO)jcbbLoaiPhong.getSelectedItem(),jcTuNgay,jcDenNgay);
+                        int check= JOptionPane.showConfirmDialog(null, "Xác nhận chọn phòng "+selectedJPanelPhong.getMaPhong()+" ?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+            if (check==JOptionPane.YES_OPTION){
+                jtfMaPhong.setText(Integer.toString(selectedJPanelPhong.getMaPhong()));
+                          jdcNgayDen.setDate(jcTuNgay.getDate());
+                          jdcNgayDi.setDate(jcDenNgay.getDate());
+                          dispose();
+            }
+            else if (check==JOptionPane.NO_OPTION){
+
+            }
+                          jtfMaPhong.setText(Integer.toString(selectedJPanelPhong.getMaPhong()));
+                          jdcNgayDen.setDate(jcTuNgay.getDate());
+                          jdcNgayDi.setDate(jcDenNgay.getDate());
                       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
 
@@ -163,9 +189,7 @@ public void xuLyHienThiListPhongDuocDat(){
         jpnHienThi.validate();
     }
     
-
-    
-        private void loadLoaiPhong(){
+private void loadLoaiPhong(){
             ArrayList<LoaiPhongDTO> listLoaiPhongDTOs= new ArrayList<>();
             listLoaiPhongDTOs=LoaiPhongBUS.getLoaiPhong();
             for(LoaiPhongDTO phong:listLoaiPhongDTOs){
@@ -173,6 +197,7 @@ public void xuLyHienThiListPhongDuocDat(){
             }
         }
     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,7 +207,7 @@ public void xuLyHienThiListPhongDuocDat(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
         jpnMain = new javax.swing.JPanel();
         jpnThanhTren = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -192,11 +217,10 @@ public void xuLyHienThiListPhongDuocDat(){
         jcTuNgay = new com.toedter.calendar.JDateChooser();
         jlbLoaiPhong = new javax.swing.JLabel();
         jcbbLoaiPhong = new javax.swing.JComboBox<>();
-        jbtDanhSachDatPhong = new javax.swing.JButton();
         jspHienThi = new javax.swing.JScrollPane();
         jpnHienThi = new javax.swing.JPanel();
 
-        setLayout(new java.awt.BorderLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpnThanhTren.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -219,13 +243,6 @@ public void xuLyHienThiListPhongDuocDat(){
             }
         });
 
-        jbtDanhSachDatPhong.setText("Danh sách đặt phòng");
-        jbtDanhSachDatPhong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtDanhSachDatPhongActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jpnThanhTrenLayout = new javax.swing.GroupLayout(jpnThanhTren);
         jpnThanhTren.setLayout(jpnThanhTrenLayout);
         jpnThanhTrenLayout.setHorizontalGroup(
@@ -239,15 +256,13 @@ public void xuLyHienThiListPhongDuocDat(){
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(77, 77, 77)
                 .addComponent(jlbLoaiPhong)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jcbbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(49, 49, 49)
                 .addComponent(jbtTimKiem)
-                .addGap(18, 18, 18)
-                .addComponent(jbtDanhSachDatPhong)
-                .addGap(25, 25, 25))
+                .addGap(64, 64, 64))
         );
         jpnThanhTrenLayout.setVerticalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,8 +280,7 @@ public void xuLyHienThiListPhongDuocDat(){
                                 .addComponent(jLabel2)
                                 .addComponent(jbtTimKiem)
                                 .addComponent(jlbLoaiPhong)
-                                .addComponent(jcbbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jbtDanhSachDatPhong)))))
+                                .addComponent(jcbbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -290,7 +304,7 @@ public void xuLyHienThiListPhongDuocDat(){
             .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpnMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jspHienThi, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addComponent(jspHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpnMainLayout.setVerticalGroup(
@@ -302,30 +316,50 @@ public void xuLyHienThiListPhongDuocDat(){
                 .addContainerGap())
         );
 
-        add(jpnMain, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 980, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 647, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
-    private void jcbbLoaiPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbLoaiPhongActionPerformed
-       // jcbbLoaiPhong.getSelectedItem();
-    }//GEN-LAST:event_jcbbLoaiPhongActionPerformed
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
         xuLyHienThiListPhongDuocDat();
         addEventEveryRoom();
-        
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
-    private void jbtDanhSachDatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDanhSachDatPhongActionPerformed
-        new HienThiDanhSachChiTietDatPhongTruocJDialog();
-    }//GEN-LAST:event_jbtDanhSachDatPhongActionPerformed
+    private void jcbbLoaiPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbLoaiPhongActionPerformed
+        // jcbbLoaiPhong.getSelectedItem();
+    }//GEN-LAST:event_jcbbLoaiPhongActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton jbtDanhSachDatPhong;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtTimKiem;
     private com.toedter.calendar.JDateChooser jcDenNgay;
     private com.toedter.calendar.JDateChooser jcTuNgay;
