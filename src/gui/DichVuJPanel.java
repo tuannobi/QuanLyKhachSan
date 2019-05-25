@@ -118,15 +118,20 @@ private void refreshDichVuTimKiem(String tk)
 
         jMenuItem1.setText("jMenuItem1");
 
+        setBackground(new java.awt.Color(153, 153, 255));
         setPreferredSize(new java.awt.Dimension(884, 359));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
-        jpnThanhTren.setBackground(new java.awt.Color(204, 204, 255));
+        jpnMain.setBackground(new java.awt.Color(153, 153, 255));
 
-        jpnTitle.setBackground(new java.awt.Color(204, 204, 255));
+        jpnThanhTren.setBackground(new java.awt.Color(255, 255, 255));
+        jpnThanhTren.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jpnTitle.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 255));
         jLabel1.setText("QUẢN LÝ DỊCH VỤ");
 
         javax.swing.GroupLayout jpnTitleLayout = new javax.swing.GroupLayout(jpnTitle);
@@ -141,21 +146,31 @@ private void refreshDichVuTimKiem(String tk)
         jpnTitleLayout.setVerticalGroup(
             jpnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnTitleLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpnTimKiem.setBackground(new java.awt.Color(204, 204, 255));
+        jpnTimKiem.setBackground(new java.awt.Color(255, 255, 255));
 
-        jbtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtTimKiem.setBackground(new java.awt.Color(0, 204, 204));
+        jbtTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jbtTimKiem.setForeground(new java.awt.Color(255, 255, 255));
+        jbtTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
         jbtTimKiem.setText("Tìm kiếm");
         jbtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbtTimKiemMouseClicked(evt);
             }
         });
+        jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtTimKiemActionPerformed(evt);
+            }
+        });
 
-        jtfTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfTimKiem.setBackground(new java.awt.Color(234, 234, 242));
+        jtfTimKiem.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jpnTimKiemLayout = new javax.swing.GroupLayout(jpnTimKiem);
         jpnTimKiem.setLayout(jpnTimKiemLayout);
@@ -164,8 +179,8 @@ private void refreshDichVuTimKiem(String tk)
             .addGroup(jpnTimKiemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jbtTimKiem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpnTimKiemLayout.setVerticalGroup(
@@ -173,26 +188,42 @@ private void refreshDichVuTimKiem(String tk)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTimKiemLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpnTimKiemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jbtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
-        jpn.setBackground(new java.awt.Color(204, 204, 255));
+        jpn.setBackground(new java.awt.Color(255, 255, 255));
 
-        jbtThem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtThem.setBackground(new java.awt.Color(0, 204, 102));
+        jbtThem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jbtThem.setForeground(new java.awt.Color(255, 255, 255));
+        jbtThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
         jbtThem.setText("Thêm");
         jbtThem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbtThemMouseClicked(evt);
             }
         });
+        jbtThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtThemActionPerformed(evt);
+            }
+        });
 
-        jbtCapNhat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtCapNhat.setBackground(new java.awt.Color(255, 51, 51));
+        jbtCapNhat.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jbtCapNhat.setForeground(new java.awt.Color(255, 255, 255));
+        jbtCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh-button.png"))); // NOI18N
         jbtCapNhat.setText("Cập nhật");
         jbtCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbtCapNhatMouseClicked(evt);
+            }
+        });
+        jbtCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCapNhatActionPerformed(evt);
             }
         });
 
@@ -201,20 +232,20 @@ private void refreshDichVuTimKiem(String tk)
         jpnLayout.setHorizontalGroup(
             jpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbtCapNhat)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jbtCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         jpnLayout.setVerticalGroup(
             jpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout jpnThanhTrenLayout = new javax.swing.GroupLayout(jpnThanhTren);
@@ -230,14 +261,16 @@ private void refreshDichVuTimKiem(String tk)
         );
         jpnThanhTrenLayout.setVerticalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpnThanhTrenLayout.createSequentialGroup()
-                .addGroup(jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpnTimKiem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jpn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jpnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jpnTable.setBackground(new java.awt.Color(153, 153, 255));
+
+        jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        tbDichVu.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         tbDichVu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -246,6 +279,7 @@ private void refreshDichVuTimKiem(String tk)
                 "Mã dịch vụ", "Tên dịch vụ", "Giá tiền", "Trạng thái"
             }
         ));
+        tbDichVu.setRowHeight(18);
         tbDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDichVuMouseClicked(evt);
@@ -257,26 +291,38 @@ private void refreshDichVuTimKiem(String tk)
         jpnTable.setLayout(jpnTableLayout);
         jpnTableLayout.setHorizontalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(jpnTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         jpnTableLayout.setVerticalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jpnMainLayout = new javax.swing.GroupLayout(jpnMain);
         jpnMain.setLayout(jpnMainLayout);
         jpnMainLayout.setHorizontalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpnMainLayout.createSequentialGroup()
+                .addGroup(jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jpnMainLayout.setVerticalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnMainLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jpnThanhTren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         add(jpnMain);
@@ -321,6 +367,18 @@ private void refreshDichVuTimKiem(String tk)
             refreshDichVuTimKiem(tk);
         }
     }//GEN-LAST:event_jbtTimKiemMouseClicked
+
+    private void jbtCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCapNhatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtCapNhatActionPerformed
+
+    private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtTimKiemActionPerformed
+
+    private void jbtThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtThemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

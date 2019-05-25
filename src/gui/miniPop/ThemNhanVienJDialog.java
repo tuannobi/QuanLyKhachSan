@@ -128,56 +128,70 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nhân viên");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 102, 0));
         jLabel1.setText("Họ tên");
 
         jtfHoVaten.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 102, 0));
         jLabel2.setText("Ngày sinh");
 
         jcNgaySinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 0));
         jLabel3.setText("Ngày vào làm");
 
         jcNgayVaoLam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 102, 0));
         jLabel4.setText("CMND");
 
         jtfCMND.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 102, 0));
         jLabel5.setText("Số  điện thoại");
 
         jtfSoDT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 102, 0));
         jLabel6.setText("Người quản lý");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 102, 0));
         jLabel7.setText("Email");
 
         jtfEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 102, 0));
         jLabel8.setText("Giới tính");
 
         jcbbGioiTinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jcbbGioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nam", "Nữ" }));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 102, 0));
         jLabel9.setText("Địa chỉ");
 
         jtfDiaChi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 102, 0));
         jLabel10.setText("Trạng thái");
 
         jcbbTrangThai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jcbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang làm", "Đã nghỉ" }));
 
+        jbtLuu.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jbtLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/save-button.png"))); // NOI18N
         jbtLuu.setText("Lưu");
         jbtLuu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -185,6 +199,8 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
             }
         });
 
+        jbtHuy.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jbtHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cancel.png"))); // NOI18N
         jbtHuy.setText("Hủy");
         jbtHuy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -236,10 +252,10 @@ public class ThemNhanVienJDialog extends javax.swing.JDialog {
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jbtHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                .addComponent(jbtHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

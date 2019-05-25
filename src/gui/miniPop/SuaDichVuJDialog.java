@@ -148,7 +148,6 @@ public class SuaDichVuJDialog extends javax.swing.JDialog {
 
         jpnButton.setBackground(new java.awt.Color(204, 204, 255));
 
-        jbtLuu.setBackground(new java.awt.Color(255, 51, 51));
         jbtLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/save-button.png"))); // NOI18N
         jbtLuu.setText("Lưu");
         jbtLuu.addMouseListener(new java.awt.event.MouseAdapter() {
