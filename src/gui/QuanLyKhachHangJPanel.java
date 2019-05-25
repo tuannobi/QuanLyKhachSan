@@ -110,9 +110,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             }
         });
 
-        jbtCapNhat.setBackground(new java.awt.Color(255, 51, 51));
         jbtCapNhat.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jbtCapNhat.setForeground(new java.awt.Color(255, 255, 255));
         jbtCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh-button.png"))); // NOI18N
         jbtCapNhat.setText("Cập nhật");
         jbtCapNhat.addActionListener(new java.awt.event.ActionListener() {
@@ -121,9 +119,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             }
         });
 
-        jbtXoa.setBackground(new java.awt.Color(51, 51, 255));
         jbtXoa.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jbtXoa.setForeground(new java.awt.Color(255, 255, 255));
         jbtXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png"))); // NOI18N
         jbtXoa.setText("Xóa");
         jbtXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +143,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
                 .addComponent(jbtCapNhat)
                 .addGap(30, 30, 30)
                 .addComponent(jbtXoa)
-                .addGap(322, 322, 322))
+                .addGap(167, 167, 167))
         );
         jpnThanhTrenLayout.setVerticalGroup(
             jpnThanhTrenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +193,7 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
         jpnTable.setLayout(jpnTableLayout);
         jpnTableLayout.setHorizontalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jspTable)
+            .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1184, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jpnTableLayout.setVerticalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,9 +207,9 @@ public class QuanLyKhachHangJPanel extends javax.swing.JPanel {
             .addGroup(jpnMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpnThanhTren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpnThanhTren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnMainLayout.setVerticalGroup(
             jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
