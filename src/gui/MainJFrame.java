@@ -310,6 +310,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <<<<<<< HEAD
+<<<<<<< HEAD
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
@@ -322,6 +323,13 @@ public class MainJFrame extends javax.swing.JFrame {
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 658, Short.MAX_VALUE)
 >>>>>>> 3759d9d23007bd4a613954ad86ea360404837f26
+=======
+            .addGap(0, 1103, Short.MAX_VALUE)
+        );
+        jpnViewLayout.setVerticalGroup(
+            jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+>>>>>>> parent of 3759d9d... Chỉnh lại
         );
 
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
