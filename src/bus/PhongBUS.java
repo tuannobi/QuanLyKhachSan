@@ -30,16 +30,16 @@ public class PhongBUS {
        return PhongDAO.getCacPhongDuocThue( y, maPhong);
    }
    
-   public static boolean luuThongTinThuePhong(PhongDTO phongDTO,LoaiPhongDTO loaiPhongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
-       return PhongDAO.luuThongTinThuePhong(phongDTO,loaiPhongDTO, khachHangDTO, nhanVienDTO);
+   public static boolean luuThongTinThuePhong(PhongDTO phongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
+       return PhongDAO.luuThongTinThuePhong(phongDTO,khachHangDTO, nhanVienDTO);
    }
 
    public static ArrayList<Integer> getCacPhongDuocDat(Date x, Date y, int loaiPhong){
        return PhongDAO.getCacPhongDuocDat(x, y, loaiPhong);
    }
    
-   public static boolean luuThongTinDatPhong(PhongDTO phongDTO,LoaiPhongDTO loaiPhongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
-       return PhongDAO.luuThongTinDatPhong(phongDTO,loaiPhongDTO, khachHangDTO, nhanVienDTO);
+   public static boolean luuThongTinDatPhong(PhongDTO phongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
+       return PhongDAO.luuThongTinDatPhong(phongDTO,khachHangDTO, nhanVienDTO);
    }
 
 }

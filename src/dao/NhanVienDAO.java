@@ -86,9 +86,14 @@ public class NhanVienDAO {
         return -1; //Sai
     }
     
+<<<<<<< HEAD
 
      public static int capNhatDuLieu(NhanVienDTO nv,JComboBox ten){
 
+=======
+     public static int capNhatDuLieu(NhanVienDTO nv,JComboBox ten){
+    // public static int capNhatDuLieu(NhanVienDTO nv){
+>>>>>>> fab3dbb26b42b5e50778507ba43b1c6cc8aaa3c7
         try {
             //String sql="update NhanVienDTO set HOTEN=?,ngaysinh=?,ngayvaolam=?,cmnd=?,sodt=?,manguoiquanly=?,gioitinh=?,email=?,diachi=?,trangthai=? where manhanvien=?";     
             String sql="{CALL PROC_SUANHANVIEN(?,?,?,?,?,?,?,?,?,?,?)}";
@@ -198,9 +203,14 @@ public class NhanVienDAO {
        return nv;
    }
 
+<<<<<<< HEAD
 
    public static int themNhanVien(NhanVienDTO nv,JComboBox ten)
 
+=======
+   public static int themNhanVien(NhanVienDTO nv,JComboBox ten)
+ //  public static int themNhanVien(NhanVienDTO nv)
+>>>>>>> fab3dbb26b42b5e50778507ba43b1c6cc8aaa3c7
    {
        
        String sql="{CALL PROC_THEMNHANVIEN(?,?,?,?,?,?,?,?,?,?)}";

@@ -487,7 +487,7 @@ public class HienThiFormDienThongTinThuePhongJDialog extends javax.swing.JDialog
         phongDTO.setMaPhong(Integer.parseInt(jtfMaPhong.getText()));
         phongDTO.setNgayDen(jdcNgayDen.getDate());
         phongDTO.setNgayDi(jdcNgayDi.getDate());
-        boolean check=PhongBUS.luuThongTinThuePhong(phongDTO,selectedLoaiPhongDTO, khachHangDTO, nhanVienDTO);
+        boolean check=PhongBUS.luuThongTinThuePhong(phongDTO, khachHangDTO, nhanVienDTO);
         if (check){
             JOptionPane.showMessageDialog(null, "Đặt phòng thành công");
             dispose();

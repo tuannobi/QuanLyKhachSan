@@ -83,10 +83,10 @@ public class PhongDAO {
        return listMaPhong;
    }
    
-   public static boolean luuThongTinThuePhong(PhongDTO phongDTO,LoaiPhongDTO loaiPhongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
+   public static boolean luuThongTinThuePhong(PhongDTO phongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
        try {
            Connection conn =OracleConnection.openConnection();
-       String getCursorsql="{call PRO_NHAPTHONGTINTHUEPHONG(?,?,?,?,?,?,?,?,?,?,?,?)}";
+       String getCursorsql="{call PRO_NHAPTHONGTINTHUEPHONG(?,?,?,?,?,?,?,?,?,?,?)}";
        CallableStatement callableStatement=conn.prepareCall(getCursorsql);
        callableStatement.setString(1, khachHangDTO.getHoTen());
        callableStatement.setDate(2, new java.sql.Date(khachHangDTO.getNgaySinh().getTime()));
@@ -99,7 +99,6 @@ public class PhongDAO {
        callableStatement.setInt(9, nhanVienDTO.getMaNhanVien());
        callableStatement.setDate(10, new java.sql.Date(phongDTO.getNgayDen().getTime()));
        callableStatement.setDate(11, new java.sql.Date(phongDTO.getNgayDi().getTime()));
-       callableStatement.setInt(12, loaiPhongDTO.getMaLoaiPhong());
        callableStatement.execute();
        return true;
        } catch (Exception e) {
@@ -144,10 +143,10 @@ public class PhongDAO {
        return listMaPhong;
    }
    
-   public static boolean luuThongTinDatPhong(PhongDTO phongDTO, LoaiPhongDTO loaiPhongDTO, KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
+   public static boolean luuThongTinDatPhong(PhongDTO phongDTO,KhachHangDTO khachHangDTO, NhanVienDTO nhanVienDTO){
        try {
            Connection conn =OracleConnection.openConnection();
-       String getCursorsql="{call DATTRUOC(?,?,?,?,?,?,?,?,?,?,?,?)}";
+       String getCursorsql="{call DATTRUOC(?,?,?,?,?,?,?,?,?,?,?)}";
        CallableStatement callableStatement=conn.prepareCall(getCursorsql);
        callableStatement.setString(1, khachHangDTO.getHoTen());
        callableStatement.setDate(2, new java.sql.Date(khachHangDTO.getNgaySinh().getTime()));
@@ -160,7 +159,6 @@ public class PhongDAO {
        callableStatement.setInt(9, nhanVienDTO.getMaNhanVien());
        callableStatement.setDate(10, new java.sql.Date(phongDTO.getNgayDen().getTime()));
        callableStatement.setDate(11, new java.sql.Date(phongDTO.getNgayDi().getTime()));
-       callableStatement.setInt(12, loaiPhongDTO.getMaLoaiPhong());
        callableStatement.execute();
        return true;
        } catch (Exception e) {

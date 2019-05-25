@@ -5,6 +5,13 @@
  */
 package gui.miniPop;
 
+import bus.PhieuDatPhongBUS;
+import dto.PhieuDatPhongDTO;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Tuan
@@ -14,6 +21,9 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     /**
      * Creates new form HienThiDanhSachChiTietDatPhongTruocJDialog
      */
+    ArrayList<PhieuDatPhongDTO> listPhieuDatPhong;
+    DefaultTableModel dtmPhieuDatPhong;
+    PhieuDatPhongDTO selectedPhieuDatPhongDTO;
     public HienThiDanhSachChiTietDatPhongTruocJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -23,7 +33,36 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        loadThongTinDatPhong();
+        chuyenDuLieuVaoTable();
     }
+    
+    private void  loadThongTinDatPhong(){
+        listPhieuDatPhong=new ArrayList<>();
+        listPhieuDatPhong=PhieuDatPhongBUS.getTatCaThongTinDatPhong();
+    }
+    
+    private void loadThongTinTimKiemDuoc(String tuKhoa){
+        listPhieuDatPhong=PhieuDatPhongBUS.timKiemPhieuDatPhong(tuKhoa);
+    }
+    
+    private void chuyenDuLieuVaoTable(){
+        dtmPhieuDatPhong=(DefaultTableModel) jTable1.getModel();
+        dtmPhieuDatPhong.setRowCount(0);
+        for (PhieuDatPhongDTO phieuDatPhongDTO:listPhieuDatPhong){
+            Vector<Object> vec=new Vector<>();
+
+            vec.add(phieuDatPhongDTO.getTenKH());
+            vec.add(phieuDatPhongDTO.getTenNV());
+            vec.add(phieuDatPhongDTO.getMaPhong());
+            vec.add(phieuDatPhongDTO.getNgayDat());
+            vec.add(phieuDatPhongDTO.getNgayDen());
+            vec.add(phieuDatPhongDTO.getNgayDi());
+            dtmPhieuDatPhong.addRow(vec);
+        }
+        jTable1.setModel(dtmPhieuDatPhong);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,10 +76,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jtfTimKiem = new javax.swing.JTextField();
+        jbtNhanPhong = new javax.swing.JButton();
+        jbtHuyDatPhong = new javax.swing.JButton();
+        jbtCapNhat = new javax.swing.JButton();
+        jbtTimKiem = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -55,11 +95,23 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Tìm kiếm");
 
-        jButton1.setText("Nhận phòng");
+        jbtNhanPhong.setText("Nhận phòng");
 
-        jButton2.setText("Hủy đặt phòng");
+        jbtHuyDatPhong.setText("Hủy đặt phòng");
+        jbtHuyDatPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtHuyDatPhongActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Cập nhật");
+        jbtCapNhat.setText("Cập nhật");
+
+        jbtTimKiem.setText("Tìm kiếm");
+        jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -71,14 +123,16 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtTimKiem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jbtNhanPhong)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtCapNhat)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(jbtHuyDatPhong)
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,10 +141,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtNhanPhong)
+                    .addComponent(jbtHuyDatPhong)
+                    .addComponent(jbtCapNhat)
+                    .addComponent(jbtTimKiem))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -102,6 +157,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
                 "Tên khách hàng", "Tên nhân viên", "Mã phòng", "Ngày đặt", "Ngày đến", "Ngày đi"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -140,52 +200,48 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
+            loadThongTinTimKiemDuoc(jtfTimKiem.getText());
+            chuyenDuLieuVaoTable();
+    }//GEN-LAST:event_jbtTimKiemActionPerformed
+
+    private void jbtHuyDatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHuyDatPhongActionPerformed
+        if (selectedPhieuDatPhongDTO==null){
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn phiếu cần hủy đặt phòng");
+        }
+            else
+            {
+                    int check= JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa phiếu đặt phòng này không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+          if (check==JOptionPane.YES_OPTION){
+              boolean flag=PhieuDatPhongBUS.xoaDatPhong(selectedPhieuDatPhongDTO.getMaPhieu());
+              loadThongTinDatPhong();
+              chuyenDuLieuVaoTable();
+              if (flag)
+                  JOptionPane.showMessageDialog(null, "Xóa thành công");
+                  else
+                  JOptionPane.showMessageDialog(null, "Xóa thất bại");
+              
+          }
+          else if (check==JOptionPane.NO_OPTION){
+              
+          }
+        }
+    }//GEN-LAST:event_jbtHuyDatPhongActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        selectedPhieuDatPhongDTO=new PhieuDatPhongDTO();
+        int selectedRow=jTable1.getSelectedRow();
+        if (selectedRow==-1)
+            return;
+        else
+            selectedPhieuDatPhongDTO=listPhieuDatPhong.get(selectedRow);
+    }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HienThiDanhSachChiTietDatPhongTruocJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HienThiDanhSachChiTietDatPhongTruocJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HienThiDanhSachChiTietDatPhongTruocJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HienThiDanhSachChiTietDatPhongTruocJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                HienThiDanhSachChiTietDatPhongTruocJDialog dialog = new HienThiDanhSachChiTietDatPhongTruocJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -193,6 +249,10 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbtCapNhat;
+    private javax.swing.JButton jbtHuyDatPhong;
+    private javax.swing.JButton jbtNhanPhong;
+    private javax.swing.JButton jbtTimKiem;
+    private javax.swing.JTextField jtfTimKiem;
     // End of variables declaration//GEN-END:variables
 }

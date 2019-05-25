@@ -27,9 +27,14 @@ public class NhanVienBus {
         return NhanVienDAO.xoaDuLieu(manv);
     }
     
+<<<<<<< HEAD
 
     public static int suaNhanVien(NhanVienDTO nv,JComboBox ten)
 
+=======
+    public static int suaNhanVien(NhanVienDTO nv,JComboBox ten)
+   // public static int suaNhanVien(NhanVienDTO nv)
+>>>>>>> fab3dbb26b42b5e50778507ba43b1c6cc8aaa3c7
     {
         return NhanVienDAO.capNhatDuLieu(nv,ten);
     }
@@ -39,9 +44,14 @@ public class NhanVienBus {
         return NhanVienDAO.loadComboBoxTenNguoiQuanLy(ten);
     }
     
+<<<<<<< HEAD
 
     public static int themNhanVien(NhanVienDTO nv,JComboBox ten)
 
+=======
+    public static int themNhanVien(NhanVienDTO nv,JComboBox ten)
+   // public static int themNhanVien(NhanVienDTO nv)
+>>>>>>> fab3dbb26b42b5e50778507ba43b1c6cc8aaa3c7
     {
         return NhanVienDAO.themNhanVien(nv,ten);
     }

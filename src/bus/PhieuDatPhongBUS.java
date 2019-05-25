@@ -17,4 +17,16 @@ public class PhieuDatPhongBUS {
     public static ArrayList<PhieuDatPhongDTO> getThongTinDatPhongCuThe1Phong(int maPhong){
         return PhieuDatPhongDAO.getThongTinDatPhongCuThe1Phong(maPhong);
     }
+    
+    public static ArrayList<PhieuDatPhongDTO> getTatCaThongTinDatPhong(){
+        return PhieuDatPhongDAO.getTatCaThongTinDatPhong();
+    }
+    
+    public static ArrayList<PhieuDatPhongDTO> timKiemPhieuDatPhong(String tuKhoa){
+        return PhieuDatPhongDAO.timKiemPhieuDatPhong(tuKhoa);
+    }
+    
+    public static boolean xoaDatPhong(int maPhieu){
+        return PhieuDatPhongDAO.xoaDatPhong(maPhieu);
+    }
 }
