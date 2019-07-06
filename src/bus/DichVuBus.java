@@ -15,15 +15,11 @@ import javax.swing.JOptionPane;
  * @author COMPUTER
  */
 public class DichVuBus {
-    public static ArrayList<DichVu>getDuLieuDichVu()
+    public static ArrayList<DichVu>layDuLieuDichVu()
     {
-        return DichVuDAO.getDuLieuDichVu();
+        return DichVuDAO.layDuLieuDichVu();
     }
     
-//    public static  int xoaDichVu(int madv)
-//    {
-//        return DichVuDAO.xoaDuLieu(madv);
-//    }
     
     public static int themDichVu(DichVu dv)
     {
@@ -38,5 +34,9 @@ public class DichVuBus {
     public static ArrayList<DichVu> timKiemDichVu(String tk)
     {
         return DichVuDAO.timKiemDichVu(tk);
+    }
+    
+    public static ArrayList<DichVu> layDanhSachDichVuCoTheDatDuoc(){
+        return DichVuDAO.layDanhSachDichVuCoTheDatDuoc();
     }
 }

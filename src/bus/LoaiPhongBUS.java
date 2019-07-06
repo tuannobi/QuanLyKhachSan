@@ -9,13 +9,18 @@ package bus;
 import dao.LoaiPhongDAO;
 import dto.LoaiPhongDTO;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import newClass.JPanelPhong;
 
 /**
  *
  * @author Tuan
  */
 public class LoaiPhongBUS {
-     public static ArrayList<LoaiPhongDTO> getLoaiPhong(){
-       return LoaiPhongDAO.getLoaiPhong();
-   }
+    
+    public static ArrayList<LoaiPhongDTO> layDuLieuLoaiPhong(){
+        return LoaiPhongDAO.layDuLieuLoaiPhong();
+    }
+    
 }

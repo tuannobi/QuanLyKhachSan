@@ -49,12 +49,12 @@ public class PhieuDatPhongDAO {
         return listDatPhong;
     }
     
-    public static ArrayList<PhieuDatPhongDTO> getTatCaThongTinDatPhong(){
+    public static ArrayList<PhieuDatPhongDTO> layThongTinPhieuDatPhong(){
         ArrayList<PhieuDatPhongDTO> phieuDatPhongDTOs=null;
         Connection conn=OracleConnection.openConnection();
         try {
             phieuDatPhongDTOs=new ArrayList<>();
-            String sql="{CALL PRO_LOADPHIEUDATPHONG(?)}";
+            String sql="{CALL PRO_HIENTHITTPHIEUDATPHONG(?)}";
             CallableStatement callableStatement=conn.prepareCall(sql);
             callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
             callableStatement.execute();
@@ -83,15 +83,12 @@ public class PhieuDatPhongDAO {
         try {
             Connection conn=OracleConnection.openConnection();
             listPhieuDatPhong=new ArrayList<>();
-            String sql="{CALL PRO_TIMKIEM_PHIEUDATPHONG(?,?,?,?,?)}";
+            String sql="{CALL PRO_TIMKIEMPHIEUDATPHONG(?,?)}";
             CallableStatement callableStatement=conn.prepareCall(sql);
             callableStatement.setString(1, tuKhoa);
-            callableStatement.setString(2, tuKhoa);
-            callableStatement.setString(3, tuKhoa);
-            callableStatement.setString(4, tuKhoa);
-            callableStatement.registerOutParameter(5, OracleTypes.CURSOR);
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
             callableStatement.execute();
-            ResultSet rs=(ResultSet) callableStatement.getObject(5);
+            ResultSet rs=(ResultSet) callableStatement.getObject(2);
             while(rs.next()){
                 PhieuDatPhongDTO phieuDatPhongDTO=new PhieuDatPhongDTO();
                 phieuDatPhongDTO.setMaPhieu(rs.getInt(1));
@@ -113,10 +110,10 @@ public class PhieuDatPhongDAO {
         return listPhieuDatPhong;
     }
     
-    public static boolean xoaDatPhong(int maPhieu){
+    public static boolean huyDatPhong(int maPhieu){
         try {
             Connection conn=OracleConnection.openConnection();
-            String sql="{CALL PRO_HUY_PHIEUDATPHONG(?)}";
+            String sql="{CALL PRO_HUYPHIEUDATPHONG(?)}";
             CallableStatement callableStatement=conn.prepareCall(sql);
             callableStatement.setInt(1, maPhieu);
             callableStatement.execute();
@@ -127,28 +124,11 @@ public class PhieuDatPhongDAO {
         return false;
     }
     
-    public static boolean capNhatThongTinDatPhong(PhieuDatPhongDTO phieuDatPhongDTO){
-        try {
-            Connection conn=OracleConnection.openConnection();
-            String sql="{CALL PRO_UPDATE_PHIEUDATPHONG(?,?,?,?)}";
-            CallableStatement callableStatement=conn.prepareCall(sql);
-            callableStatement.setInt(1, phieuDatPhongDTO.getMaPhong());
-            callableStatement.setDate(2,new java.sql.Date(phieuDatPhongDTO.getNgayDen().getTime()));
-            callableStatement.setDate(3, new java.sql.Date(phieuDatPhongDTO.getNgayDi().getTime()));
-            callableStatement.setInt(4, phieuDatPhongDTO.getMaPhieu());
-             callableStatement.execute();
-             return true;
-                    
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
     
     public static boolean nhanPhongDaDat(PhieuDatPhongDTO phieuDatPhongDTO){
         try {
             Connection conn=OracleConnection.openConnection();
-            String sql="{CALL PRO_NHANPHONG_PHIEUDATPHONG(?,?,?,?,?)}";
+            String sql="{CALL PRO_NHANPHONGDADATTRUOC(?,?,?,?,?)}";
             CallableStatement callableStatement=conn.prepareCall(sql);
             callableStatement.setInt(1, phieuDatPhongDTO.getMaPhong());
             callableStatement.setInt(2, phieuDatPhongDTO.getMaKH());

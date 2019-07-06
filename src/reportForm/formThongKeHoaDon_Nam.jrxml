@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ThongKeHoaDon" language="groovy" pageWidth="595" pageHeight="700" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="408c064d-0fb2-4274-a68f-a997cc743864">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="14"/>
+	<parameter name="TUNGAY" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DENNGAY" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT HD.NGAYDI,EXTRACT(MONTH FROM NGAYDI),EXTRACT(YEAR FROM NGAYDI),sum(HD.TONGTIENTHANHTOAN)
+    FROM HOADON HD
+        WHERE HD.TRANGTHAI='Đã thanh toán' AND HD.NGAYDI>=$P{TUNGAY} AND HD.NGAYDI<=$P{DENNGAY}
+    GROUP BY HD.NGAYDI, EXTRACT(MONTH FROM NGAYDI),EXTRACT(YEAR FROM NGAYDI),HD.TONGTIEN
+    ORDER BY HD.NGAYDI, EXTRACT(MONTH FROM NGAYDI),EXTRACT(YEAR FROM NGAYDI) DESC]]>
+	</queryString>
+	<field name="NGAYDI" class="java.sql.Timestamp"/>
+	<field name="EXTRACT(MONTHFROMNGAYDI)" class="java.math.BigDecimal"/>
+	<field name="EXTRACT(YEARFROMNGAYDI)" class="java.math.BigDecimal"/>
+	<field name="SUM(HD.TONGTIENTHANHTOAN)" class="java.math.BigDecimal"/>
+	<variable name="EXTRACT(MONTHFROMNGAYDI)_1" class="java.math.BigDecimal" resetType="Group" resetGroup="MONTH" calculation="Sum">
+		<variableExpression><![CDATA[$F{EXTRACT(MONTHFROMNGAYDI)}]]></variableExpression>
+	</variable>
+	<variable name="EXTRACT(YEARFROMNGAYDI)_1" class="java.math.BigDecimal" resetType="Group" resetGroup="YEAR" calculation="Sum">
+		<variableExpression><![CDATA[$F{EXTRACT(YEARFROMNGAYDI)}]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIEN)_1" class="java.math.BigDecimal" resetType="Group" resetGroup="MONTH" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIEN)_2" class="java.math.BigDecimal" resetType="Group" resetGroup="YEAR" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIEN)_3" class="java.math.BigDecimal" resetType="Group" resetGroup="MONTH" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIEN)_4" class="java.math.BigDecimal" resetType="Group" resetGroup="YEAR" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIEN)_5" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIEN)_6" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIENTHANHTOAN)_1" class="java.math.BigDecimal" resetType="Group" resetGroup="MONTH" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM(HD.TONGTIENTHANHTOAN)}]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIENTHANHTOAN)_2" class="java.math.BigDecimal" resetType="Group" resetGroup="YEAR" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM(HD.TONGTIENTHANHTOAN)}]]></variableExpression>
+	</variable>
+	<variable name="SUM(HD.TONGTIENTHANHTOAN)_3" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM(HD.TONGTIENTHANHTOAN)}]]></variableExpression>
+	</variable>
+	<group name="YEAR">
+		<groupExpression><![CDATA[$F{EXTRACT(YEARFROMNGAYDI)}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<rectangle>
+					<reportElement x="75" y="0" width="400" height="20" backcolor="#99CCFF" uuid="3ec21154-81ea-4b9e-9168-75f5b3eec639"/>
+				</rectangle>
+				<textField>
+					<reportElement x="75" y="0" width="100" height="20" uuid="435f7f37-d9f1-4a98-9aaf-9a2e617acbb1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{EXTRACT(YEARFROMNGAYDI)}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<rectangle>
+					<reportElement x="75" y="0" width="400" height="20" backcolor="#00CCCC" uuid="a9dc859f-97ce-4f10-8998-81b8639d0558"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="75" y="0" width="300" height="20" uuid="004c040a-b92d-4385-a95e-bf545a69e9e5"/>
+					<text><![CDATA[Tổng doanh thu năm]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="375" y="0" width="100" height="20" uuid="8e50a818-517d-4271-99a1-a8ff5195cb16"/>
+					<textFieldExpression><![CDATA[$V{SUM(HD.TONGTIENTHANHTOAN)_2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="MONTH">
+		<groupExpression><![CDATA[$F{EXTRACT(MONTHFROMNGAYDI)}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<rectangle>
+					<reportElement x="175" y="0" width="300" height="20" backcolor="#CCFFCC" uuid="d57538fc-76af-4306-8952-bad514104b13"/>
+				</rectangle>
+				<textField>
+					<reportElement x="175" y="0" width="100" height="20" uuid="920faf41-6d2f-469f-b2ad-31b3aa3f636e"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{EXTRACT(MONTHFROMNGAYDI)}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<rectangle>
+					<reportElement x="175" y="0" width="300" height="20" uuid="d1df4565-4787-4e0f-8ba7-a40ed9b6bc07"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="175" y="0" width="200" height="20" uuid="5dd3e347-a882-4344-9c5a-753ab8b2d327"/>
+					<text><![CDATA[Tổng doanh thu tháng]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="375" y="0" width="100" height="20" uuid="fa9952aa-f666-49da-bd2c-bca332fa26e1"/>
+					<textFieldExpression><![CDATA[$V{SUM(HD.TONGTIENTHANHTOAN)_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="DAY">
+		<groupExpression><![CDATA[$F{NGAYDI}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135">
+			<rectangle>
+				<reportElement x="-10" y="0" width="576" height="125" backcolor="#009999" uuid="f8756c34-c0ae-428b-b135-8909d041b86b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="106" y="17" width="328" height="38" forecolor="#FFFFFF" uuid="de8a9336-a2ee-4e3a-acd0-c7b61e50f7a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU THEO NĂM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="66" width="56" height="20" forecolor="#FFFFFF" uuid="6d7b1fed-a9d7-48b2-83d4-94d51b8a719b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ngày in:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="465" y="66" width="100" height="20" forecolor="#FFFFFF" uuid="3303991d-023a-4b94-b32b-88a75120251e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="86" width="100" height="20" forecolor="#FFFFFF" uuid="a609f08a-4b47-4a98-bf56-c2d6f1d0b15a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{TUNGAY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="86" width="100" height="20" forecolor="#FFFFFF" uuid="c3371502-ff63-4dcf-b4c5-9abbe82e745f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DENNGAY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="86" width="13" height="20" forecolor="#FFFFFF" uuid="b95fd2dd-ef3c-4aab-9cce-af7efbfc4506"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="364" y="10" width="70" height="20" uuid="16f74bea-5f3b-4968-a26e-983b0e60d3be"/>
+				<text><![CDATA[Đơn vị tính:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="10" width="43" height="20" uuid="e22e6131-a89a-49fd-bdb9-f37b8d15285b"/>
+				<text><![CDATA[VND]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="75" y="0" width="400" height="20" backcolor="#CCCCFF" uuid="95941538-8a36-43d1-aead-a74ec6168087"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="275" y="0" width="100" height="20" uuid="afe9e745-9e64-434f-903e-1e25cdcacb8c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ngày đi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="0" width="100" height="20" uuid="f1f1bc7e-ac17-4ae9-9e13-ac0f77c42f47"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Năm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="0" width="100" height="20" uuid="5563516f-884d-45f6-86ef-08797e745192"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tháng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="0" width="100" height="20" uuid="f27a03c1-8f27-456f-bc62-30f1bc3beb50"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Doanh thu]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="275" y="0" width="100" height="20" backcolor="#66FF66" uuid="49a067e6-e10d-45b3-929e-eb7d5e2ffcd7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NGAYDI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="375" y="0" width="100" height="20" backcolor="#66FF66" uuid="851dc858-0d1d-4cb7-b249-7c0361c02ce8"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SUM(HD.TONGTIENTHANHTOAN)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<staticText>
+				<reportElement x="275" y="10" width="100" height="20" uuid="48455b15-cf0c-4884-b231-c7fc48c75f2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tổng doanh thu:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="10" width="100" height="20" uuid="013883bb-01f8-4f86-b22d-085ae5068c0b"/>
+				<textFieldExpression><![CDATA[$V{SUM(HD.TONGTIENTHANHTOAN)_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

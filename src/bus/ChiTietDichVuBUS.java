@@ -17,4 +17,12 @@ public class ChiTietDichVuBUS {
     public static ArrayList<ChiTietDichVuDTO> getChiTietDichVuCuaKhachHang(int maPhong){
        return  ChiTietDichVuDAO.getChiTietDichVuCuaKhachHang(maPhong);
     }
+    
+    public static boolean luuThongTinDatDichVu(ArrayList<ChiTietDichVuDTO> listHoaDonDichVuDTO){
+        for(ChiTietDichVuDTO hoaDonDichVuDTO:listHoaDonDichVuDTO){
+            if (ChiTietDichVuDAO.luuThongTinDatDichVu(hoaDonDichVuDTO)==false)
+            return false;
+        }
+        return true;
+    }
 }

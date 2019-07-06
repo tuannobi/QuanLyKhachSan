@@ -19,6 +19,8 @@ public class KhachHangDTO {
     String SDT;
     String trangThai;
     String loaiKH;
+    int maLoaiKH;
+    long doanhSo;
 
     public String getLoaiKH() {
         return loaiKH;
@@ -99,5 +101,22 @@ public class KhachHangDTO {
     public void setLoaiKH(String loaiKH) {
         this.loaiKH = loaiKH;
     }
+
+    public int getMaLoaiKH() {
+        return maLoaiKH;
+    }
+
+    public void setMaLoaiKH(int maLoaiKH) {
+        this.maLoaiKH = maLoaiKH;
+    }
+
+    public long getDoanhSo() {
+        return doanhSo;
+    }
+
+    public void setDoanhSo(long doanhSo) {
+        this.doanhSo = doanhSo;
+    }
+    
     
 }

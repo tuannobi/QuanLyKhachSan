@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class PhongDTO {
     int maPhong;
+    int maLoaiPhong;
     String tenLoaiPhong;
     String trangThai;
     long giaPhong;
@@ -26,7 +27,8 @@ public class PhongDTO {
 
         private String hotenNV;
         private int cmndNV;
-        
+        private int maHoaDon;
+        private String trangThaiHoaDon;
         
     public int getMaPhong() {
         return maPhong;
@@ -107,5 +109,31 @@ public class PhongDTO {
     public void setCmndNV(int cmndNV) {
         this.cmndNV = cmndNV;
     }
+
+    public int getMaLoaiPhong() {
+        return maLoaiPhong;
+    }
+
+    public void setMaLoaiPhong(int maLoaiPhong) {
+        this.maLoaiPhong = maLoaiPhong;
+    }
+
+    public int getMaHoaDon() {
+        return maHoaDon;
+    }
+
+    public void setMaHoaDon(int maHoaDon) {
+        this.maHoaDon = maHoaDon;
+    }
+
+    public String getTrangThaiHoaDon() {
+        return trangThaiHoaDon;
+    }
+
+    public void setTrangThaiHoaDon(String trangThaiHoaDon) {
+        this.trangThaiHoaDon = trangThaiHoaDon;
+    }
+    
+    
     
 }

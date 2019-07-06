@@ -17,9 +17,18 @@ import javax.swing.JComboBox;
  */
 public class NhanVienBus {
     
-    public static ArrayList<NhanVienDTO>getDuLieuNhanVien() throws SQLException
+    public static ArrayList<NhanVienDTO>layDuLieuNhanVien() throws SQLException
     {
-        return NhanVienDAO.getDuLieuNhanVien();
+        return NhanVienDAO.layDuLieuNhanVien();
+    }
+    
+        public static int themNhanVien(NhanVienDTO nv)
+    {
+        return NhanVienDAO.themNhanVien(nv);
+    }
+    
+        public static int capNhatThongTinNhanVien(NhanVienDTO nv){
+        return NhanVienDAO.capNhatThongTinNhanVien(nv);
     }
     
     public static  int xoaNhanVien(int manv)
@@ -27,30 +36,14 @@ public class NhanVienBus {
         return NhanVienDAO.xoaDuLieu(manv);
     }
     
-
-
-    public static int suaNhanVien(NhanVienDTO nv,JComboBox ten)
-
-
-    {
-        return NhanVienDAO.capNhatDuLieu(nv,ten);
-    }
-    
-    public static ArrayList<NhanVienDTO> loadComboBoxTenNguoiQuanLy(JComboBox ten)
-    {
-        return NhanVienDAO.loadComboBoxTenNguoiQuanLy(ten);
-    }
-    
-
-    public static int themNhanVien(NhanVienDTO nv,JComboBox ten)
-
-    {
-        return NhanVienDAO.themNhanVien(nv,ten);
-    }
-    
     public static ArrayList<NhanVienDTO> timKiemNhanVien(String tk)
     {
         return NhanVienDAO.timKiemNhanVien(tk);
     }
+    
+    public static NhanVienDTO layThongTinNhanVien(int maNhanVien){
+        return NhanVienDAO.layThongTinNhanVien(maNhanVien);
+    }
+    
 }
 

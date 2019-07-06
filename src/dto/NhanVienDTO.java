@@ -23,6 +23,7 @@ public class NhanVienDTO {
     private String email;
     private String diaChi;
     private String trangThai;
+    private int maNguoiQuanLy;
 
     public NhanVienDTO() {
         }
@@ -122,8 +123,20 @@ public class NhanVienDTO {
         this.tenNguoiQL = tenNguoiQL;
     }
     
-    public void toString(String hoten)
+    public String toString(String hoten)
     {
-        
+        return this.hoTen;
     }
+
+    public int getMaNguoiQuanLy() {
+        return maNguoiQuanLy;
+    }
+
+    public void setMaNguoiQuanLy(int maNguoiQuanLy) {
+        this.maNguoiQuanLy = maNguoiQuanLy;
+    }
+    
+    public String toString(){
+        return this.getCMND()+" + "+this.getHoTen();
+            }
 }

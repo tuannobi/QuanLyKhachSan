@@ -56,7 +56,7 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="276" max="-2" attributes="0"/>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbtChon" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtHuy" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -77,7 +77,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="0">
+                  <Table columnCount="10" rowCount="0">
                     <Column editable="true" title="M&#xe3; kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                     <Column editable="true" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
                     <Column editable="true" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
@@ -87,10 +87,16 @@
                     <Column editable="true" title="Email" type="java.lang.Object"/>
                     <Column editable="true" title="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.Object"/>
                     <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
+                    <Column editable="true" title="Lo&#x1ea1;i kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -179,16 +185,22 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="18" style="0"/>
+                  <Font name="Times New Roman" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch kh&#xe1;ch h&#xe0;ng"/>
+                <Property name="text" type="java.lang.String" value="DANH S&#xc1;CH KH&#xc1;CH H&#xc0;NG"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="jbtChon">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/image/save.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtChonActionPerformed"/>
@@ -196,6 +208,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtHuy">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/image/Huy.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
           </Properties>
           <Events>

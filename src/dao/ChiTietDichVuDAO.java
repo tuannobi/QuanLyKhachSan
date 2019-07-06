@@ -22,7 +22,7 @@ public class ChiTietDichVuDAO {
         try {
             listDichVu=new ArrayList<>();
             Connection conn=OracleConnection.openConnection();
-            String sql="{CALL Pro_XuatDichVu(?,?)}";
+            String sql="{CALL Pro_ThongTinDichVu(?,?)}";
             CallableStatement statement=conn.prepareCall(sql);
             statement.setInt(1, maPhong);
             statement.registerOutParameter(2, OracleTypes.CURSOR);
@@ -39,5 +39,21 @@ public class ChiTietDichVuDAO {
             e.printStackTrace();
         }
         return listDichVu;
+    }
+    
+    public static boolean luuThongTinDatDichVu(ChiTietDichVuDTO hoaDonDichVuDTO){
+        Connection conn =OracleConnection.openConnection();
+        try {
+            String sqlString="{CALL PRO_DATDICHVUCHOKHACHHANG(?,?,?)}";
+            CallableStatement cs=conn.prepareCall(sqlString);
+            cs.setInt(1, hoaDonDichVuDTO.getMaHoaDon());
+            cs.setInt(2, hoaDonDichVuDTO.getMaDichVu());
+            cs.setInt(3, hoaDonDichVuDTO.getSoLuong());
+            cs.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

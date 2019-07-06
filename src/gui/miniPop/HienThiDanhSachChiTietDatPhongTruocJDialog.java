@@ -7,7 +7,10 @@ package gui.miniPop;
 
 import bus.PhieuDatPhongBUS;
 import dto.PhieuDatPhongDTO;
+import gui.ManHinhDanhSachPhongJPanel;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,49 +28,16 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     static DefaultTableModel dtmPhieuDatPhong;
     static PhieuDatPhongDTO selectedPhieuDatPhongDTO;
     PhieuDatPhongDTO newPhieuDatPhongDTO;
-    public HienThiDanhSachChiTietDatPhongTruocJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
 
     public HienThiDanhSachChiTietDatPhongTruocJDialog(){
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        loadThongTinDatPhong();
-        chuyenDuLieuVaoTable();
+        yeuCauLayDanhSachDatPhong();
+        hienThiDanhSachPhieuDatPhong();
     }
     
-     private static void  loadThongTinDatPhong(){
-        listPhieuDatPhong=new ArrayList<>();
-        listPhieuDatPhong=PhieuDatPhongBUS.getTatCaThongTinDatPhong();
-    }
-    
-    private void loadThongTinTimKiemDuoc(String tuKhoa){
-        listPhieuDatPhong=PhieuDatPhongBUS.timKiemPhieuDatPhong(tuKhoa);
-    }
-    
-    private static void chuyenDuLieuVaoTable(){
-        dtmPhieuDatPhong=(DefaultTableModel) jTable1.getModel();
-        dtmPhieuDatPhong.setRowCount(0);
-        for (PhieuDatPhongDTO phieuDatPhongDTO:listPhieuDatPhong){
-            Vector<Object> vec=new Vector<>();
 
-            vec.add(phieuDatPhongDTO.getTenKH());
-            vec.add(phieuDatPhongDTO.getTenNV());
-            vec.add(phieuDatPhongDTO.getMaPhong());
-            vec.add(phieuDatPhongDTO.getNgayDat());
-            vec.add(phieuDatPhongDTO.getNgayDen());
-            vec.add(phieuDatPhongDTO.getNgayDi());
-            dtmPhieuDatPhong.addRow(vec);
-        }
-        jTable1.setModel(dtmPhieuDatPhong);
-    }
-    
-    public static void refreshData(){
-        loadThongTinDatPhong();
-        chuyenDuLieuVaoTable();
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,11 +51,9 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jtfTimKiem = new javax.swing.JTextField();
         jbtNhanPhong = new javax.swing.JButton();
         jbtHuyDatPhong = new javax.swing.JButton();
-        jbtCapNhat = new javax.swing.JButton();
         jbtTimKiem = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -95,12 +63,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Danh sách đặt phòng");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("DANH SÁCH ĐẶT PHÒNG");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Tìm kiếm");
-
+        jbtNhanPhong.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jbtNhanPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ok.png"))); // NOI18N
         jbtNhanPhong.setText("Nhận phòng");
         jbtNhanPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +75,8 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
             }
         });
 
+        jbtHuyDatPhong.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jbtHuyDatPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Xoa.png"))); // NOI18N
         jbtHuyDatPhong.setText("Hủy đặt phòng");
         jbtHuyDatPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,13 +84,8 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
             }
         });
 
-        jbtCapNhat.setText("Cập nhật");
-        jbtCapNhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCapNhatActionPerformed(evt);
-            }
-        });
-
+        jbtTimKiem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jbtTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/TimKiem.png"))); // NOI18N
         jbtTimKiem.setText("Tìm kiếm");
         jbtTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,19 +98,15 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jbtTimKiem)
                 .addGap(18, 18, 18)
                 .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtTimKiem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(135, 135, 135)
                 .addComponent(jbtNhanPhong)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtCapNhat)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(jbtHuyDatPhong)
                 .addGap(21, 21, 21))
         );
@@ -156,11 +116,9 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
                     .addComponent(jtfTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtNhanPhong)
                     .addComponent(jbtHuyDatPhong)
-                    .addComponent(jbtCapNhat)
                     .addComponent(jbtTimKiem))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -217,8 +175,17 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
-            loadThongTinTimKiemDuoc(jtfTimKiem.getText());
-            chuyenDuLieuVaoTable();
+        if (jtfTimKiem.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập thông tin cần tìm kiếm");
+        }    
+        else{
+        yeuCauTimKiemPhieuDatPhong(jtfTimKiem.getText());
+            if (yeuCauLayDanhSachDatPhong()==false){
+                JOptionPane.showMessageDialog(null, "Không tìm thấy kết quả");
+            }
+            else
+            hienThiDanhSachPhieuDatPhong();
+        }
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
     private void jbtHuyDatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHuyDatPhongActionPerformed
@@ -229,9 +196,7 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
             {
                     int check= JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa phiếu đặt phòng này không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
           if (check==JOptionPane.YES_OPTION){
-              boolean flag=PhieuDatPhongBUS.xoaDatPhong(selectedPhieuDatPhongDTO.getMaPhieu());
-              loadThongTinDatPhong();
-              chuyenDuLieuVaoTable();
+              boolean flag=yeuCauHuyPhieuDatPhong();
               if (flag)
                   JOptionPane.showMessageDialog(null, "Xóa thành công");
                   else
@@ -245,32 +210,11 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
     }//GEN-LAST:event_jbtHuyDatPhongActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        selectedPhieuDatPhongDTO=new PhieuDatPhongDTO();
-        int selectedRow=jTable1.getSelectedRow();
-        if (selectedRow==-1)
-            return;
-        else
-            selectedPhieuDatPhongDTO=listPhieuDatPhong.get(selectedRow);
+        luuThongTinPhieuDatPhongKhiClick();
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jbtCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCapNhatActionPerformed
-       if (selectedPhieuDatPhongDTO==null){
-           JOptionPane.showMessageDialog(null, "Vui lòng chọn phiếu đặt phòng cần chỉnh sửa");
-       }
-       else
-        new HienThiFormSuaThongTinDatPhongJDialog(selectedPhieuDatPhongDTO.getMaPhieu());
-    }//GEN-LAST:event_jbtCapNhatActionPerformed
-
     private void jbtNhanPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNhanPhongActionPerformed
-        if (selectedPhieuDatPhongDTO==null)
-            JOptionPane.showMessageDialog(null, "Chọn phiếu đặt phòng muốn nhận phòng");
-        else{
-        boolean check=PhieuDatPhongBUS.nhanPhongDaDat(selectedPhieuDatPhongDTO);
-        if (check)
-            JOptionPane.showMessageDialog(null, "Nhận phòng thành công");
-        else
-            JOptionPane.showMessageDialog(null, "Nhận phòng thất bại");
-            }
+        yeuCauNhanPhongDaDat();
     }//GEN-LAST:event_jbtNhanPhongActionPerformed
 
     /**
@@ -279,16 +223,88 @@ public class HienThiDanhSachChiTietDatPhongTruocJDialog extends javax.swing.JDia
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTable jTable1;
-    private javax.swing.JButton jbtCapNhat;
     private javax.swing.JButton jbtHuyDatPhong;
     private javax.swing.JButton jbtNhanPhong;
     private javax.swing.JButton jbtTimKiem;
     private javax.swing.JTextField jtfTimKiem;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    public static void lamMoiDuLieu(){
+        yeuCauLayDanhSachDatPhong();
+        hienThiDanhSachPhieuDatPhong();
+    }
+        
+    private static void hienThiDanhSachPhieuDatPhong(){
+        dtmPhieuDatPhong=(DefaultTableModel) jTable1.getModel();
+        dtmPhieuDatPhong.setRowCount(0);
+        for (PhieuDatPhongDTO phieuDatPhongDTO:listPhieuDatPhong){
+            Vector<Object> vec=new Vector<>();
+
+            vec.add(phieuDatPhongDTO.getTenKH());
+            vec.add(phieuDatPhongDTO.getTenNV());
+            vec.add(phieuDatPhongDTO.getMaPhong());
+            vec.add(phieuDatPhongDTO.getNgayDat());
+            vec.add(phieuDatPhongDTO.getNgayDen());
+            vec.add(phieuDatPhongDTO.getNgayDi());
+            dtmPhieuDatPhong.addRow(vec);
+        }
+        jTable1.setModel(dtmPhieuDatPhong);
+    }
+    
+    private static boolean yeuCauLayDanhSachDatPhong(){
+        listPhieuDatPhong=new ArrayList<>();
+        listPhieuDatPhong=PhieuDatPhongBUS.layThongTinPhieuDatPhong();
+        if(listPhieuDatPhong.size()<=0)
+            return false;
+        else
+            return true;
+    }
+    
+    private void yeuCauTimKiemPhieuDatPhong(String tuKhoa){
+        listPhieuDatPhong=PhieuDatPhongBUS.timKiemPhieuDatPhong(tuKhoa);
+    }
+
+    private void luuThongTinPhieuDatPhongKhiClick() {
+       selectedPhieuDatPhongDTO=new PhieuDatPhongDTO();
+        int selectedRow=jTable1.getSelectedRow();
+        if (selectedRow==-1)
+            return;
+        else
+            selectedPhieuDatPhongDTO=listPhieuDatPhong.get(selectedRow);
+    }
+
+    private boolean yeuCauHuyPhieuDatPhong() {
+        boolean flag=PhieuDatPhongBUS.huyDatPhong(selectedPhieuDatPhongDTO.getMaPhieu());
+              lamMoiDuLieu();
+              return flag;
+         }
+
+    private void yeuCauNhanPhongDaDat() {
+        if (selectedPhieuDatPhongDTO==null)
+            JOptionPane.showMessageDialog(null, "Chọn phiếu đặt phòng muốn nhận phòng");
+        else{
+        
+       java.util.Date date=new java.util.Date(); 
+        if(selectedPhieuDatPhongDTO.getNgayDen().getTime()>date.getTime()){
+            JOptionPane.showMessageDialog(null, "Chưa nhận được phòng");
+        }
+        else{
+            boolean check=PhieuDatPhongBUS.nhanPhongDaDat(selectedPhieuDatPhongDTO);
+        if (check){
+            JOptionPane.showMessageDialog(null, "Nhận phòng thành công");
+            lamMoiDuLieu();
+            ManHinhDanhSachPhongJPanel.hienThiDanhSachPhong();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Nhận phòng thất bại");
+            }
+        }
+    }
 }

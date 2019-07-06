@@ -25,9 +25,9 @@ import oracle.jdbc.OracleTypes;
  * @author COMPUTER
  */
 public class DichVuDAO {
-        public static ArrayList<DichVu> getDuLieuDichVu(){
+        public static ArrayList<DichVu> layDuLieuDichVu(){
             ArrayList<DichVu> ds=null;
-            String sql="{CALL PROC_XEMDICHVU(?)}";
+            String sql="{CALL PRO_HIENTHIDSDICHVU(?)}";
             try {
                 ds=new ArrayList<>();
                 Connection conn = OracleConnection.openConnection();
@@ -41,6 +41,7 @@ public class DichVuDAO {
                     dv.setTenDichVu(rs.getString(2));
                     dv.setGiaTien(rs.getLong(3));
                     dv.setTrangThai(rs.getString(4));
+                    dv.setDoanhThu(rs.getLong(5));
                     ds.add(dv);
                 }
                 conn.close();
@@ -53,12 +54,19 @@ public class DichVuDAO {
     }
         public static int capNhatDuLieu(DichVu dv){
         try {
-            String sql="{CALL PROC_SUADICHVU(?,?,?,?)}"; 
+            String sql="{CALL PRO_SUADICHVU(?,?,?,?)}"; 
             Connection conn=OracleConnection.openConnection();
             CallableStatement cs=conn.prepareCall(sql);
             try{
             cs.setString(1, dv.getTenDichVu());
+            try{
             cs.setLong(2, dv.getGiaTien());
+            }
+            catch(NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Gía tiền không hợp  lệ");
+                return -1;
+            }
             cs.setString(3, dv.getTrangThai());
             cs.setInt(4, dv.getMaDichVu());
             
@@ -70,6 +78,10 @@ public class DichVuDAO {
             }
             catch(SQLException e)
             {
+                if(e.getErrorCode()==21000)
+                {
+                    JOptionPane.showMessageDialog(null, "Giá tiền không hợp lệ");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +94,7 @@ public class DichVuDAO {
         try {
             Connection conn=OracleConnection.openConnection();
             try{
-                String sql ="{CALL PROC_THEMDICHVU(?,?)}";
+                String sql ="{CALL PRO_THEMDICHVU(?,?)}";
             CallableStatement cs =conn.prepareCall(sql);
             cs.setString(1, dv.getTenDichVu());
             cs.setLong(2, dv.getGiaTien());
@@ -91,9 +103,9 @@ public class DichVuDAO {
             conn.close();
             return 1;
             }
-            catch(SQLIntegrityConstraintViolationException a)
+            catch(SQLException e)
             {
-                return 2;
+               
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,15 +119,13 @@ public class DichVuDAO {
             try {
                 ds=new ArrayList<>();
                 Connection conn=OracleConnection.openConnection();
-                String sql="{CALL PROC_XEMDICHVUTIMKIEM(?,?,?,?)}";
+                String sql="{CALL PRO_HIENTHIDSDICHVUTIMKIEM(?,?)}";
                 CallableStatement cs=conn.prepareCall(sql);
                 
                 cs.setString(1,  tk);
-                cs.setString(2, tk);
-                cs.setString(3,  tk);
-                cs.registerOutParameter(4, OracleTypes.CURSOR);
+                cs.registerOutParameter(2, OracleTypes.CURSOR);
                 cs.execute();
-                ResultSet rs=(ResultSet) cs.getObject(4);
+                ResultSet rs=(ResultSet) cs.getObject(2);
                 while(rs.next())
                 {
                     DichVu dv=new DichVu();
@@ -135,4 +145,28 @@ public class DichVuDAO {
             }
             return ds;
     }
+     
+     public static ArrayList<DichVu> layDanhSachDichVuCoTheDatDuoc(){
+         ArrayList<DichVu> listDichVu=null;
+         Connection conn=OracleConnection.openConnection();
+         try {
+             listDichVu=new ArrayList<>();
+             String sqlString="{CALL PRO_DSDICHVUCOTHEDATDUOC(?)}";
+             CallableStatement cs=conn.prepareCall(sqlString);
+             cs.registerOutParameter(1, OracleTypes.CURSOR);
+             cs.execute();
+             ResultSet rs=(ResultSet) cs.getObject(1);
+             while(rs.next()){
+                 DichVu dichVu =new DichVu();
+                 dichVu.setMaDichVu(rs.getInt(1));
+                 dichVu.setTenDichVu(rs.getString(2));
+                 dichVu.setGiaTien(rs.getLong(3));
+                 listDichVu.add(dichVu);
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         return listDichVu;
+     }
+     
 }

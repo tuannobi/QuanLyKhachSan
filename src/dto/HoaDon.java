@@ -21,8 +21,10 @@ public class HoaDon {
     long tongTien;
     Date ngayDen;
     Date ngayDi;
-    Date ngayLap;
     String  trangThai;
+    
+    long tienGiam;
+    long tienThanhToan;
 
     public String getTrangThai() {
         return trangThai;
@@ -100,16 +102,24 @@ public class HoaDon {
         this.ngayDi = ngayDi;
     }
 
-    public Date getNgayLap() {
-        return ngayLap;
-    }
-
-    public void setNgayLap(Date ngayLap) {
-        this.ngayLap = ngayLap;
-    }
-
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public long getTienGiam() {
+        return tienGiam;
+    }
+
+    public void setTienGiam(long tienGiam) {
+        this.tienGiam = tienGiam;
+    }
+
+    public long getTienThanhToan() {
+        return tienThanhToan;
+    }
+
+    public void setTienThanhToan(long tienThanhToan) {
+        this.tienThanhToan = tienThanhToan;
     }
     
     

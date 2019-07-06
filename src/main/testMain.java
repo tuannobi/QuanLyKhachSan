@@ -3,8 +3,10 @@ package main;
 
 import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import dao.OracleConnection;
-import gui.MainJFrame;
+import gui.ManHinhDangNhapJFrame;
+import gui.ManHinhMainJFrame_GiamDoc;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 
@@ -19,8 +21,8 @@ public class testMain {
             printStackTrace();
         }
         
-    MainJFrame a=new MainJFrame();
-    a.showWindow();
+            ManHinhDangNhapJFrame a =new ManHinhDangNhapJFrame();
+            a.showWindow();
     }
     
 }

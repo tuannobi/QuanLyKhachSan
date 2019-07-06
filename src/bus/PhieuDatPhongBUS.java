@@ -18,21 +18,18 @@ public class PhieuDatPhongBUS {
         return PhieuDatPhongDAO.getThongTinDatPhongCuThe1Phong(maPhong);
     }
     
-    public static ArrayList<PhieuDatPhongDTO> getTatCaThongTinDatPhong(){
-        return PhieuDatPhongDAO.getTatCaThongTinDatPhong();
+    public static ArrayList<PhieuDatPhongDTO> layThongTinPhieuDatPhong(){
+        return PhieuDatPhongDAO.layThongTinPhieuDatPhong();
     }
     
     public static ArrayList<PhieuDatPhongDTO> timKiemPhieuDatPhong(String tuKhoa){
         return PhieuDatPhongDAO.timKiemPhieuDatPhong(tuKhoa);
     }
     
-    public static boolean xoaDatPhong(int maPhieu){
-        return PhieuDatPhongDAO.xoaDatPhong(maPhieu);
+    public static boolean huyDatPhong(int maPhieu){
+        return PhieuDatPhongDAO.huyDatPhong(maPhieu);
     }
     
-    public static boolean capNhatThongTinDatPhong(PhieuDatPhongDTO phieuDatPhongDTO){
-        return PhieuDatPhongDAO.capNhatThongTinDatPhong(phieuDatPhongDTO);
-    }
     
     public static boolean nhanPhongDaDat(PhieuDatPhongDTO phieuDatPhongDTO){
         return PhieuDatPhongDAO.nhanPhongDaDat(phieuDatPhongDTO);

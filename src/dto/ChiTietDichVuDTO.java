@@ -10,11 +10,22 @@ package dto;
  * @author Tuan
  */
 public class ChiTietDichVuDTO {
+    int maDichVu;
+    int maHoaDon;
     String tenDichVu;
     int soLuong;
     long thanhTien;
-
+  
+    public ChiTietDichVuDTO(){
+        
+    }
     
+    public ChiTietDichVuDTO(int mDv, int mHD, int soLuong){
+        this.maDichVu=mDv;
+        this.maHoaDon=mHD;
+        this.soLuong=soLuong;
+        
+    }
     
     public String getTenDichVu() {
         return tenDichVu;
@@ -39,6 +50,21 @@ public class ChiTietDichVuDTO {
     public void setThanhTien(long thanhTien) {
         this.thanhTien = thanhTien;
     }
-    
-    
+
+    public int getMaDichVu() {
+        return maDichVu;
+    }
+
+    public void setMaDichVu(int maDichVu) {
+        this.maDichVu = maDichVu;
+    }
+
+    public int getMaHoaDon() {
+        return maHoaDon;
+    }
+
+    public void setMaHoaDon(int maHoaDon) {
+        this.maHoaDon = maHoaDon;
+    }
+        
 }

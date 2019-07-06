@@ -6,7 +6,7 @@
 package gui.miniPop;
 
 import dto.PhongDTO;
-import gui.ThuePhongJPanel;
+import gui.ManHinhQuanLyThuePhongJPanel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
@@ -24,10 +24,6 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
      * Creates new form HienThiChiTietPhongJDialog
      */
     JPanelPhong selectedJPanelPhong;
-    public HienThiThongTinPhong(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
     
     public HienThiThongTinPhong(JPanelPhong selectedJPanelPhong){
         initComponents();
@@ -40,19 +36,19 @@ public class HienThiThongTinPhong extends javax.swing.JDialog {
     private void chuyenDuLieuLenForm(){
         jlbMaSoPhong.setText(String.valueOf(selectedJPanelPhong.getMaPhong()));
         jpnContent.setLayout(new BoxLayout(jpnContent, BoxLayout.Y_AXIS));
-        if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("K")){
+        if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("Trống")){
            // HienThiFormThongTinPhong_PhongJPanel phongtrong=new HienThiFormThongTinPhong_PhongJPanel(selectedJPanelPhong);
-            jpnContent.add(new HienThiFormThongTinPhong_PhongJPanel(selectedJPanelPhong));
+            jpnContent.add(new ThongTinPhong_PhongJPanel(selectedJPanelPhong));
             this.pack(); //auto Resize
         }
-        else if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("C")){
-            jpnContent.add(new HienThiFormThongTinPhong_PhongJPanel(selectedJPanelPhong));
-            jpnContent.add(new HienThiFormThongTinNhanVien_PhongJPanel(selectedJPanelPhong));
-            jpnContent.add(new HienThiFormThongTinKhachHang_PhongJPanel(selectedJPanelPhong));
-            jpnContent.add(new HienThiFormThongTinDichVu_PhongJPanel(selectedJPanelPhong));
+        else if (selectedJPanelPhong.getTrangThai().equalsIgnoreCase("Đang thuê")){
+            jpnContent.add(new ThongTinPhong_PhongJPanel(selectedJPanelPhong));
+            jpnContent.add(new ThongTinNhanVien_PhongJPanel(selectedJPanelPhong));
+            jpnContent.add(new ThongTinKhachHang_PhongJPanel(selectedJPanelPhong));
+            jpnContent.add(new ThongTinDichVu_PhongJPanel(selectedJPanelPhong));
             this.pack(); //Auto resize
         }
-        jpnContent.add(new HienThiFormThongTinDatPhong_PhongJPanel(selectedJPanelPhong));
+        jpnContent.add(new ThongTinDatPhong_PhongJPanel(selectedJPanelPhong));
         this.pack();
         
         jpnContent.repaint();

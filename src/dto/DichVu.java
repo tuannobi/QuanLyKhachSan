@@ -5,6 +5,8 @@
  */
 package dto;
 
+import java.util.Date;
+
 /**
  *
  * @author Tuan
@@ -14,6 +16,10 @@ public class DichVu {
     private String tenDichVu;
     private long giaTien;
     private String trangThai;
+    private long doanhThu;
+    
+    //extra
+    private Date thoiGian;
 
     public String getTrangThai() {
         return trangThai;
@@ -46,6 +52,23 @@ public class DichVu {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
+    public long getDoanhThu() {
+        return doanhThu;
+    }
+
+    public void setDoanhThu(long doanhThu) {
+        this.doanhThu = doanhThu;
+    }
+
+    public Date getThoiGian() {
+        return thoiGian;
+    }
+
+    public void setThoiGian(Date thoiGian) {
+        this.thoiGian = thoiGian;
+    }
+    
     
     
 }

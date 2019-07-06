@@ -6,8 +6,10 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -16,17 +18,79 @@ import oracle.jdbc.OracleTypes;
  */
 public class KhachHangDAO {
     
-    public static ArrayList<KhachHangDTO> getDuLieuKhachHang(){
+    public static ArrayList<KhachHangDTO> layDuLieuKhachHang(){
         ArrayList<KhachHangDTO> ds=null;
         Connection conn;
         try {
             ds=new ArrayList<>();
             conn=OracleConnection.openConnection();
-            String sql="select * from khachhang";
-            //PreparedStatement preStatement=conn.prepareStatement(sql);
-            Statement st=conn.createStatement();
-            //ResultSet resultSet=preStatement.executeQuery();   
-            ResultSet resultSet=st.executeQuery(sql);   
+            String sql="{CALL PRO_DSKHACHHANG(?)}";
+            CallableStatement cs=conn.prepareCall(sql);
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs=(ResultSet) cs.getObject(1);
+            while(rs.next()){
+                KhachHangDTO kh=new KhachHangDTO();
+                kh.setMaKH(rs.getInt(1));
+                kh.setHoTen(rs.getString(2));
+                kh.setNgaySinh(rs.getDate(3));
+                kh.setCMND(rs.getInt(4));
+                kh.setGioiTinh(rs.getString(5));
+                kh.setDiaChi(rs.getString(6));
+                kh.setEmail(rs.getString(7));
+                kh.setSDT(rs.getString(8));
+                kh.setTrangThai(rs.getString(9));
+                kh.setLoaiKH(rs.getString(10));
+                kh.setDoanhSo(rs.getLong(11));
+                ds.add(kh);
+            }        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ds;
+    }
+
+    public static int capNhatThongTinKhachHang(KhachHangDTO kh){
+        Connection conn=OracleConnection.openConnection();
+        try {
+            
+            String sql="{CALL PRO_CAPNHATKHACHHANG(?,?,?,?,?,?,?,?)}";
+            CallableStatement cs=conn.prepareCall(sql);
+            //gán tham số
+            cs.setInt(1, kh.getMaKH());
+            cs.setString(2, kh.getHoTen());
+            cs.setDate(3,new java.sql.Date (kh.getNgaySinh().getTime()));
+            cs.setInt(4, kh.getCMND());
+            cs.setString(5, kh.getGioiTinh());
+            cs.setString(6, kh.getDiaChi());
+            cs.setString(7, kh.getEmail());
+            cs.setString(8, kh.getSDT());
+            return cs.executeUpdate();
+        } catch (SQLException ex) {
+            String  errorString=ex.getMessage();
+                String[] outError=errorString.split("\n");
+                    JOptionPane.showMessageDialog(null,outError[0]);
+        }catch(NullPointerException npe)
+        {
+            
+        }
+        
+        return -1; //Khong thanh cong
+    }
+    
+
+
+    public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
+        ArrayList<KhachHangDTO> listKH=null;
+        try {
+            listKH=new ArrayList<>();
+            Connection conn=OracleConnection.openConnection();
+            String sql ="{CALL PRO_DSTIMKIEMKHACHHANG(?,?)}";
+            CallableStatement cs=conn.prepareCall(sql);
+            cs.setString(1, tuKhoa);
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet resultSet= (ResultSet) cs.getObject(2);
             while(resultSet.next()){
                 KhachHangDTO kh=new KhachHangDTO();
                 kh.setMaKH(resultSet.getInt(1));
@@ -39,72 +103,26 @@ public class KhachHangDAO {
                 kh.setSDT(resultSet.getString(8));
                 kh.setTrangThai(resultSet.getString(9));
                 kh.setLoaiKH(resultSet.getString(10));
-                ds.add(kh);
+                kh.setDoanhSo(resultSet.getLong(11));
+                listKH.add(kh);            
             }
-            
-        } catch (Exception e) {
-            System.err.print(e);
-        }
-        return ds;
-    }
-
-    
-    public static int xoaKhachHang(int makh){
-        
-        try {
-            Connection conn=OracleConnection.openConnection();
-            String sql="delete from khachhang where makhachhang=?";         
-            PreparedStatement preparedStatement=conn.prepareStatement(sql);
-            preparedStatement.setInt(1, makh);
-           return preparedStatement.executeUpdate(); //trả về số dòng xóa thành công
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return -1; //Sai
-   }
-    
-    public static int capNhatThongTinKhachHang(KhachHangDTO kh){
-        try {
-            Connection conn=OracleConnection.openConnection();
-            String sql="update khachhang set hoten=?,ngaysinh=?,cmnd=?,gioitinh=?"
-                    + ",diachi=?,email=?,sdt=?,trangthai=? where makhachhang=?";
-            PreparedStatement preStatement=conn.prepareStatement(sql);
-            preStatement.setString(1, kh.getHoTen());
-            preStatement.setDate(2, new java.sql.Date(kh.getNgaySinh().getTime()));
-            preStatement.setInt(3, kh.getCMND());
-            preStatement.setString(4, kh.getGioiTinh());
-            preStatement.setString(5, kh.getDiaChi());
-            preStatement.setString(6, kh.getEmail());
-            preStatement.setString(7, kh.getSDT());
-            preStatement.setString(8, kh.getTrangThai());
-            preStatement.setInt(9, kh.getMaKH());
-           return preStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1; //Khong thanh cong
+        return listKH;
     }
-
-
-    public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
+    
+    public static ArrayList<KhachHangDTO> timKiemKhachHangDaRoiDi(String tuKhoa){
         ArrayList<KhachHangDTO> listKH=null;
         try {
             listKH=new ArrayList<>();
             Connection conn=OracleConnection.openConnection();
-            String sql ="{CALL PROC_XEMKHACHHANGTIMKIEM(?,?,?,?,?,?,?,?,?,?)}";
+            String sql ="{CALL PRO_DSTIMKIEMKH_DAROIDI(?,?)}";
             CallableStatement cs=conn.prepareCall(sql);
             cs.setString(1, tuKhoa);
-            cs.setString(2, tuKhoa);
-            cs.setString(3, tuKhoa);
-            cs.setString(4, tuKhoa);
-            cs.setString(5, tuKhoa);
-            cs.setString(6, tuKhoa);
-            cs.setString(7, tuKhoa);
-            cs.setString(8, tuKhoa);
-            cs.setString(9,tuKhoa);
-            cs.registerOutParameter(10, OracleTypes.CURSOR);
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
             cs.execute();
-            ResultSet resultSet= (ResultSet) cs.getObject(10);
+            ResultSet resultSet= (ResultSet) cs.getObject(2);
             while(resultSet.next()){
                 KhachHangDTO kh=new KhachHangDTO();
                 kh.setMaKH(resultSet.getInt(1));
@@ -116,6 +134,8 @@ public class KhachHangDAO {
                 kh.setEmail(resultSet.getString(7));
                 kh.setSDT(resultSet.getString(8));
                 kh.setTrangThai(resultSet.getString(9));
+                kh.setLoaiKH(resultSet.getString(10));
+                kh.setDoanhSo(resultSet.getLong(11));
                 listKH.add(kh);            
             }
         } catch (Exception e) {

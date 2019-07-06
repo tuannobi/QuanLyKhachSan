@@ -6,7 +6,9 @@
 package gui.miniPop;
 
 import bus.KhachHangBus;
+import bus.LoaiKhachHangBUS;
 import dto.KhachHangDTO;
+import dto.LoaiKhachHangDTO;
 import dto.PhieuDatPhongDTO;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -24,11 +26,7 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
      */
     ArrayList<KhachHangDTO> listKH;
     DefaultTableModel dtmKH;
-    static KhachHangDTO selectedKhachHang;
-    public HienThiListDanhSachKhachHang_DatPhongJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+    public static KhachHangDTO selectedKhachHang;
     
     private JTextField jtfTimKiem;
     
@@ -38,34 +36,10 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
         setLocationRelativeTo(null);
         
         this.jtfTimKiem=jtfTimKiem;
-        chuyenDuLieuVaoTable();
+        hienThiDanhSachKhachHang();
     }
 
-    private void chuyenDuLieuVaoTable(){
-        listKH=new ArrayList<>();
-        listKH=KhachHangBus.timKiemKhachHang(jtfTimKiem.getText());
-        System.out.println(listKH.size());
-        dtmKH=(DefaultTableModel) jTable1.getModel();
-        for (KhachHangDTO khachHangDTO:listKH){
-            Vector<Object> vec=new Vector<Object>();
-            vec.add(khachHangDTO.getMaKH());
-            vec.add(khachHangDTO.getHoTen());
-            vec.add(khachHangDTO.getNgaySinh());
-            vec.add(khachHangDTO.getCMND());
-            vec.add(khachHangDTO.getGioiTinh());
-            vec.add(khachHangDTO.getDiaChi());
-            vec.add(khachHangDTO.getEmail());
-            vec.add(khachHangDTO.getSDT());
-            vec.add(khachHangDTO.getTrangThai());
-            dtmKH.addRow(vec);
-        }
-        jTable1.setModel(dtmKH);
-    }
-
-    public static KhachHangDTO getSelectedKhachHang() {
-        return selectedKhachHang;
-    }
-    
+       
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,7 +66,7 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
 
             },
             new String [] {
-                "Mã khách hàng", "Họ và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
+                "Mã khách hàng", "Họ và tên", "Ngày sinh", "CMND", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái", "Loại khách hàng"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,8 +78,8 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("Danh sách khách hàng");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("DANH SÁCH KHÁCH HÀNG");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -124,13 +98,17 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jbtChon.setText("Chọn");
+        jbtChon.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbtChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/save.png"))); // NOI18N
+        jbtChon.setText("Lưu");
         jbtChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtChonActionPerformed(evt);
             }
         });
 
+        jbtHuy.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbtHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Huy.png"))); // NOI18N
         jbtHuy.setText("Hủy");
         jbtHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +138,7 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtChon)
                     .addComponent(jbtHuy))
@@ -177,16 +155,12 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
     }//GEN-LAST:event_jbtHuyActionPerformed
 
     private void jbtChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtChonActionPerformed
-        HienThiFormDienThongTinDatPhongJDialog.layThongTinTuKhachHangDaChon();
-        dispose();
+        //xuLyChuyenTenLoaiKHThanhMaLoaiKH();
+        chuyenThongTinKhachHangDaChonXuongForm();
     }//GEN-LAST:event_jbtChonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        selectedKhachHang=new KhachHangDTO();
-        int selectedRow=jTable1.getSelectedRow();
-        if (selectedRow==-1)
-            return;
-        selectedKhachHang=listKH.get(selectedRow);
+        luuThongTinKhiClick1KhachHang();
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -204,6 +178,54 @@ public class HienThiListDanhSachKhachHang_DatPhongJDialog extends javax.swing.JD
     private javax.swing.JButton jbtHuy;
     // End of variables declaration//GEN-END:variables
 
+    private void hienThiDanhSachKhachHang(){
+        listKH=new ArrayList<>();
+        listKH=KhachHangBus.timKiemKhachHangDaRoiDi(jtfTimKiem.getText());
+        dtmKH=new DefaultTableModel();
+        dtmKH=(DefaultTableModel) jTable1.getModel();
+        dtmKH.setRowCount(0);
+        for (KhachHangDTO khachHangDTO:listKH){
+            Vector<Object> vec=new Vector<Object>();
+            vec.add(khachHangDTO.getMaKH());
+            vec.add(khachHangDTO.getHoTen());
+            vec.add(khachHangDTO.getNgaySinh());
+            vec.add(khachHangDTO.getCMND());
+            vec.add(khachHangDTO.getGioiTinh());
+            vec.add(khachHangDTO.getDiaChi());
+            vec.add(khachHangDTO.getEmail());
+            vec.add(khachHangDTO.getSDT());
+            vec.add(khachHangDTO.getTrangThai());
+            vec.add(khachHangDTO.getLoaiKH());
+            dtmKH.addRow(vec);
+        }
+        jTable1.setModel(dtmKH);
+    }
+
+    private void luuThongTinKhiClick1KhachHang() {
+        selectedKhachHang=new KhachHangDTO();
+        int selectedRow=jTable1.getSelectedRow();
+        if (selectedRow==-1)
+            return;
+        selectedKhachHang=listKH.get(selectedRow);
+    }
     
-    
+        public static KhachHangDTO getSelectedKhachHang() {
+        return selectedKhachHang;
+    }
+        
+
+//    private void xuLyChuyenTenLoaiKHThanhMaLoaiKH() {
+//        ArrayList<LoaiKhachHangDTO> listLoaiKhachHang=LoaiKhachHangBUS.layDuLieuLoaiKhachHang();
+//        for(LoaiKhachHangDTO loaiKH:listLoaiKhachHang){
+//            if (selectedKhachHang.getLoaiKH().equals(loaiKH.getTenLoaiKhachHang())){
+//                selectedKhachHang.setMaLoaiKH(loaiKH.getMaLoaiKhachHang());
+//            }
+//        }
+//    }
+
+    private void chuyenThongTinKhachHangDaChonXuongForm() {
+        HienThiFormDienThongTinDatPhongJDialog.layThongTinKhachHangDaChonTuDanhSach();
+        dispose();
+    }
+        
 }

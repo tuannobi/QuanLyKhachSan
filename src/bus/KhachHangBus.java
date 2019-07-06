@@ -3,34 +3,37 @@ package bus;
 
 import dao.KhachHangDAO;
 import dto.KhachHangDTO;
+import static gui.ManHinhQuanLyKhachHangJPanel.dtmKH;
+import static gui.ManHinhQuanLyKhachHangJPanel.selectedKhachHang;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JOptionPane;
-import jdk.nashorn.internal.parser.TokenType;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 
 public class KhachHangBus {
-    public static ArrayList<KhachHangDTO>getDuLieuKhachHang(){
-        return KhachHangDAO.getDuLieuKhachHang();
+    
+    public static ArrayList<KhachHangDTO> layDuLieuKhachHang(){
+        return KhachHangDAO.layDuLieuKhachHang();
     }
     
     
-    public static void xoaKhachHang(int maKH) {
-    int check=KhachHangDAO.xoaKhachHang(maKH);
-    if (check==-1)
-        JOptionPane.showMessageDialog(null, "Xóa khách hàng không thành công");
-        else 
-                JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công");
-}
-    
-    public static void capNhatThongTinKhachHang(KhachHangDTO kh){
+    public static boolean capNhatThongTinKhachHang(KhachHangDTO kh){
         int check=KhachHangDAO.capNhatThongTinKhachHang(kh);
-        if (check==-1){
-            JOptionPane.showMessageDialog(null, "Cập nhật thông tin khách hàng không thành công");
+        if (check>0){
+            return true;
         }
         else
-            JOptionPane.showMessageDialog(null, "Cập nhật thông tin khách hàng thành công");
+            return false;
     }
     
     public static ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa){
         return KhachHangDAO.timKiemKhachHang(tuKhoa);
     }
+    
+    public static ArrayList<KhachHangDTO> timKiemKhachHangDaRoiDi(String tuKhoa){
+        return KhachHangDAO.timKiemKhachHangDaRoiDi(tuKhoa);
+    }
+    
 }

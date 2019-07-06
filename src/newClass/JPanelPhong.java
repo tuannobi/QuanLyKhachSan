@@ -18,6 +18,7 @@ import javax.swing.plaf.ComponentUI;
 public class JPanelPhong extends JPanel {
     //thong tin phong
         private int maPhong;
+        private int maLoaiPhong;
         private String tenLoaiPhong;
         private String trangThai;
         private long giaPhong;
@@ -30,7 +31,8 @@ public class JPanelPhong extends JPanel {
         //thong tin nhanvien
         private String hotenNV;
         private int cmndNV;
-        
+        private int maHoaDon;
+        private String trangThaiHoaDon;
         
         
     public int getMaPhong() {
@@ -113,5 +115,29 @@ public class JPanelPhong extends JPanel {
         this.cmndNV = cmndNV;
     }
 
-        
+    public int getMaLoaiPhong() {
+        return maLoaiPhong;
+    }
+
+    public void setMaLoaiPhong(int maLoaiPhong) {
+        this.maLoaiPhong = maLoaiPhong;
+    }
+
+    public int getMaHoaDon() {
+        return maHoaDon;
+    }
+
+    public void setMaHoaDon(int maHoaDon) {
+        this.maHoaDon = maHoaDon;
+    }
+
+    public String getTrangThaiHoaDon() {
+        return trangThaiHoaDon;
+    }
+
+    public void setTrangThaiHoaDon(String trangThaiHoaDon) {
+        this.trangThaiHoaDon = trangThaiHoaDon;
+    }
+    
+    
 }
